@@ -6,9 +6,9 @@ import './App.css';
 function App() {
   return (
     <SilkBackground
-      speed={3}
-      scale={0.8}
-      color="#2d1b69"
+      speed={1}
+      scale={1}
+      color="#4d4d4dff"
       noiseIntensity={1.2}
       rotation={0}
     >

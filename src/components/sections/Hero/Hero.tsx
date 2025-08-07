@@ -11,11 +11,11 @@ const Hero: React.FC = () => {
           
           {/* Laura Pérez - Arriba Izquierda */}
           <div className="absolute top-12 lg:top-16 left-12 lg:left-16">
-            <h1 className="text-5xl lg:text-6xl xl:text-7xl font-light text-white tracking-wider mb-2">
+            <h1 className="font-dm text-5xl lg:text-6xl xl:text-7xl font-light text-white tracking-wider mb-2">
               Laura Pérez
             </h1>
             {/* Developer & Marketing - Justo debajo del nombre */}
-            <p className="text-xl lg:text-2xl text-white/80 font-light tracking-wide">
+            <p className="font-instrument text-xl lg:text-2xl text-white/80 font-light tracking-wide">
               Developer & Marketing
             </p>
           </div>
@@ -32,7 +32,7 @@ const Hero: React.FC = () => {
           
           {/* Descripción - Abajo Derecha, texto más pequeño y estrecho */}
           <div className="absolute bottom-12 lg:bottom-16 right-12 lg:right-16 max-w-xs text-right">
-            <p className="text-white/90 text-xs lg:text-sm leading-relaxed">
+            <p className="font-instrument text-white/90 text-xs lg:text-sm leading-relaxed">
               Nací el año 1997<br/>
               en Toledo, España.<br/>
               Estudié comunicación<br/>
