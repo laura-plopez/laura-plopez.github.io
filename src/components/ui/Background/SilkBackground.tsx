@@ -135,7 +135,6 @@ export interface SilkProps {
   className?: string;
 }
 
-// Componente Silk original adaptado como background
 const Silk: React.FC<SilkProps> = ({
   speed = 5,
   scale = 2,
@@ -180,7 +179,6 @@ const Silk: React.FC<SilkProps> = ({
   );
 };
 
-// Wrapper component para usar como background
 export interface SilkBackgroundProps {
   children?: React.ReactNode;
   className?: string;
@@ -202,7 +200,6 @@ const SilkBackground: React.FC<SilkBackgroundProps> = ({
 }) => {
   return (
     <div className={`relative min-h-screen overflow-hidden ${className}`}>
-      {/* Fondo Silk original de React Bits */}
       <Silk
         speed={speed}
         scale={scale}
@@ -211,7 +208,6 @@ const SilkBackground: React.FC<SilkBackgroundProps> = ({
         rotation={rotation}
       />
       
-      {/* Contenido por encima */}
       <div className="relative z-10">
         {children}
       </div>

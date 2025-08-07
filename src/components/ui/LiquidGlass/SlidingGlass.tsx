@@ -9,7 +9,6 @@ interface SlidingGlassProps {
 
 const SlidingGlass: React.FC<SlidingGlassProps> = ({
   activeIndex,
-  itemsCount,
   itemWidth,
   itemSpacing
 }) => {

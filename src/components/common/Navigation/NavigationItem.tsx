@@ -6,7 +6,6 @@ const NavigationItem: React.FC<NavigationItemProps> = ({ item, isActive, onClick
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     onClick();
-    // Smooth scroll to section
     const element = document.querySelector(item.href);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });

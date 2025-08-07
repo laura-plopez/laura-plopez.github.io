@@ -1,4 +1,3 @@
-// src/components/common/Navigation/Navigation.tsx
 import React, { useState, useEffect, useRef } from 'react';
 
 const Navigation: React.FC = () => {
@@ -16,7 +15,6 @@ const Navigation: React.FC = () => {
     { id: 'faq', label: 'FAQ' },
   ];
 
-  // Actualizar posición del vidrio con animación elástica
   useEffect(() => {
     const updateGlassPosition = () => {
       const activeButton = buttonRefs.current[activeIndex];
@@ -33,7 +31,6 @@ const Navigation: React.FC = () => {
           width: buttonRect.width
         });
 
-        // Terminar animación después del tiempo de transición
         setTimeout(() => setIsAnimating(false), 800);
       }
     };
@@ -42,7 +39,6 @@ const Navigation: React.FC = () => {
     return () => clearTimeout(timeoutId);
   }, [activeIndex]);
 
-  // Actualizar índice activo
   useEffect(() => {
     const newIndex = navigationItems.findIndex(item => item.id === activeSection);
     if (newIndex !== -1) {
@@ -61,7 +57,6 @@ const Navigation: React.FC = () => {
           ref={navRef}
           className="flex justify-end pr-2 space-x-4 lg:space-x-6 relative"
         >
-          {/* Vidrio líquido con SOLO animación cubic-bezier */}
           <div
             className="absolute top-0 pointer-events-none z-0 rounded-full overflow-hidden"
             style={{
@@ -79,11 +74,9 @@ const Navigation: React.FC = () => {
                 0 4px 16px rgba(0, 0, 0, 0.1),
                 inset 0 1px 0 rgba(255, 255, 255, 0.2)
               `,
-              // Solo la curva elástica, sin transforms adicionales
               transition: 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
             }}
           >
-            {/* Ondas dinámicas solo durante la animación */}
             {isAnimating && (
               <div className="absolute inset-0">
                 {[0, 1, 2].map((i) => (
@@ -98,7 +91,6 @@ const Navigation: React.FC = () => {
               </div>
             )}
 
-            {/* Ondas estáticas cuando no se anima */}
             {!isAnimating && [0, 1].map((i) => (
               <div
                 key={i}
@@ -111,7 +103,6 @@ const Navigation: React.FC = () => {
             ))}
           </div>
           
-          {/* Botones */}
           {navigationItems.map((item, index) => (
             <button
               key={item.id}

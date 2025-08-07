@@ -1,5 +1,3 @@
-// src/components/ui/LiquidGlass/shaders.ts
-
 export const vertexShader = `
   attribute vec2 a_position;
   attribute vec2 a_texCoord;

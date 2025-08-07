@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useCallback, useState } from 'react';
+import React, { useRef, useCallback, useState } from 'react';
 
 interface LiquidGlassShaderProps {
   children: React.ReactNode;
@@ -20,11 +20,11 @@ const LiquidGlassShader: React.FC<LiquidGlassShaderProps> = ({
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
     const container = containerRef.current;
     if (!container) return;
-    
+
     const rect = container.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width;
     const y = (e.clientY - rect.top) / rect.height;
-    
+
     setMousePos({ x, y });
   }, []);
 
@@ -37,23 +37,20 @@ const LiquidGlassShader: React.FC<LiquidGlassShaderProps> = ({
     setMousePos({ x: 0.5, y: 0.5 });
   }, []);
 
-  // Calcular distorsión CSS basada en la posición del mouse
   const getDistortionStyle = () => {
     if (!isHovered) return {};
-    
+
     const centerX = mousePos.x - 0.5;
     const centerY = mousePos.y - 0.5;
     const distance = Math.sqrt(centerX * centerX + centerY * centerY);
     const maxDistance = 0.5;
     const normalizedDistance = Math.min(distance / maxDistance, 1);
-    
-    // Crear efecto de lente
+
     const lensStrength = (1 - normalizedDistance) * intensity * 0.3;
     const scaleEffect = 1 + lensStrength * 0.1;
-    
-    // Crear ondulación
+
     const rippleStrength = Math.sin(Date.now() * 0.01) * lensStrength * 2;
-    
+
     return {
       transform: `scale(${scaleEffect}) perspective(1000px) rotateX(${centerY * rippleStrength}deg) rotateY(${centerX * rippleStrength}deg)`,
       filter: `
@@ -77,20 +74,19 @@ const LiquidGlassShader: React.FC<LiquidGlassShaderProps> = ({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       style={{
-        background: isActive 
-          ? 'rgba(255, 255, 255, 0.15)' 
+        background: isActive
+          ? 'rgba(255, 255, 255, 0.15)'
           : 'rgba(255, 255, 255, 0.08)',
         backdropFilter: `blur(${isHovered ? 15 : 10}px) saturate(180%)`,
         border: `1px solid rgba(255, 255, 255, ${isActive ? 0.3 : 0.15})`,
-        boxShadow: isHovered 
-          ? `0 8px 32px rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)` 
+        boxShadow: isHovered
+          ? `0 8px 32px rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)`
           : `0 4px 16px rgba(0, 0, 0, 0.1)`,
         transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
         ...getDistortionStyle()
       }}
     >
-      {/* Efecto de reflejos dinámicos */}
-      <div 
+      <div
         className="absolute inset-0 rounded-full opacity-30"
         style={{
           background: `radial-gradient(circle at ${mousePos.x * 100}% ${mousePos.y * 100}%, 
@@ -98,11 +94,10 @@ const LiquidGlassShader: React.FC<LiquidGlassShaderProps> = ({
             transparent 50%)`
         }}
       />
-      
-      {/* Efecto de ondas cuando está activo */}
+
       {isActive && (
         <div className="absolute inset-0 rounded-full">
-          <div 
+          <div
             className="absolute inset-0 rounded-full animate-pulse"
             style={{
               background: 'rgba(255, 255, 255, 0.1)',
@@ -111,8 +106,7 @@ const LiquidGlassShader: React.FC<LiquidGlassShaderProps> = ({
           />
         </div>
       )}
-      
-      {/* Contenido */}
+
       <div className="relative z-10 px-4 py-2">
         {children}
       </div>

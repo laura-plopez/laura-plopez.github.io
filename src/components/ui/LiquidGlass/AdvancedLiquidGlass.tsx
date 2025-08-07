@@ -1,4 +1,3 @@
-// src/components/ui/LiquidGlass/AdvancedLiquidGlass.tsx
 import React, { useRef, useCallback, useState } from 'react';
 
 interface AdvancedLiquidGlassProps {
@@ -47,7 +46,6 @@ const AdvancedLiquidGlass: React.FC<AdvancedLiquidGlassProps> = ({
         transform: isHovered ? 'scale(1.05)' : 'scale(1)',
       }}
     >
-      {/* Solo animación de ondas para estado activo */}
       {
         isActive && (
           <div className="absolute inset-0 rounded-full">
@@ -65,7 +63,6 @@ const AdvancedLiquidGlass: React.FC<AdvancedLiquidGlassProps> = ({
         )
       }
 
-      {/* Contenido */}
       <div className="relative z-10 px-4 py-2">
         {children}
       </div>
