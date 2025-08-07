@@ -8,7 +8,7 @@ function App() {
     <SilkBackground
       speed={1}
       scale={1}
-      color="#4d4d4dff"
+      color="#312f33ff"
       noiseIntensity={1.2}
       rotation={0}
     >

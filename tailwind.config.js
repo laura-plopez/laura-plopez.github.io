@@ -7,8 +7,8 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
-        dm: ['"Atkinson Hyperlegible Next"', 'serif'],
-        instrument: ['"Instrument Sans"', 'sans-serif'],
+        dm: ['"Alumni Sans Pinstripe"', 'serif'],
+        instrument: ['"Darker Grotesque"', 'sans-serif'],
       },
     },
   },

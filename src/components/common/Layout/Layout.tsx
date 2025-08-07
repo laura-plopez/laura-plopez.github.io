@@ -8,11 +8,11 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <SilkBackground
-      speed={3}           // Velocidad de animación
-      scale={2}           // Escala del patrón
-      color="#2d1b69"     // Color púrpura oscuro
-      noiseIntensity={0.8} // Intensidad del ruido
-      rotation={0}        // Rotación del patrón
+      speed={3}
+      scale={2}
+      color="#2d1b69"
+      noiseIntensity={0.8}
+      rotation={0}
     >
       {children}
     </SilkBackground>
