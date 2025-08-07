@@ -194,7 +194,7 @@ export interface SilkBackgroundProps {
 const SilkBackground: React.FC<SilkBackgroundProps> = ({
   children,
   className = "",
-  speed = 3,
+  speed = 1,
   scale = 1,
   color = "#2d1b69",
   noiseIntensity = 0.8,

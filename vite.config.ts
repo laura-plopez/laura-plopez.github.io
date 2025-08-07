@@ -4,7 +4,7 @@ import path from 'path'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/laura-plopez.github.io/',
+  base: '/',
   build: {
     outDir: 'dist'
   },
@@ -13,9 +13,6 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
       '@components': path.resolve(__dirname, './src/components'),
       '@types': path.resolve(__dirname, './src/types'),
-      '@hooks': path.resolve(__dirname, './src/hooks'),
-      '@constants': path.resolve(__dirname, './src/constants'),
-      '@utils': path.resolve(__dirname, './src/utils'),
     },
   },
 })
