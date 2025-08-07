@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import Typography from '../../ui/Typography/Typography';
 
 const Projects: React.FC = () => {
   return (
@@ -12,10 +11,9 @@ const Projects: React.FC = () => {
         transition={{ duration: 1 }}
         viewport={{ once: true }}
       >
-        <Typography variant="h2" className="text-white mb-8">
+        <h2 className="text-4xl font-light tracking-wide text-white mb-8">
           Proyectos
-        </Typography>
-        {/* Aquí irán los proyectos */}
+        </h2>
       </motion.div>
     </section>
   );

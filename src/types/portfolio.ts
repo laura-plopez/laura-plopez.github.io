@@ -1,3 +1,5 @@
+import { NavigationItem } from './navigation';
+
 export interface PersonalInfo {
   name: string;
   title: string;

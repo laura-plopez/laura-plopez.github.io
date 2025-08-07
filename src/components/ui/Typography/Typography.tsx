@@ -15,7 +15,7 @@ const Typography: React.FC<TypographyProps> = ({
     body: 'text-base font-normal',
   };
 
-  const Component = variant.startsWith('h') ? variant as keyof JSX.IntrinsicElements : 'p';
+  const Component = variant.startsWith('h') ? variant as 'h1' | 'h2' | 'h3' : 'p';
   
   return React.createElement(
     Component,
@@ -28,4 +28,3 @@ const Typography: React.FC<TypographyProps> = ({
 };
 
 export default Typography;
-

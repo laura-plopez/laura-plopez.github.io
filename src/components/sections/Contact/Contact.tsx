@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import Typography from '../../ui/Typography/Typography';
 
 const Contact: React.FC = () => {
   return (
@@ -12,10 +11,9 @@ const Contact: React.FC = () => {
         transition={{ duration: 1 }}
         viewport={{ once: true }}
       >
-        <Typography variant="h2" className="text-white mb-8">
+        <h2 className="text-4xl font-light tracking-wide text-white mb-8">
           Contacto
-        </Typography>
-        {/* Aquí irá el formulario de contacto */}
+        </h2>
       </motion.div>
     </section>
   );

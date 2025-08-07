@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import Typography from '../../ui/Typography/Typography';
 
 const HeroContent: React.FC = () => {
   return (
@@ -10,12 +9,12 @@ const HeroContent: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.2 }}
       >
-        <Typography variant="h1" className="text-white mb-4">
+        <h1 className="text-6xl font-light tracking-wider text-white mb-4">
           Laura Pérez
-        </Typography>
-        <Typography variant="subtitle" className="text-white/80">
+        </h1>
+        <p className="text-xl font-light tracking-wide text-white/80">
           Developer & Marketing
-        </Typography>
+        </p>
       </motion.div>
     </div>
   );

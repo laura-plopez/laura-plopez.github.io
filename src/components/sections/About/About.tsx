@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import Typography from '../../ui/Typography/Typography';
 
 const About: React.FC = () => {
   return (
@@ -12,10 +11,10 @@ const About: React.FC = () => {
         transition={{ duration: 1 }}
         viewport={{ once: true }}
       >
-        <Typography variant="body" className="text-white/90 text-lg leading-relaxed">
+        <p className="text-white/90 text-lg leading-relaxed">
           Nací el año 1997 en Toledo, España. Estudié comunicación audiovisual y desarrollo 
           de aplicaciones multiplataforma.
-        </Typography>
+        </p>
       </motion.div>
     </section>
   );
