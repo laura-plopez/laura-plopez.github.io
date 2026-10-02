@@ -1,3 +1,4 @@
+/** @type {import('tailwindcss').Config} */
 export default {
   content: [
     "./index.html",
@@ -6,9 +7,21 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        dm: ['"Alumni Sans Pinstripe"', 'serif'],
-        instrument: ['"Darker Grotesque"', 'sans-serif'],
+        sans: [
+          '-apple-system',
+          'BlinkMacSystemFont',
+          '"Segoe UI"',
+          'Roboto',
+          'Oxygen',
+          'Ubuntu',
+          'Cantarell',
+          '"Fira Sans"',
+          '"Droid Sans"',
+          '"Helvetica Neue"',
+          'sans-serif',
+        ],
+        display: ['"Alumni Sans Pinstripe"', 'serif'],
+        body: ['"Darker Grotesque"', 'sans-serif'],
       },
     },
   },

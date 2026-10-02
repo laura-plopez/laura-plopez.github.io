@@ -2,7 +2,21 @@
   "name": "portfolio-laura-perez",
   "private": true,
   "version": "0.0.0",
+  "description": "Portfolio personal de Laura Pérez",
+  "author": "Laura Pérez",
+  "license": "ISC",
+  "homepage": "https://laura-plopez.github.io",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laura-plopez/laura-plopez.github.io.git"
+  },
+  "bugs": {
+    "url": "https://github.com/laura-plopez/laura-plopez.github.io/issues"
+  },
   "type": "module",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -11,15 +25,12 @@
   },
   "dependencies": {
     "@react-three/fiber": "^9.3.0",
-    "framer-motion": "^12.23.12",
-    "gl-matrix": "^3.4.3",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "three": "^0.179.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.30.1",
-    "@types/gl-matrix": "^2.4.5",
     "@types/node": "^24.2.0",
     "@types/react": "^19.1.9",
     "@types/react-dom": "^19.1.7",
@@ -35,18 +46,5 @@
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.35.1",
     "vite": "^7.0.6"
-  },
-  "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
-  "main": "eslint.config.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/laura-plopez/laura-plopez.github.io.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/laura-plopez/laura-plopez.github.io/issues"
-  },
-  "homepage": "https://github.com/laura-plopez/laura-plopez.github.io#readme"
+  }
 }

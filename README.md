@@ -1,69 +1,50 @@
-# React + TypeScript + Vite
+# Portfolio — Laura Pérez
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Portfolio personal publicado en [laura-plopez.github.io](https://laura-plopez.github.io).
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [React 19](https://react.dev) + TypeScript
+- [Vite 7](https://vite.dev)
+- [Tailwind CSS 3](https://v3.tailwindcss.com)
+- [Three.js](https://threejs.org) con [React Three Fiber](https://r3f.docs.pmnd.rs) para el fondo animado
 
-## Expanding the ESLint configuration
+## Requisitos
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Node.js 20.19+ o 22.12+ (lo exige Vite 7).
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Scripts
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+| Comando           | Qué hace                                                       |
+| ----------------- | -------------------------------------------------------------- |
+| `npm run dev`     | Servidor de desarrollo con recarga en caliente                 |
+| `npm run build`   | Comprueba los tipos y genera la versión de producción en `dist/` |
+| `npm run preview` | Sirve `dist/` en local para revisarla antes de publicar         |
+| `npm run lint`    | Pasa ESLint                                                    |
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Estructura
+
+```
+src/
+├── components/
+│   ├── layout/        # Piezas fijas de la página (navegación)
+│   ├── sections/      # Secciones de la página (Hero…)
+│   └── ui/            # Componentes reutilizables, sin contenido propio
+├── constants/         # Contenido del portfolio: textos y menú
+├── types/             # Tipos compartidos entre varios archivos
+├── App.tsx            # Composición de la página
+├── main.tsx           # Punto de entrada
+└── index.css          # Tailwind y animaciones globales
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Convenciones
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **Una carpeta por componente**, con el mismo nombre que el componente: `ui/ZoomButton/ZoomButton.tsx`.
+- **Los textos viven en `src/constants/portfolio.ts`**, no dentro de los componentes.
+- **Imports con el alias `@/`**, que apunta a `src/`: `import Hero from '@/components/sections/Hero/Hero'`.
+- **Los tipos de las props van en el propio componente.** `src/types/` es solo para tipos que usan varios archivos.
+- **Fuentes de Tailwind:** `font-display` (Alumni Sans Pinstripe) para títulos y `font-body` (Darker Grotesque) para textos. El resto usa la fuente del sistema.
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Despliegue
+
+Cada push a `main` lanza [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). El workflow instala las dependencias con `npm ci`, pasa el lint, genera la build y publica `dist/` en GitHub Pages.

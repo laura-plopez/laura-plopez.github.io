@@ -1,59 +1,46 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { PORTFOLIO_DATA } from '@/constants/portfolio';
 
-const Navigation: React.FC = () => {
-  const [activeSection, setActiveSection] = useState<string>('home');
-  const [activeIndex, setActiveIndex] = useState<number>(0);
+const NAVIGATION_ITEMS = PORTFOLIO_DATA.navigation;
+const WAVE_DURATION_MS = 800;
+
+function Navigation() {
+  const [activeIndex, setActiveIndex] = useState(0);
   const [glassPosition, setGlassPosition] = useState({ left: 0, width: 0 });
   const [isAnimating, setIsAnimating] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
   const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
-  const navigationItems = [
-    { id: 'home', label: 'Home' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'contact', label: 'Contact' },
-    { id: 'faq', label: 'FAQ' },
-  ];
-
   useEffect(() => {
-    const updateGlassPosition = () => {
+    let waveTimeoutId: ReturnType<typeof setTimeout> | undefined;
+
+    const measureTimeoutId = setTimeout(() => {
       const activeButton = buttonRefs.current[activeIndex];
       const container = navRef.current;
-      
-      if (activeButton && container) {
-        setIsAnimating(true);
-        
-        const containerRect = container.getBoundingClientRect();
-        const buttonRect = activeButton.getBoundingClientRect();
-        
-        setGlassPosition({
-          left: buttonRect.left - containerRect.left,
-          width: buttonRect.width
-        });
+      if (!activeButton || !container) return;
 
-        setTimeout(() => setIsAnimating(false), 800);
-      }
+      const containerRect = container.getBoundingClientRect();
+      const buttonRect = activeButton.getBoundingClientRect();
+
+      setIsAnimating(true);
+      setGlassPosition({
+        left: buttonRect.left - containerRect.left,
+        width: buttonRect.width,
+      });
+
+      waveTimeoutId = setTimeout(() => setIsAnimating(false), WAVE_DURATION_MS);
+    }, 10);
+
+    return () => {
+      clearTimeout(measureTimeoutId);
+      clearTimeout(waveTimeoutId);
     };
-
-    const timeoutId = setTimeout(updateGlassPosition, 10);
-    return () => clearTimeout(timeoutId);
   }, [activeIndex]);
-
-  useEffect(() => {
-    const newIndex = navigationItems.findIndex(item => item.id === activeSection);
-    if (newIndex !== -1) {
-      setActiveIndex(newIndex);
-    }
-  }, [activeSection]);
-
-  const handleSectionChange = (sectionId: string) => {
-    setActiveSection(sectionId);
-  };
 
   return (
     <nav className="fixed top-4 lg:top-6 left-0 right-0 z-50">
       <div className="mx-16 lg:mx-20">
-        <div 
+        <div
           ref={navRef}
           className="flex justify-end pr-2 space-x-4 lg:space-x-6 relative"
         >
@@ -64,8 +51,8 @@ const Navigation: React.FC = () => {
               width: `${glassPosition.width}px`,
               height: '100%',
               background: `
-                linear-gradient(135deg, 
-                  rgba(255, 255, 255, 0.15) 0%, 
+                linear-gradient(135deg,
+                  rgba(255, 255, 255, 0.15) 0%,
                   rgba(255, 255, 255, 0.08) 100%)
               `,
               backdropFilter: 'blur(12px) saturate(180%)',
@@ -102,19 +89,20 @@ const Navigation: React.FC = () => {
               />
             ))}
           </div>
-          
-          {navigationItems.map((item, index) => (
+
+          {NAVIGATION_ITEMS.map((item, index) => (
             <button
               key={item.id}
+              type="button"
               ref={el => { buttonRefs.current[index] = el; }}
-              onClick={() => handleSectionChange(item.id)}
+              onClick={() => setActiveIndex(index)}
               className={`
                 relative px-4 py-2 rounded-full cursor-pointer transition-all duration-300 ease-out
                 text-white text-sm font-medium bg-transparent border-none outline-none
                 hover:scale-105
               `}
               style={{
-                zIndex: activeSection === item.id ? 2 : 1,
+                zIndex: activeIndex === index ? 2 : 1,
               }}
             >
               {item.label}
@@ -124,6 +112,6 @@ const Navigation: React.FC = () => {
       </div>
     </nav>
   );
-};
+}
 
 export default Navigation;
