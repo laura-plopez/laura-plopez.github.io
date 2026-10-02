@@ -1,12 +1,13 @@
 import type { QA, SiteContent } from '@/types/portfolio';
 
 const MIN_WORD_LENGTH = 4;
-const SHORT_KEYWORDS = new Set(['ia', 'ai', 'cv', 'api', 'rag', 'llm', 'sql', 'seo', 'iot', 'php']);
+const SHORT_KEYWORDS = new Set(['ia', 'ai', 'cv', 'api', 'rag', 'llm', 'mcp', 'n8n', 'gpt', 'sql', 'iot']);
 const STOPWORDS = new Set([
   'laura', 'para', 'pero', 'como', 'esto', 'esta', 'este', 'estos', 'estas', 'sobre', 'donde', 'cuando',
   'puede', 'puedes', 'tiene', 'tienes', 'hace', 'haces', 'eres', 'todo', 'algo', 'mucho', 'hola',
+  'trabaja', 'trabajas', 'trabajar', 'trabajado',
   'what', 'when', 'where', 'which', 'this', 'that', 'with', 'have', 'does', 'your', 'about', 'from',
-  'they', 'there', 'would', 'could', 'should', 'hello',
+  'they', 'there', 'would', 'could', 'should', 'hello', 'work', 'works', 'worked',
 ]);
 
 const tokenize = (text: string): string[] =>

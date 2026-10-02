@@ -1,4 +1,4 @@
-import type { ContactLink, Localized, Project, SiteContent, TabId } from '@/types/portfolio';
+import type { ContactLink, Localized, Post, Project, SiteContent, TabId } from '@/types/portfolio';
 
 export const TABS: TabId[] = ['home', 'projects', 'about', 'stack', 'writing', 'faq', 'contact'];
 
@@ -107,6 +107,33 @@ export const PROJECTS: Project[] = [
   },
 ];
 
+export const POSTS: Post[] = [
+  {
+    title: 'Ciberseguridad en España: El análisis de 2024 que revela la realidad',
+    dek: '¿Te has preguntado alguna vez si España está realmente preparada para defenderse en el ciberespacio? Yo también pensaba que sí hasta que me puse a investigar los datos oficiales de 2024.',
+    readTime: '4 min',
+    href: 'https://lplopez.substack.com/p/ciberseguridad-en-espana-el-analisis',
+  },
+  {
+    title: 'La batalla legal que definirá el futuro de la IA: Anthropic vs el mundo del copyright',
+    dek: 'Breve análisis de la crisis legal que está sacudiendo a la industria de la inteligencia artificial.',
+    readTime: '3 min',
+    href: 'https://lplopez.substack.com/p/la-batalla-legal-que-definira-el',
+  },
+  {
+    title: 'Neuromarketing: Cómo las empresas hackean tu mente para que gastes más',
+    dek: 'Un análisis de los sesgos cognitivos que explotan las empresas para influir en tus decisiones de compra y vaciar tu cartera.',
+    readTime: '6 min',
+    href: 'https://lplopez.substack.com/p/neuromarketing-como-las-empresas',
+  },
+  {
+    title: 'Los Artistas Fantasma de Spotify: cuando la música que escuchas no existe',
+    dek: '¿Usas Spotify? Pues es muy probable que hayas escuchado música de artistas que… no existen.',
+    readTime: '3 min',
+    href: 'https://lplopez.substack.com/p/los-artistas-fantasma-de-spotify',
+  },
+];
+
 export const CONTENT: Localized<SiteContent> = {
   es: {
     tabs: {
@@ -141,9 +168,9 @@ export const CONTENT: Localized<SiteContent> = {
       ctaProjects: 'Ver proyectos',
       ctaContact: 'Escríbeme',
       steps: [
-        { title: 'Entender', body: 'Hablo con usuarios, miro los datos y defino qué problema merece resolverse con IA y cuál no.' },
-        { title: 'Construir', body: 'Integro modelos, diseño el flujo y escribo el código que lo lleva a producción.' },
-        { title: 'Medir', body: 'Evalúo calidad, coste y uso real para decidir qué mejorar en la siguiente iteración.' },
+        { title: 'Entender', body: 'Hablo con clientes, miro los datos y defino qué problema merece resolverse con IA y cuál no.' },
+        { title: 'Construir', body: 'Diseño el flujo, integro modelos y escribo el código para desplegar a producción.' },
+        { title: 'Medir', body: 'Integro observabilidad y evaluación para mantener trazabilidad del uso real y decidir qué mejorar en la siguiente iteración.' },
       ],
       selected: 'Proyectos seleccionados',
       allProjects: 'Ver todos',
@@ -161,8 +188,8 @@ export const CONTENT: Localized<SiteContent> = {
     about: {
       lead: 'Empecé hablando con clientes. Ahora construyo lo que necesitan.',
       body: [
-        'Durante años trabajé como account manager y responsable de comunicación. Gestionaba clientes en inglés y en español, con Salesforce y muchas horas de teléfono. Ahí aprendí a escuchar lo que un cliente pide de verdad, que no siempre es lo que dice.',
-        'Después estudié Desarrollo de Aplicaciones Multiplataforma y pasé al código: web, IoT y plataformas full stack, tocando tanto back como front. Hoy, en STEMIA, desarrollo agentes de IA para clientes y empresas como producto SaaS, desde la idea hasta producción.',
+        'Durante unos años trabajé como Account Manager y responsable de comunicación. Gestionaba clientes nacionales e internacionales, con herramientas CRM y muchas horas al teléfono. En esta etapa aprendí a escuchar lo que un cliente pide de verdad, que no siempre es lo que dice.',
+        'Después decidí estudiar Desarrollo de Aplicaciones Multiplataforma y pasé al código: web, IoT y plataformas full stack, cada vez más ligados a proyectos de IA. A día de hoy desarrollo flujos de agentes de IA para empresas como producto SaaS, desde la idea hasta producción.',
       ],
       highlightsTitle: 'Lo que traigo',
       highlights: [
@@ -233,18 +260,21 @@ export const CONTENT: Localized<SiteContent> = {
           },
         ],
         courses: [
+          { when: 'jun. 2026', duration: '', title: 'Introduction to Model Context Protocol', org: 'Anthropic', note: '', tags: [] },
+          { when: 'jun. 2026', duration: '', title: 'Introduction to Claude Cowork', org: 'Anthropic', note: '', tags: [] },
+          { when: 'jun. 2026', duration: '', title: 'Claude Code in Action', org: 'Anthropic', note: '', tags: [] },
           { when: '', duration: '', title: 'Python Essentials 1 y 2', org: 'Cisco Networking Academy', note: '', tags: [] },
           { when: '', duration: '', title: 'Fundamentos de Git', org: 'OpenWebinars', note: '', tags: [] },
           { when: '', duration: '', title: 'Marketing Digital', org: 'Google Actívate', note: '', tags: [] },
           { when: '', duration: '', title: 'Data Science', org: 'IMMUNE Technology Institute', note: '', tags: [] },
         ],
         langs: [
-          { when: 'Nativo', duration: '', title: 'Español', org: '', note: '', tags: [] },
+          { when: '', duration: '', title: 'Español', org: 'Nativo', note: '', tags: [] },
           {
-            when: 'Profesional',
+            when: '',
             duration: '',
             title: 'Inglés',
-            org: '',
+            org: 'Profesional',
             note: 'Gestión de clientes y comunicación técnica en inglés.',
             tags: [],
           },
@@ -256,31 +286,28 @@ export const CONTENT: Localized<SiteContent> = {
       columns: [
         {
           title: 'Producto',
-          description: 'Del primer contacto con el cliente a un producto definido: qué se construye, para quién y cómo se cuenta.',
+          description: 'Del primer contacto con el cliente a un producto definido: qué se construye y para quién.',
           groups: [
             {
               name: 'Estrategia',
               items: [
                 { name: 'Conceptualización de producto', note: 'idea → requisitos', monogram: 'CP' },
-                { name: 'Figma', note: 'diseño, prototipos', logo: 'figma' },
-                { name: 'Puente negocio–técnico', note: 'ventas ↔ desarrollo', monogram: '↔' },
                 { name: 'Automatización de procesos', note: 'procesos de negocio', monogram: 'AP' },
+              ],
+            },
+            {
+              name: 'Definición y diseño',
+              items: [
+                { name: 'Spec-Driven Development', note: 'specs como fuente de verdad', monogram: 'SDD' },
+                { name: 'PRD', note: 'requisitos de producto', monogram: 'PRD' },
+                { name: 'Figma', note: 'diseño, prototipos', logo: 'figma' },
               ],
             },
             {
               name: 'Clientes',
               items: [
-                { name: 'Gestión de clientes', note: 'ES / EN', monogram: 'GC' },
+                { name: 'Discovery', note: 'entrevistas con clientes', monogram: 'DI' },
                 { name: 'Salesforce', note: 'CRM', monogram: 'SF' },
-                { name: 'Ecommerce', note: 'clientes web', monogram: 'EC' },
-              ],
-            },
-            {
-              name: 'Contenido y crecimiento',
-              items: [
-                { name: 'SEO técnico', note: 'posicionamiento', monogram: 'SEO' },
-                { name: 'Redacción técnica', note: 'docs, web', monogram: 'RT' },
-                { name: 'Publicaciones digitales', note: 'contenido', monogram: 'PD' },
               ],
             },
           ],
@@ -292,13 +319,15 @@ export const CONTENT: Localized<SiteContent> = {
             {
               name: 'IA',
               items: [
-                { name: 'Agentes de IA', note: 'producción', monogram: 'AG' },
                 { name: 'Python', note: 'IA, scripts', logo: 'python' },
+                { name: 'API de Claude', note: 'modelos de Anthropic', logo: 'anthropic' },
+                { name: 'OpenAI API', note: 'modelos GPT', monogram: 'OA' },
                 { name: 'LangChain', note: 'orquestación', logo: 'langchain' },
+                { name: 'LangGraph', note: 'flujos de agentes', logo: 'langgraph' },
+                { name: 'MCP', note: 'agentes ↔ herramientas', logo: 'modelcontextprotocol' },
                 { name: 'RAG', note: 'recuperación de contexto', monogram: 'RAG' },
-                { name: 'Claude Code', note: 'desarrollo con IA', monogram: 'CC' },
-                { name: 'LLMs', note: 'integración', monogram: 'LLM' },
-                { name: 'Automatización', note: 'flujos', monogram: 'AU' },
+                { name: 'n8n', note: 'automatización de flujos', logo: 'n8n' },
+                { name: 'Claude Code', note: 'desarrollo con IA', logo: 'claude' },
               ],
             },
             {
@@ -307,30 +336,25 @@ export const CONTENT: Localized<SiteContent> = {
                 { name: 'React', note: 'UI', logo: 'react' },
                 { name: 'TypeScript', note: 'tipado', logo: 'typescript' },
                 { name: 'JavaScript', note: 'web', logo: 'javascript' },
-                { name: 'Tailwind CSS', note: 'estilos', logo: 'tailwindcss' },
-                { name: 'Three.js', note: 'WebGL', logo: 'threedotjs' },
-              ],
+                { name: 'Tailwind CSS', note: 'estilos', logo: 'tailwindcss' },              ],
             },
             {
               name: 'Backend y datos',
               items: [
                 { name: 'Python', note: 'APIs, servicios', logo: 'python' },
-                { name: 'PostgreSQL', note: 'datos', logo: 'postgresql' },
-                { name: 'PHP', note: 'backend', logo: 'php' },
-                { name: 'APIs', note: 'REST', monogram: 'API' },
+                { name: 'PostgreSQL', note: 'datos', logo: 'postgresql' },                { name: 'APIs', note: 'REST', monogram: 'API' },
                 { name: 'Clean Architecture', note: 'diseño', monogram: 'CA' },
                 { name: 'IoT', note: 'trazabilidad', monogram: 'IoT' },
               ],
             },
             {
-              name: 'Entrega',
+              name: 'Entrega y observabilidad',
               items: [
                 { name: 'Git', note: 'versiones', logo: 'git' },
-                { name: 'GitHub', note: 'repos', logo: 'github' },
-                { name: 'Vite', note: 'build', logo: 'vite' },
-                { name: 'GitHub Actions', note: 'CI/CD', logo: 'githubactions' },
+                { name: 'GitHub', note: 'repos', logo: 'github' },                { name: 'GitHub Actions', note: 'CI/CD', logo: 'githubactions' },
                 { name: 'GitHub Pages', note: 'hosting', logo: 'githubpages' },
                 { name: 'Azure', note: 'cloud', monogram: 'AZ' },
+                { name: 'Grafana', note: 'monitorización, dashboards', logo: 'grafana' },
               ],
             },
           ],
@@ -338,12 +362,7 @@ export const CONTENT: Localized<SiteContent> = {
       ],
     },
     writing: {
-      lead: 'Notas sobre construir con IA sin perder de vista al usuario.',
-      posts: [
-        { tag: 'IA', title: 'Evals antes que prompts', dek: 'Por qué empiezo cada funcionalidad con IA definiendo cómo voy a medirla.', readTime: '7 min' },
-        { tag: 'Producto', title: 'Del brief al PR: specs que se pueden programar', dek: 'Una plantilla para que producto e ingeniería hablen el mismo idioma.', readTime: '8 min' },
-        { tag: 'Híbrido', title: 'Lo que el montaje audiovisual me enseñó sobre UX', dek: 'Ritmo, corte y atención aplicados a flujos de producto.', readTime: '5 min' },
-      ],
+      lead: 'Lectura y reflexión sobre los papers que más me llaman la atención.',
     },
     faq: {
       lead: 'Lo que suelen preguntarme en las primeras conversaciones.',
@@ -384,7 +403,7 @@ export const CONTENT: Localized<SiteContent> = {
         },
         {
           question: '¿Qué stack de IA usa?',
-          answer: 'Sobre todo Python y LangChain para construir agentes, RAG para darles contexto e integración con LLMs. En su día a día de desarrollo usa también Claude Code.',
+          answer: 'Trabaja sobre todo con Python. Integra modelos de Claude y OpenAI (GPT), orquesta agentes con LangChain y LangGraph, los conecta a herramientas con MCP y les da contexto con RAG. Automatiza flujos con n8n y desarrolla con Claude Code.',
         },
         {
           question: '¿Ha trabajado con clientes?',
@@ -440,9 +459,9 @@ export const CONTENT: Localized<SiteContent> = {
       ctaProjects: 'See projects',
       ctaContact: 'Get in touch',
       steps: [
-        { title: 'Understand', body: 'I talk to users, look at the data and decide which problems are worth solving with AI, and which aren’t.' },
-        { title: 'Build', body: 'I integrate models, design the flow and write the code that takes it to production.' },
-        { title: 'Measure', body: 'I evaluate quality, cost and real usage to decide what to improve next.' },
+        { title: 'Understand', body: 'I talk to clients, look at the data and decide which problems are worth solving with AI, and which aren’t.' },
+        { title: 'Build', body: 'I design the flow, integrate models and write the code to ship it to production.' },
+        { title: 'Measure', body: 'I build in observability and evaluation to keep real usage traceable and decide what to improve in the next iteration.' },
       ],
       selected: 'Selected projects',
       allProjects: 'See all',
@@ -460,8 +479,8 @@ export const CONTENT: Localized<SiteContent> = {
     about: {
       lead: 'I started out talking to clients. Now I build what they need.',
       body: [
-        'For years I worked as an account manager and head of communications, managing clients in English and Spanish with Salesforce and plenty of phone calls. That’s where I learned to hear what a client actually needs, which isn’t always what they say.',
-        'Then I studied Multiplatform App Development and moved into code: web, IoT and full stack platforms, across back end and front end. Today, at STEMIA, I build AI agents for clients and businesses as a SaaS product, from idea to production.',
+        'For a few years I worked as an Account Manager and head of communications, managing national and international clients with CRM tools and plenty of hours on the phone. That’s when I learned to hear what a client actually needs, which isn’t always what they say.',
+        'Then I decided to study Multiplatform App Development and moved into code: web, IoT and full stack platforms, increasingly tied to AI projects. Today I build AI agent workflows for businesses as a SaaS product, from idea to production.',
       ],
       highlightsTitle: 'What I bring',
       highlights: [
@@ -532,18 +551,21 @@ export const CONTENT: Localized<SiteContent> = {
           },
         ],
         courses: [
+          { when: 'Jun 2026', duration: '', title: 'Introduction to Model Context Protocol', org: 'Anthropic', note: '', tags: [] },
+          { when: 'Jun 2026', duration: '', title: 'Introduction to Claude Cowork', org: 'Anthropic', note: '', tags: [] },
+          { when: 'Jun 2026', duration: '', title: 'Claude Code in Action', org: 'Anthropic', note: '', tags: [] },
           { when: '', duration: '', title: 'Python Essentials 1 & 2', org: 'Cisco Networking Academy', note: '', tags: [] },
           { when: '', duration: '', title: 'Git Fundamentals', org: 'OpenWebinars', note: '', tags: [] },
           { when: '', duration: '', title: 'Digital Marketing', org: 'Google Actívate', note: '', tags: [] },
           { when: '', duration: '', title: 'Data Science', org: 'IMMUNE Technology Institute', note: '', tags: [] },
         ],
         langs: [
-          { when: 'Native', duration: '', title: 'Spanish', org: '', note: '', tags: [] },
+          { when: '', duration: '', title: 'Spanish', org: 'Native', note: '', tags: [] },
           {
-            when: 'Professional',
+            when: '',
             duration: '',
             title: 'English',
-            org: '',
+            org: 'Professional',
             note: 'Client management and technical communication in English.',
             tags: [],
           },
@@ -555,31 +577,28 @@ export const CONTENT: Localized<SiteContent> = {
       columns: [
         {
           title: 'Product',
-          description: 'From first client contact to a defined product: what gets built, for whom and how it’s told.',
+          description: 'From first client contact to a defined product: what gets built and for whom.',
           groups: [
             {
               name: 'Strategy',
               items: [
                 { name: 'Product shaping', note: 'idea → requirements', monogram: 'PS' },
-                { name: 'Figma', note: 'design, prototypes', logo: 'figma' },
-                { name: 'Business–tech bridge', note: 'sales ↔ dev', monogram: '↔' },
                 { name: 'Process automation', note: 'business processes', monogram: 'PA' },
+              ],
+            },
+            {
+              name: 'Definition & design',
+              items: [
+                { name: 'Spec-Driven Development', note: 'specs as source of truth', monogram: 'SDD' },
+                { name: 'PRD', note: 'product requirements', monogram: 'PRD' },
+                { name: 'Figma', note: 'design, prototypes', logo: 'figma' },
               ],
             },
             {
               name: 'Clients',
               items: [
-                { name: 'Client management', note: 'ES / EN', monogram: 'CM' },
+                { name: 'Discovery', note: 'client interviews', monogram: 'DI' },
                 { name: 'Salesforce', note: 'CRM', monogram: 'SF' },
-                { name: 'Ecommerce', note: 'web clients', monogram: 'EC' },
-              ],
-            },
-            {
-              name: 'Content & growth',
-              items: [
-                { name: 'Technical SEO', note: 'positioning', monogram: 'SEO' },
-                { name: 'Technical writing', note: 'docs, web', monogram: 'TW' },
-                { name: 'Digital publishing', note: 'content', monogram: 'DP' },
               ],
             },
           ],
@@ -591,13 +610,15 @@ export const CONTENT: Localized<SiteContent> = {
             {
               name: 'AI',
               items: [
-                { name: 'AI agents', note: 'production', monogram: 'AG' },
                 { name: 'Python', note: 'AI, scripting', logo: 'python' },
+                { name: 'Claude API', note: 'Anthropic models', logo: 'anthropic' },
+                { name: 'OpenAI API', note: 'GPT models', monogram: 'OA' },
                 { name: 'LangChain', note: 'orchestration', logo: 'langchain' },
+                { name: 'LangGraph', note: 'agent workflows', logo: 'langgraph' },
+                { name: 'MCP', note: 'agents ↔ tools', logo: 'modelcontextprotocol' },
                 { name: 'RAG', note: 'context retrieval', monogram: 'RAG' },
-                { name: 'Claude Code', note: 'AI-assisted dev', monogram: 'CC' },
-                { name: 'LLMs', note: 'integration', monogram: 'LLM' },
-                { name: 'Automation', note: 'workflows', monogram: 'AU' },
+                { name: 'n8n', note: 'workflow automation', logo: 'n8n' },
+                { name: 'Claude Code', note: 'AI-assisted dev', logo: 'claude' },
               ],
             },
             {
@@ -606,30 +627,25 @@ export const CONTENT: Localized<SiteContent> = {
                 { name: 'React', note: 'UI', logo: 'react' },
                 { name: 'TypeScript', note: 'types', logo: 'typescript' },
                 { name: 'JavaScript', note: 'web', logo: 'javascript' },
-                { name: 'Tailwind CSS', note: 'styling', logo: 'tailwindcss' },
-                { name: 'Three.js', note: 'WebGL', logo: 'threedotjs' },
-              ],
+                { name: 'Tailwind CSS', note: 'styling', logo: 'tailwindcss' },              ],
             },
             {
               name: 'Backend & data',
               items: [
                 { name: 'Python', note: 'APIs, services', logo: 'python' },
-                { name: 'PostgreSQL', note: 'data', logo: 'postgresql' },
-                { name: 'PHP', note: 'backend', logo: 'php' },
-                { name: 'APIs', note: 'REST', monogram: 'API' },
+                { name: 'PostgreSQL', note: 'data', logo: 'postgresql' },                { name: 'APIs', note: 'REST', monogram: 'API' },
                 { name: 'Clean Architecture', note: 'design', monogram: 'CA' },
                 { name: 'IoT', note: 'traceability', monogram: 'IoT' },
               ],
             },
             {
-              name: 'Delivery',
+              name: 'Delivery & observability',
               items: [
                 { name: 'Git', note: 'versioning', logo: 'git' },
-                { name: 'GitHub', note: 'repos', logo: 'github' },
-                { name: 'Vite', note: 'build', logo: 'vite' },
-                { name: 'GitHub Actions', note: 'CI/CD', logo: 'githubactions' },
+                { name: 'GitHub', note: 'repos', logo: 'github' },                { name: 'GitHub Actions', note: 'CI/CD', logo: 'githubactions' },
                 { name: 'GitHub Pages', note: 'hosting', logo: 'githubpages' },
                 { name: 'Azure', note: 'cloud', monogram: 'AZ' },
+                { name: 'Grafana', note: 'monitoring, dashboards', logo: 'grafana' },
               ],
             },
           ],
@@ -637,12 +653,7 @@ export const CONTENT: Localized<SiteContent> = {
       ],
     },
     writing: {
-      lead: 'Notes on building with AI without losing sight of the user.',
-      posts: [
-        { tag: 'AI', title: 'Evals before prompts', dek: 'Why I start every AI feature by defining how I’ll measure it.', readTime: '7 min' },
-        { tag: 'Product', title: 'From brief to PR: specs you can actually build', dek: 'A template so product and engineering speak the same language.', readTime: '8 min' },
-        { tag: 'Hybrid', title: 'What film editing taught me about UX', dek: 'Rhythm, cuts and attention applied to product flows.', readTime: '5 min' },
-      ],
+      lead: 'Reading and reflecting on the papers that catch my attention most.',
     },
     faq: {
       lead: 'What people usually ask me in first conversations.',
@@ -683,7 +694,7 @@ export const CONTENT: Localized<SiteContent> = {
         },
         {
           question: 'What AI stack does she use?',
-          answer: 'Mostly Python and LangChain to build agents, RAG to give them context, and LLM integration. She also uses Claude Code in her day-to-day development.',
+          answer: 'She works mostly in Python. She integrates Claude and OpenAI (GPT) models, orchestrates agents with LangChain and LangGraph, connects them to tools with MCP and gives them context with RAG. She automates workflows with n8n and builds with Claude Code.',
         },
         {
           question: 'Has she worked with clients?',

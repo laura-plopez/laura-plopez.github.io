@@ -1,19 +1,22 @@
 import {
+  siAnthropic,
+  siClaude,
   siFigma,
   siGit,
   siGithub,
   siGithubactions,
   siGithubpages,
+  siGrafana,
   siJavascript,
   siLangchain,
-  siPhp,
+  siLanggraph,
+  siModelcontextprotocol,
+  siN8n,
   siPostgresql,
   siPython,
   siReact,
   siTailwindcss,
-  siThreedotjs,
   siTypescript,
-  siVite,
 } from 'simple-icons';
 import type { SimpleIcon } from 'simple-icons';
 import type { BrandSlug } from '@/types/portfolio';
@@ -26,14 +29,17 @@ const ICONS: Record<BrandSlug, SimpleIcon> = {
   typescript: siTypescript,
   javascript: siJavascript,
   tailwindcss: siTailwindcss,
-  threedotjs: siThreedotjs,
   postgresql: siPostgresql,
-  php: siPhp,
   git: siGit,
   github: siGithub,
-  vite: siVite,
   githubactions: siGithubactions,
   githubpages: siGithubpages,
+  grafana: siGrafana,
+  anthropic: siAnthropic,
+  claude: siClaude,
+  langgraph: siLanggraph,
+  modelcontextprotocol: siModelcontextprotocol,
+  n8n: siN8n,
 };
 
 interface BrandIconProps {

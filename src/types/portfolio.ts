@@ -15,14 +15,17 @@ export type BrandSlug =
   | 'typescript'
   | 'javascript'
   | 'tailwindcss'
-  | 'threedotjs'
   | 'postgresql'
-  | 'php'
   | 'git'
   | 'github'
-  | 'vite'
   | 'githubactions'
-  | 'githubpages';
+  | 'githubpages'
+  | 'grafana'
+  | 'anthropic'
+  | 'claude'
+  | 'langgraph'
+  | 'modelcontextprotocol'
+  | 'n8n';
 
 export interface ProjectCopy {
   title: string;
@@ -72,7 +75,6 @@ export interface StackColumn {
 }
 
 export interface Post {
-  tag: string;
   title: string;
   dek: string;
   readTime: string;
@@ -132,7 +134,6 @@ export interface SiteContent {
   };
   writing: {
     lead: string;
-    posts: Post[];
   };
   faq: {
     lead: string;

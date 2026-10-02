@@ -19,7 +19,7 @@ function FaqAccordion({ items }: FaqAccordionProps) {
         return (
           <div
             key={item.question}
-            className={`animate-rise rounded-card transition-colors duration-200 ${
+            className={`animate-rise rounded-card transition-colors duration-500 ${
               open ? 'bg-main text-white' : 'bg-white text-ink'
             }`}
             style={animationDelay(0.05 * index + 0.1)}
@@ -35,13 +35,19 @@ function FaqAccordion({ items }: FaqAccordionProps) {
               <span className="text-row font-bold">{item.question}</span>
               <span aria-hidden="true" className="text-right font-mono text-lg">{open ? '−' : '+'}</span>
             </button>
-            <p
+            <div
               id={panelId}
-              hidden={!open}
-              className="max-w-[860px] pb-6 pl-[76px] pr-12 text-[17px] leading-[1.55] text-pretty"
+              inert={!open}
+              className={`grid transition-[grid-template-rows,opacity] duration-500 ease-[cubic-bezier(.2,.7,.2,1)] motion-reduce:transition-none ${
+                open ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+              }`}
             >
-              {item.answer}
-            </p>
+              <div className="overflow-hidden">
+                <p className="max-w-[860px] pb-6 pl-[76px] pr-12 text-[17px] leading-[1.55] text-pretty">
+                  {item.answer}
+                </p>
+              </div>
+            </div>
           </div>
         );
       })}
