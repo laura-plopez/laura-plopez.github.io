@@ -1,13 +1,13 @@
 # Portfolio — Laura Pérez
 
-Portfolio personal publicado en [laura-plopez.github.io](https://laura-plopez.github.io).
+Portfolio personal publicado en [laura-plopez.github.io](https://laura-plopez.github.io). Es bilingüe (ES/EN) y tiene 7 secciones: Inicio, Proyectos, Sobre mí, Stack, Escritos, FAQ y Contacto.
 
 ## Stack
 
 - [React 19](https://react.dev) + TypeScript
 - [Vite 7](https://vite.dev)
 - [Tailwind CSS 3](https://v3.tailwindcss.com)
-- [Three.js](https://threejs.org) con [React Three Fiber](https://r3f.docs.pmnd.rs) para el fondo animado
+- [Simple Icons](https://simpleicons.org) para los logos del Stack (incluidos en la build, sin peticiones externas)
 
 ## Requisitos
 
@@ -15,35 +15,47 @@ Node.js 20.19+ o 22.12+ (lo exige Vite 7).
 
 ## Scripts
 
-| Comando           | Qué hace                                                       |
-| ----------------- | -------------------------------------------------------------- |
-| `npm run dev`     | Servidor de desarrollo con recarga en caliente                 |
+| Comando           | Qué hace                                                         |
+| ----------------- | ---------------------------------------------------------------- |
+| `npm run dev`     | Servidor de desarrollo con recarga en caliente                   |
 | `npm run build`   | Comprueba los tipos y genera la versión de producción en `dist/` |
-| `npm run preview` | Sirve `dist/` en local para revisarla antes de publicar         |
-| `npm run lint`    | Pasa ESLint                                                    |
+| `npm run preview` | Sirve `dist/` en local para revisarla antes de publicar          |
+| `npm run lint`    | Pasa ESLint                                                      |
 
 ## Estructura
 
 ```
 src/
 ├── components/
-│   ├── layout/        # Piezas fijas de la página (navegación)
-│   ├── sections/      # Secciones de la página (Hero…)
+│   ├── layout/        # Piezas fijas de la página (barra lateral)
+│   ├── sections/      # Una carpeta por sección (Home, Projects, About…)
 │   └── ui/            # Componentes reutilizables, sin contenido propio
-├── constants/         # Contenido del portfolio: textos y menú
-├── types/             # Tipos compartidos entre varios archivos
-├── App.tsx            # Composición de la página
+├── constants/         # Todo el contenido: textos ES/EN, proyectos, enlaces
+├── context/           # Estado compartido por toda la app (idioma)
+├── hooks/             # Lógica de React reutilizable (rutas, idioma, animaciones)
+├── lib/               # Funciones sin React (respuestas del bot, formato, movimiento)
+├── types/             # Tipos compartidos
+├── App.tsx            # Composición de la página y elección de sección según la URL
 ├── main.tsx           # Punto de entrada
-└── index.css          # Tailwind y animaciones globales
+└── index.css          # Tailwind y estilos globales
 ```
 
 ## Convenciones
 
-- **Una carpeta por componente**, con el mismo nombre que el componente: `ui/ZoomButton/ZoomButton.tsx`.
-- **Los textos viven en `src/constants/portfolio.ts`**, no dentro de los componentes.
-- **Imports con el alias `@/`**, que apunta a `src/`: `import Hero from '@/components/sections/Hero/Hero'`.
+- **Una carpeta por componente**, con el mismo nombre que el componente: `ui/PillButton/PillButton.tsx`. Los subcomponentes que solo usa un componente van en su misma carpeta (`sections/Projects/ProjectCard.tsx`).
+- **Los textos viven en `src/constants/portfolio.ts`**, nunca dentro de los componentes. Cada idioma tiene su bloque en `CONTENT`, y TypeScript avisa si a uno le falta un texto.
+- **Imports con el alias `@/`**, que apunta a `src/`: `import Home from '@/components/sections/Home/Home'`.
 - **Los tipos de las props van en el propio componente.** `src/types/` es solo para tipos que usan varios archivos.
-- **Fuentes de Tailwind:** `font-display` (Alumni Sans Pinstripe) para títulos y `font-body` (Darker Grotesque) para textos. El resto usa la fuente del sistema.
+- **Estilos con los tokens de `tailwind.config.js`** (`bg-main`, `text-ink-soft`, `rounded-card`, `text-title`, `animate-rise`…) en vez de valores sueltos.
+
+## Cómo funciona
+
+- **Rutas:** cada pestaña tiene su URL con `#` (`/#/projects`, `/#/projects/este-portfolio`), porque GitHub Pages no sabe servir rutas sin él. Así funcionan los enlaces directos y el botón "atrás".
+- **Idioma:** se guarda en `localStorage` y actualiza `<html lang>`.
+- **Chatbot (FAQ):** de momento responde sin IA, buscando por palabras clave en las preguntas sugeridas y en las FAQ (`src/lib/bot.ts`). Para conectarlo a Claude hará falta un pequeño servidor que guarde la clave de API; nunca debe ir en el código de la web.
+- **Formulario de contacto:** abre el programa de correo del visitante con el mensaje ya escrito (`mailto:`).
+- **Enlaces vacíos:** un proyecto, artículo o enlace de contacto sin URL se muestra sin enlace.
+- **Movimiento reducido:** si el sistema lo pide (`prefers-reduced-motion`), se desactivan las animaciones.
 
 ## Despliegue
 

@@ -3,11 +3,34 @@
 @tailwind utilities;
 
 @layer base {
+  html,
   body {
-    @apply antialiased;
+    @apply bg-main text-white antialiased;
   }
 
   #root {
     @apply min-h-screen;
+  }
+
+  ::selection {
+    @apply bg-ink text-white;
+  }
+}
+
+@layer utilities {
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
   }
 }
