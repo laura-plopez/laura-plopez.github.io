@@ -40,7 +40,7 @@ function ProjectDetail({ project }: ProjectDetailProps) {
             {projects.close} ×
           </a>
         </div>
-        <h3 className="text-[clamp(32px,3.2vw,48px)] font-bold leading-none tracking-[-0.04em]">{copy.title}</h3>
+        <h2 className="text-[clamp(32px,3.2vw,48px)] font-bold leading-none tracking-[-0.04em]">{copy.title}</h2>
         {facts.map((fact) => (
           <div key={fact.label} className="flex flex-col gap-1">
             <span className="font-mono text-[11px] uppercase tracking-[.08em] text-accent">{fact.label}</span>

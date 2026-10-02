@@ -35,11 +35,13 @@ function FaqAccordion({ items }: FaqAccordionProps) {
               <span className="text-row font-bold">{item.question}</span>
               <span aria-hidden="true" className="text-right font-mono text-lg">{open ? '−' : '+'}</span>
             </button>
-            {open && (
-              <p id={panelId} className="max-w-[860px] pb-6 pl-[76px] pr-12 text-[17px] leading-[1.55] text-pretty">
-                {item.answer}
-              </p>
-            )}
+            <p
+              id={panelId}
+              hidden={!open}
+              className="max-w-[860px] pb-6 pl-[76px] pr-12 text-[17px] leading-[1.55] text-pretty"
+            >
+              {item.answer}
+            </p>
           </div>
         );
       })}

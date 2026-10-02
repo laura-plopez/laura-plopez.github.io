@@ -12,6 +12,7 @@ interface DragScrollProps {
 function DragScroll({ children, className = '' }: DragScrollProps) {
   const ref = useRef<HTMLDivElement>(null);
   const draggedRef = useRef(false);
+  const stopDragRef = useRef<(() => void) | null>(null);
   const [dragging, setDragging] = useState(false);
   const [hasMore, setHasMore] = useState(false);
 
@@ -30,6 +31,8 @@ function DragScroll({ children, className = '' }: DragScrollProps) {
 
   useEffect(() => updateFade());
 
+  useEffect(() => () => stopDragRef.current?.(), []);
+
   const handlePointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
     const el = ref.current;
     if (!el || event.pointerType !== 'mouse' || event.button !== 0) return;
@@ -46,21 +49,27 @@ function DragScroll({ children, className = '' }: DragScrollProps) {
       el.scrollLeft = startScroll - dx;
     };
 
-    const handleUp = () => {
+    const stopDrag = () => {
       setDragging(false);
       window.removeEventListener('pointermove', handleMove);
-      window.removeEventListener('pointerup', handleUp);
+      window.removeEventListener('pointerup', stopDrag);
+      window.removeEventListener('pointercancel', stopDrag);
+      stopDragRef.current = null;
+      setTimeout(() => {
+        draggedRef.current = false;
+      }, 0);
     };
 
+    stopDragRef.current = stopDrag;
     window.addEventListener('pointermove', handleMove);
-    window.addEventListener('pointerup', handleUp);
+    window.addEventListener('pointerup', stopDrag);
+    window.addEventListener('pointercancel', stopDrag);
   };
 
   const handleClickCapture = (event: MouseEvent<HTMLDivElement>) => {
     if (!draggedRef.current) return;
     event.preventDefault();
     event.stopPropagation();
-    draggedRef.current = false;
   };
 
   const mask = hasMore ? FADE_MASK : 'none';

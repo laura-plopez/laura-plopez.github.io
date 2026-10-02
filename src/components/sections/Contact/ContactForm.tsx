@@ -37,30 +37,38 @@ function ContactForm() {
   };
 
   return (
-    <div className="self-start rounded-panel bg-white p-7">
-      {sent ? (
-        <div className="flex flex-col gap-2 py-6">
-          <span className="text-5xl font-bold tracking-[-0.04em]">{contact.sentTitle}</span>
-          <span className="text-[17px] text-ink-soft">{contact.sentBody}</span>
+    <div className="flex flex-col gap-6 self-start rounded-panel bg-white p-7">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-[18px]">
+        <Field label={contact.form.name}>
+          <input name="name" required autoComplete="name" className={INPUT} />
+        </Field>
+        <div role="group" aria-label={contact.form.topic} className="flex flex-wrap gap-1.5">
+          {TOPICS.map((option) => (
+            <ToggleChip key={option} active={topic === option} onClick={() => setTopic(option)} className="text-sm">
+              {contact.topics[option]}
+            </ToggleChip>
+          ))}
         </div>
-      ) : (
-        <form onSubmit={handleSubmit} className="flex flex-col gap-[18px]">
-          <Field label={contact.form.name}>
-            <input name="name" required autoComplete="name" className={INPUT} />
-          </Field>
-          <div role="group" aria-label={contact.form.topic} className="flex flex-wrap gap-1.5">
-            {TOPICS.map((option) => (
-              <ToggleChip key={option} active={topic === option} onClick={() => setTopic(option)} className="text-sm">
-                {contact.topics[option]}
-              </ToggleChip>
-            ))}
+        <Field label={contact.form.message}>
+          <textarea name="message" rows={4} required className={`${INPUT} resize-y`} />
+        </Field>
+        <PillButton type="submit">{contact.form.send} →</PillButton>
+      </form>
+
+      <div role="status">
+        {sent && (
+          <div className="flex flex-col gap-2">
+            <span className="text-3xl font-bold tracking-[-0.04em]">{contact.sent.title}</span>
+            <p className="text-[15px] leading-[1.45] text-ink-soft">
+              {contact.sent.body} {contact.sent.fallback}{' '}
+              <a href={`mailto:${PROFILE.email}`} className="font-semibold text-ink underline underline-offset-[3px]">
+                {PROFILE.email}
+              </a>
+              .
+            </p>
           </div>
-          <Field label={contact.form.message}>
-            <textarea name="message" rows={4} required className={`${INPUT} resize-y`} />
-          </Field>
-          <PillButton type="submit">{contact.form.send} →</PillButton>
-        </form>
-      )}
+        )}
+      </div>
     </div>
   );
 }

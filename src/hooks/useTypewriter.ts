@@ -1,45 +1,42 @@
 import { useEffect, useState } from 'react';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 
-const TICK_MS = 40;
-const HOLD_TICKS = 65;
-const GAP_TICKS = 8;
+const TYPE_MS = 40;
+const HOLD_MS = 2600;
+const GAP_MS = 320;
 const DELETE_STEP = 2;
 
 interface TypewriterState {
   index: number;
   typed: number;
   deleting: boolean;
-  wait: number;
 }
 
-const INITIAL_STATE: TypewriterState = { index: 0, typed: 0, deleting: false, wait: 0 };
+const INITIAL_STATE: TypewriterState = { index: 0, typed: 0, deleting: false };
 
-function step(state: TypewriterState, phrases: string[]): TypewriterState {
-  if (state.wait > 0) return { ...state, wait: state.wait - 1 };
-
-  const phrase = phrases[state.index % phrases.length];
+function nextStep(state: TypewriterState, phrase: string): { next: TypewriterState; delay: number } {
   if (!state.deleting) {
     return state.typed >= phrase.length
-      ? { ...state, deleting: true, wait: HOLD_TICKS }
-      : { ...state, typed: state.typed + 1 };
+      ? { next: { ...state, deleting: true }, delay: HOLD_MS }
+      : { next: { ...state, typed: state.typed + 1 }, delay: TYPE_MS };
   }
 
   return state.typed <= 0
-    ? { index: state.index + 1, typed: 0, deleting: false, wait: GAP_TICKS }
-    : { ...state, typed: Math.max(0, state.typed - DELETE_STEP) };
+    ? { next: { index: state.index + 1, typed: 0, deleting: false }, delay: GAP_MS }
+    : { next: { ...state, typed: Math.max(0, state.typed - DELETE_STEP) }, delay: TYPE_MS };
 }
 
 export function useTypewriter(phrases: string[]): string {
   const reducedMotion = usePrefersReducedMotion();
   const [state, setState] = useState(INITIAL_STATE);
+  const phrase = phrases[state.index % phrases.length];
 
   useEffect(() => {
     if (reducedMotion) return;
-    const intervalId = setInterval(() => setState((current) => step(current, phrases)), TICK_MS);
-    return () => clearInterval(intervalId);
-  }, [phrases, reducedMotion]);
+    const { next, delay } = nextStep(state, phrase);
+    const timeoutId = setTimeout(() => setState(next), delay);
+    return () => clearTimeout(timeoutId);
+  }, [state, phrase, reducedMotion]);
 
-  if (reducedMotion) return phrases[0];
-  return phrases[state.index % phrases.length].slice(0, state.typed);
+  return reducedMotion ? phrases[0] : phrase.slice(0, state.typed);
 }

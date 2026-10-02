@@ -151,7 +151,6 @@ export interface SiteContent {
     lead: string;
     form: { name: string; topic: string; message: string; send: string };
     topics: Record<ContactTopic, string>;
-    sentTitle: string;
-    sentBody: string;
+    sent: { title: string; body: string; fallback: string };
   };
 }

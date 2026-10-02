@@ -6,6 +6,7 @@ import { useContent } from '@/hooks/useLanguage';
 function Contact() {
   const { tabs, contact } = useContent();
   const links = CONTACT_LINKS.filter((link) => link.href);
+  const [emailUser, emailDomain] = PROFILE.email.split('@');
 
   return (
     <div className="flex flex-col gap-10">
@@ -15,9 +16,9 @@ function Contact() {
           <p className="text-subtitle font-semibold leading-[1.15] text-pretty">{contact.lead}</p>
           <a
             href={`mailto:${PROFILE.email}`}
-            className="block break-all rounded-card bg-main p-6 text-[clamp(22px,2.2vw,30px)] font-bold tracking-snug text-white transition-colors duration-200 hover:bg-accent hover:text-ink"
+            className="block break-words rounded-card bg-main p-6 text-[clamp(22px,2.2vw,30px)] font-bold tracking-snug text-white transition-colors duration-200 hover:bg-accent hover:text-ink"
           >
-            {PROFILE.email} ↗
+            {emailUser}@<wbr />{emailDomain} ↗
           </a>
           <div className="flex flex-wrap gap-2">
             {links.map((link) => (

@@ -46,15 +46,16 @@ src/
 - **Los textos viven en `src/constants/portfolio.ts`**, nunca dentro de los componentes. Cada idioma tiene su bloque en `CONTENT`, y TypeScript avisa si a uno le falta un texto.
 - **Imports con el alias `@/`**, que apunta a `src/`: `import Home from '@/components/sections/Home/Home'`.
 - **Los tipos de las props van en el propio componente.** `src/types/` es solo para tipos que usan varios archivos.
-- **Estilos con los tokens de `tailwind.config.js`** (`bg-main`, `text-ink-soft`, `rounded-card`, `text-title`, `animate-rise`…) en vez de valores sueltos.
+- **Colores, tipografías, radios y animaciones salen de los tokens de `tailwind.config.js`** (`bg-main`, `text-ink-soft`, `rounded-card`, `text-title`, `animate-rise`…). Las medidas puntuales del diseño que solo aparecen una vez (`text-[15px]`, `py-[22px]`…) van como valores arbitrarios de Tailwind.
 
 ## Cómo funciona
 
 - **Rutas:** cada pestaña tiene su URL con `#` (`/#/projects`, `/#/projects/este-portfolio`), porque GitHub Pages no sabe servir rutas sin él. Así funcionan los enlaces directos y el botón "atrás".
 - **Idioma:** se guarda en `localStorage` y actualiza `<html lang>`.
 - **Chatbot (FAQ):** de momento responde sin IA, buscando por palabras clave en las preguntas sugeridas y en las FAQ (`src/lib/bot.ts`). Para conectarlo a Claude hará falta un pequeño servidor que guarde la clave de API; nunca debe ir en el código de la web.
-- **Formulario de contacto:** abre el programa de correo del visitante con el mensaje ya escrito (`mailto:`).
-- **Enlaces vacíos:** un proyecto, artículo o enlace de contacto sin URL se muestra sin enlace.
+- **Formulario de contacto:** abre el programa de correo del visitante con el mensaje ya escrito (`mailto:`). El formulario no se borra, y el aviso de confirmación incluye el email por si no se abre nada.
+- **Enlaces vacíos:** un proyecto o artículo sin URL se muestra sin enlace. Un enlace de contacto sin URL (LinkedIn, CV) no se muestra.
+- **Accesibilidad:** cada pestaña tiene su `<h1>` y su título en el navegador, y al cambiar de pestaña el foco pasa al contenido.
 - **Movimiento reducido:** si el sistema lo pide (`prefers-reduced-motion`), se desactivan las animaciones.
 
 ## Despliegue

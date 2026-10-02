@@ -33,10 +33,12 @@ function ChatBot() {
   const { bot } = content;
   const reducedMotion = usePrefersReducedMotion();
   const threadRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [pending, setPending] = useState(false);
   const [revealed, setRevealed] = useState(0);
+  const [askedSuggestions, setAskedSuggestions] = useState<ReadonlySet<number>>(new Set());
 
   const last = messages.at(-1);
   const typing = last?.role === 'bot' && revealed < last.text.length;
@@ -72,8 +74,17 @@ function ChatBot() {
     void ask(input);
   };
 
-  const asked = new Set(messages.filter((message) => message.role === 'user').map((message) => message.text));
-  const suggestions = bot.suggestions.filter((suggestion) => !asked.has(suggestion.question));
+  const askSuggestion = (index: number) => {
+    if (busy) return;
+    setAskedSuggestions((current) => new Set(current).add(index));
+    inputRef.current?.focus();
+    void ask(bot.suggestions[index].question);
+  };
+
+  const suggestions = bot.suggestions
+    .map((suggestion, index) => ({ ...suggestion, index }))
+    .filter((suggestion) => !askedSuggestions.has(suggestion.index));
+  const announcement = last?.role === 'bot' && !typing ? last.text : '';
 
   return (
     <div
@@ -85,7 +96,13 @@ function ChatBot() {
         <span className="font-mono text-[11px] opacity-65">{bot.subtitle}</span>
       </div>
 
-      <div ref={threadRef} className="flex min-h-0 flex-1 flex-col gap-2.5 overflow-y-auto pr-1 scrollbar-thin">
+      <div
+        ref={threadRef}
+        role="region"
+        aria-label={bot.title}
+        tabIndex={0}
+        className="flex min-h-0 flex-1 flex-col gap-2.5 overflow-y-auto pr-1 outline-none scrollbar-thin focus-visible:ring-2 focus-visible:ring-accent"
+      >
         <Bubble role="bot" text={bot.greeting} />
         {messages.map((message, index) => {
           const isTyping = typing && index === messages.length - 1;
@@ -99,14 +116,15 @@ function ChatBot() {
         })}
         {pending && <Bubble role="bot" text="···" />}
       </div>
+      <p aria-live="polite" className="sr-only">{announcement}</p>
 
       {suggestions.length > 0 && (
         <div className="flex shrink-0 gap-1.5 overflow-x-auto scrollbar-none">
           {suggestions.map((suggestion) => (
             <button
-              key={suggestion.question}
+              key={suggestion.index}
               type="button"
-              onClick={() => void ask(suggestion.question)}
+              onClick={() => askSuggestion(suggestion.index)}
               className="shrink-0 whitespace-nowrap rounded-full border border-white/30 px-3 py-1.5 text-[13px] transition-colors duration-200 hover:bg-white hover:text-ink"
             >
               {suggestion.question}
@@ -117,6 +135,7 @@ function ChatBot() {
 
       <form onSubmit={handleSubmit} className="flex shrink-0 gap-1.5 rounded-full bg-white/[.08] p-[5px]">
         <input
+          ref={inputRef}
           value={input}
           onChange={(event) => setInput(event.target.value)}
           placeholder={bot.placeholder}

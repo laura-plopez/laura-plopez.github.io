@@ -3,6 +3,8 @@ import type { ContactLink, Localized, Project, SiteContent, TabId } from '@/type
 export const TABS: TabId[] = ['home', 'projects', 'about', 'stack', 'writing', 'faq', 'contact'];
 
 export const PROFILE = {
+  name: 'Laura Pérez',
+  role: 'Full Stack & AI Engineer',
   wordmark: 'laura pérez',
   email: 'laura.perezlope@gmail.com',
 };
@@ -398,8 +400,11 @@ export const CONTENT: Localized<SiteContent> = {
       lead: 'Escríbeme y vemos cómo puedo ayudarte.',
       form: { name: 'Nombre', topic: 'Motivo', message: 'Mensaje', send: 'Enviar' },
       topics: { job: 'Oportunidad', collab: 'Colaboración', hello: 'Solo saludar' },
-      sentTitle: 'Gracias.',
-      sentBody: 'Se ha abierto tu programa de correo con el mensaje listo. Solo falta enviarlo.',
+      sent: {
+        title: 'Gracias.',
+        body: 'Se ha abierto tu programa de correo con el mensaje listo. Solo falta enviarlo.',
+        fallback: 'Si no se ha abierto, escríbeme directamente a',
+      },
     },
   },
   en: {
@@ -694,8 +699,11 @@ export const CONTENT: Localized<SiteContent> = {
       lead: 'Drop me a line and let’s see how I can help.',
       form: { name: 'Name', topic: 'Topic', message: 'Message', send: 'Send' },
       topics: { job: 'Opportunity', collab: 'Collaboration', hello: 'Just saying hi' },
-      sentTitle: 'Thank you.',
-      sentBody: 'Your email app has opened with the message ready. Just hit send.',
+      sent: {
+        title: 'Thank you.',
+        body: 'Your email app has opened with the message ready. Just hit send.',
+        fallback: 'If it didn’t open, write to me directly at',
+      },
     },
   },
 };

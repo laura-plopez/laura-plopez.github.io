@@ -38,7 +38,7 @@ function StackColumn({ column, dark, delay }: StackColumnProps) {
     >
       <div className="flex flex-col gap-2.5">
         <div className="flex items-baseline justify-between gap-3">
-          <h3 className="text-[clamp(44px,4.4vw,64px)] font-bold leading-[.9] tracking-display">{column.title}</h3>
+          <h2 className="text-[clamp(44px,4.4vw,64px)] font-bold leading-[.9] tracking-display">{column.title}</h2>
           <span className="font-mono text-xs opacity-65">{pad2(count)}</span>
         </div>
         <p className="text-[17px] leading-[1.45] opacity-[.82] text-pretty">{column.description}</p>
