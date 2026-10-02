@@ -1,7 +1,7 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 
 interface ZoomButtonProps {
-  children: React.ReactNode;
+  children: ReactNode;
   isActive?: boolean;
   onClick?: () => void;
   className?: string;
@@ -10,7 +10,7 @@ interface ZoomButtonProps {
   hoverScale?: string;
 }
 
-const ZoomButton: React.FC<ZoomButtonProps> = ({
+function ZoomButton({
   children,
   isActive = false,
   onClick,
@@ -18,9 +18,10 @@ const ZoomButton: React.FC<ZoomButtonProps> = ({
   normalScale = 'scale-100',
   activeScale = 'scale-105',
   hoverScale = 'hover:scale-110',
-}) => {
+}: ZoomButtonProps) {
   return (
     <button
+      type="button"
       onClick={onClick}
       className={`
         transition-all duration-300 transform
@@ -32,6 +33,6 @@ const ZoomButton: React.FC<ZoomButtonProps> = ({
       {children}
     </button>
   );
-};
+}
 
 export default ZoomButton;

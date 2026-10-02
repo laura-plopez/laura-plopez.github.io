@@ -1,17 +1,22 @@
-import { PortfolioData } from '../types/portfolio';
+import type { PortfolioData } from '@/types/portfolio';
 
 export const PORTFOLIO_DATA: PortfolioData = {
   personal: {
     name: 'Laura Pérez',
     title: 'Developer & Marketing',
-    birthYear: 1997,
-    location: 'Toledo, España',
-    education: 'Comunicación audiovisual y desarrollo de aplicaciones multiplataforma'
+    bio: [
+      'Nací el año 1997',
+      'en Toledo, España.',
+      'Estudié comunicación',
+      'audiovisual y desarrollo',
+      'de aplicaciones',
+      'multiplataforma.',
+    ],
   },
   navigation: [
-    { id: 'home', label: 'Home', href: '#home' },
-    { id: 'projects', label: 'Projects', href: '#projects' },
-    { id: 'contact', label: 'Contact', href: '#contact' },
-    { id: 'faq', label: 'FAQ', href: '#faq' }
-  ]
+    { id: 'home', label: 'Home' },
+    { id: 'projects', label: 'Projects' },
+    { id: 'contact', label: 'Contact' },
+    { id: 'faq', label: 'FAQ' },
+  ],
 };

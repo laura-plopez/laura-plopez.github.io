@@ -1,7 +1,6 @@
-import SilkBackground from './components/ui/Background/SilkBackground';
-import Navigation from './components/common/Navigation/Navigation';
-import Hero from './components/sections/Hero/Hero';
-import './App.css';
+import SilkBackground from '@/components/ui/SilkBackground/SilkBackground';
+import Navigation from '@/components/layout/Navigation/Navigation';
+import Hero from '@/components/sections/Hero/Hero';
 
 function App() {
   return (
@@ -13,7 +12,9 @@ function App() {
       rotation={0}
     >
       <Navigation />
-      <Hero />
+      <main>
+        <Hero />
+      </main>
     </SilkBackground>
   );
 }
