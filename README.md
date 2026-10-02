@@ -1,50 +1,39 @@
 # Portfolio — Laura Pérez
 
-Portfolio personal publicado en [laura-plopez.github.io](https://laura-plopez.github.io).
+Portfolio personal bilingüe (ES/EN) publicado en [laura-plopez.github.io](https://laura-plopez.github.io).
 
-## Stack
+Hecho con React 19, TypeScript, Vite 7 y Tailwind CSS 3.
 
-- [React 19](https://react.dev) + TypeScript
-- [Vite 7](https://vite.dev)
-- [Tailwind CSS 3](https://v3.tailwindcss.com)
-- [Three.js](https://threejs.org) con [React Three Fiber](https://r3f.docs.pmnd.rs) para el fondo animado
+## Uso
 
-## Requisitos
+Requiere Node.js 20.19+ o 22.12+.
 
-Node.js 20.19+ o 22.12+ (lo exige Vite 7).
-
-## Scripts
-
-| Comando           | Qué hace                                                       |
-| ----------------- | -------------------------------------------------------------- |
-| `npm run dev`     | Servidor de desarrollo con recarga en caliente                 |
-| `npm run build`   | Comprueba los tipos y genera la versión de producción en `dist/` |
-| `npm run preview` | Sirve `dist/` en local para revisarla antes de publicar         |
-| `npm run lint`    | Pasa ESLint                                                    |
+```bash
+npm install
+npm run dev       # servidor de desarrollo
+npm run build     # comprueba tipos y genera dist/
+npm run preview   # sirve dist/ en local
+npm run lint      # pasa ESLint
+```
 
 ## Estructura
 
 ```
 src/
-├── components/
-│   ├── layout/        # Piezas fijas de la página (navegación)
-│   ├── sections/      # Secciones de la página (Hero…)
-│   └── ui/            # Componentes reutilizables, sin contenido propio
-├── constants/         # Contenido del portfolio: textos y menú
-├── types/             # Tipos compartidos entre varios archivos
-├── App.tsx            # Composición de la página
-├── main.tsx           # Punto de entrada
-└── index.css          # Tailwind y animaciones globales
+├── components/   # layout/ (barra lateral), sections/ (una por pestaña), ui/ (piezas reutilizables)
+├── constants/    # todo el contenido en ES y EN
+├── context/      # idioma
+├── hooks/        # rutas, idioma, animaciones
+├── lib/          # chatbot y utilidades
+└── types/        # tipos compartidos
 ```
 
-## Convenciones
+Cada componente tiene su propia carpeta, y los imports usan el alias `@/`, que apunta a `src/`.
 
-- **Una carpeta por componente**, con el mismo nombre que el componente: `ui/ZoomButton/ZoomButton.tsx`.
-- **Los textos viven en `src/constants/portfolio.ts`**, no dentro de los componentes.
-- **Imports con el alias `@/`**, que apunta a `src/`: `import Hero from '@/components/sections/Hero/Hero'`.
-- **Los tipos de las props van en el propio componente.** `src/types/` es solo para tipos que usan varios archivos.
-- **Fuentes de Tailwind:** `font-display` (Alumni Sans Pinstripe) para títulos y `font-body` (Darker Grotesque) para textos. El resto usa la fuente del sistema.
+## Contenido
+
+Todos los textos, proyectos y enlaces están en `src/constants/portfolio.ts`. Para cambiar algo de la web, empieza por ahí.
 
 ## Despliegue
 
-Cada push a `main` lanza [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). El workflow instala las dependencias con `npm ci`, pasa el lint, genera la build y publica `dist/` en GitHub Pages.
+Cada push a `main` construye la web y la publica en GitHub Pages ([`deploy.yml`](.github/workflows/deploy.yml)).
