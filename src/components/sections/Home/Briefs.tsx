@@ -4,7 +4,7 @@ import { pad2 } from '@/lib/format';
 import { animationDelay } from '@/lib/motion';
 
 const LABEL = 'font-mono text-xs uppercase tracking-[.08em]';
-const BUTTON = `${LABEL} border-2 px-4 py-2.5 transition-colors duration-200 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none`;
+const BUTTON = `${LABEL} whitespace-nowrap border-2 px-3 py-2.5 transition-colors duration-200 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none wide:px-4`;
 const BUTTON_IDLE = 'border-white/60 text-white hover:bg-white hover:text-ink';
 
 interface BriefsProps {

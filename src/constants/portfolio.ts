@@ -189,14 +189,14 @@ export const CONTENT: Localized<SiteContent> = {
       briefs: {
         kicker: 'Minijuego',
         title: 'Traductor de clientes',
-        intro: 'Nada serio por aquí. Lee lo que pidió el cliente, adivina qué necesitaba de verdad y destápalo.',
+        intro: 'Basado en hechos reales (más o menos). Adivina qué necesitaba el cliente y destápalo.',
         level: 'Nivel',
         asked: 'Lo que pidió el cliente',
         needed: 'Lo que necesitaba de verdad',
         reveal: 'Pulsa para revelar',
         prev: 'Anterior',
-        next: 'Siguiente nivel',
-        restart: 'Jugar otra vez',
+        next: 'Siguiente',
+        restart: 'Otra vez',
         items: [
           {
             asked: 'Queremos un chatbot con IA.',
@@ -204,11 +204,19 @@ export const CONTENT: Localized<SiteContent> = {
           },
           {
             asked: 'Usad el modelo más potente.',
-            needed: 'Uno más pequeño y barato que respondía igual de bien en sus casos reales, comprobado con evals.',
+            needed: 'Uno más pequeño y barato que respondía igual de bien, comprobado con evals.',
+          },
+          {
+            asked: 'Necesitamos un agente de IA.',
+            needed: 'Un script que se ejecuta cada lunes a las 9:00.',
           },
           {
             asked: 'Un dashboard con todas las métricas.',
             needed: 'Tres números que mirar cada lunes y una alerta cuando alguno se tuerce.',
+          },
+          {
+            asked: 'Que sea intuitivo.',
+            needed: 'Que se pareciera al Excel que ya usaban.',
           },
         ],
       },
@@ -508,13 +516,13 @@ export const CONTENT: Localized<SiteContent> = {
       briefs: {
         kicker: 'Mini game',
         title: 'Client translator',
-        intro: 'Nothing serious here. Read what the client asked for, guess what they actually needed, then reveal it.',
+        intro: 'Based on true events (more or less). Guess what the client actually needed, then reveal it.',
         level: 'Level',
         asked: 'What the client asked for',
         needed: 'What they actually needed',
         reveal: 'Press to reveal',
         prev: 'Back',
-        next: 'Next level',
+        next: 'Next',
         restart: 'Play again',
         items: [
           {
@@ -523,11 +531,19 @@ export const CONTENT: Localized<SiteContent> = {
           },
           {
             asked: 'Use the most powerful model.',
-            needed: 'A smaller, cheaper one that answered just as well on their real cases, proven with evals.',
+            needed: 'A smaller, cheaper one that answered just as well, proven with evals.',
+          },
+          {
+            asked: 'We need an AI agent.',
+            needed: 'A script that runs every Monday at 9:00.',
           },
           {
             asked: 'A dashboard with every metric.',
             needed: 'Three numbers to check every Monday, and an alert when one goes off track.',
+          },
+          {
+            asked: 'Make it intuitive.',
+            needed: 'Make it look like the Excel sheet they already used.',
           },
         ],
       },

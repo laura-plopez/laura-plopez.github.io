@@ -81,6 +81,10 @@ export default {
         blink: {
           '50%': { opacity: '0' },
         },
+        'menu-drop': {
+          from: { clipPath: 'inset(0 0 100% 0)' },
+          to: { clipPath: 'inset(0 0 0 0)' },
+        },
       },
       animation: {
         rise: 'rise .55s cubic-bezier(.2, .7, .2, 1) both',
@@ -89,6 +93,7 @@ export default {
         draw: 'draw .5s ease-out both',
         'pulse-ring': 'pulse-ring 2.2s ease-out infinite',
         blink: 'blink 1s step-end infinite',
+        'menu-drop': 'menu-drop .45s cubic-bezier(.2, .7, .2, 1) both',
       },
     },
   },

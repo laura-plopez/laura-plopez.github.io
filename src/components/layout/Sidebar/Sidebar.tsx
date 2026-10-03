@@ -8,6 +8,8 @@ import { pad2 } from '@/lib/format';
 import type { TabId } from '@/types/portfolio';
 
 const SCROLL_LOCK = 'max-wide:overflow-hidden';
+const MOBILE_PANEL =
+  'flex max-wide:fixed max-wide:inset-0 max-wide:animate-menu-drop max-wide:overflow-y-auto max-wide:bg-main max-wide:px-[22px] max-wide:pb-8 max-wide:pt-28';
 
 interface SidebarProps {
   activeTab: TabId;
@@ -32,37 +34,33 @@ function Sidebar({ activeTab }: SidebarProps) {
     };
   }, [open]);
 
-  const position = open ? 'fixed inset-0 z-50 overflow-y-auto' : 'sticky top-0 z-40';
-  const panel = open ? 'flex' : 'hidden wide:flex';
-
   return (
-    <aside
-      className={`flex max-w-full flex-[1_1_100%] flex-col gap-7 bg-main px-3 py-3 text-white scrollbar-none wide:sticky wide:inset-auto wide:top-4 wide:z-auto wide:h-[calc(100vh-32px)] wide:flex-[0_0_240px] wide:justify-between wide:overflow-y-auto wide:py-5 ${position}`}
-    >
-      <div className="flex flex-col gap-9">
-        <div className="flex items-center justify-between gap-4">
-          <a href={routeHref('home')} onClick={close} className="flex flex-col gap-1.5 px-3">
-            <span className="text-[28px] font-bold leading-none tracking-heading">
-              {PROFILE.wordmark}
-              <span className="font-light">.</span>
-            </span>
-            <span className={`${open ? 'block' : 'hidden wide:block'} font-mono text-xs opacity-80`}>
-              {sidebar.location}
-            </span>
-          </a>
-          <button
-            type="button"
-            onClick={() => setOpen((value) => !value)}
-            aria-expanded={open}
-            aria-controls="site-menu"
-            className="rounded-full bg-white/[.14] px-4 py-2 font-mono text-xs uppercase wide:hidden"
-          >
-            {open ? `${sidebar.menuClose} ×` : sidebar.menuOpen}
-          </button>
-        </div>
+    <aside className="sticky top-0 z-40 flex max-w-full flex-[1_1_100%] flex-col gap-9 bg-main px-3 py-3 text-white scrollbar-none wide:top-4 wide:h-[calc(100vh-32px)] wide:flex-[0_0_240px] wide:overflow-y-auto wide:py-5">
+      <div className="relative z-10 flex items-center justify-between gap-4">
+        <a href={routeHref('home')} onClick={close} className="flex flex-col gap-1.5 px-3">
+          <span className="text-[28px] font-bold leading-none tracking-heading">
+            {PROFILE.wordmark}
+            <span className="font-light">.</span>
+          </span>
+          <span className="font-mono text-xs opacity-80">{sidebar.location}</span>
+        </a>
+        <button
+          type="button"
+          onClick={() => setOpen((value) => !value)}
+          aria-expanded={open}
+          aria-controls="site-menu"
+          className="rounded-full bg-white/[.14] px-4 py-2 font-mono text-xs uppercase wide:hidden"
+        >
+          {open ? `${sidebar.menuClose} ×` : sidebar.menuOpen}
+        </button>
+      </div>
 
-        <nav id="site-menu" aria-label={sidebar.navLabel} className={panel}>
-          <ul className="flex w-full flex-col gap-1">
+      <div
+        id="site-menu"
+        className={`${open ? MOBILE_PANEL : 'hidden wide:flex'} flex-1 flex-col justify-between gap-7`}
+      >
+        <nav aria-label={sidebar.navLabel}>
+          <ul className="flex flex-col gap-1">
             {TABS.map((tab, index) => {
               const active = tab === activeTab;
               return (
@@ -83,11 +81,11 @@ function Sidebar({ activeTab }: SidebarProps) {
             })}
           </ul>
         </nav>
-      </div>
 
-      <div className={`${panel} flex-col gap-4 px-3`}>
-        <NowStatus />
-        <LanguageToggle />
+        <div className="flex flex-col gap-4 px-3">
+          <NowStatus />
+          <LanguageToggle />
+        </div>
       </div>
     </aside>
   );
