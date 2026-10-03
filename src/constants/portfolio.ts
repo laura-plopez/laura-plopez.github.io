@@ -17,24 +17,31 @@ export const CONTACT_LINKS: ContactLink[] = [
 
 export const PROJECTS: Project[] = [
   {
-    id: 'asistente-ia',
+    id: 'atelier',
     kind: 'ai',
     year: '2026',
-    tags: ['LLM', 'RAG', 'Evals', 'Python'],
+    image: '/projects/atelier/cover.webp',
+    video: {
+      es: '/projects/atelier/atelier-es.mp4',
+      en: '/projects/atelier/atelier-en.mp4',
+    },
+    tags: ['Multi-agent', 'LLM', 'Rails', 'React', 'TypeScript'],
     copy: {
       es: {
-        title: 'Asistente con IA',
-        summary: 'Un modelo de lenguaje integrado en un flujo real de usuario.',
-        problem: 'Describe aquí qué problema resolvía y para quién.',
-        role: 'Caso de uso, integración del modelo, evaluación e interfaz.',
-        outcome: 'La métrica o el aprendizaje que dejó.',
+        title: 'Atelier',
+        summary: 'Una herramienta para que los equipos de desarrollo trabajen con IA sin perder el control.',
+        problem: 'Los equipos ya escriben código con IA, pero revisarlo con un solo modelo es una caja negra: pasa cosas por alto y nadie sabe con qué criterio ha decidido.',
+        role: 'Producto y desarrollo completo: backend en Rails con arquitectura hexagonal, frontend en React y la orquestación de los agentes.',
+        outcome: 'Revisión de código con agentes especializados y modelos de 6 proveedores. Los hallazgos llegan en directo, se contrastan entre modelos y el equipo decide cuáles exportar a GitHub. Cubierto por ~440 tests.',
+        inProgress: 'Visibilidad en directo de las máquinas virtuales e insights de cómo despliega el equipo, conectados a Trello y Jira.',
       },
       en: {
-        title: 'AI assistant',
-        summary: 'A language model built into a real user flow.',
-        problem: 'Describe the problem and who it was for.',
-        role: 'Use case, model integration, evaluation and interface.',
-        outcome: 'The metric or learning it produced.',
+        title: 'Atelier',
+        summary: 'A tool that helps dev teams work with AI without losing control.',
+        problem: 'Teams already write code with AI, but reviewing it with a single model is a black box: it misses things and nobody knows on what basis it decided.',
+        role: 'Product and end-to-end development: Rails backend with hexagonal architecture, React frontend and agent orchestration.',
+        outcome: 'Code review with specialised agents and models from 6 providers. Findings stream in live, get cross-checked between models, and the team decides which ones to export to GitHub. Covered by ~440 tests.',
+        inProgress: 'Live visibility into virtual machines and insights into how the team ships, connected to Trello and Jira.',
       },
     },
   },
@@ -172,8 +179,27 @@ export const CONTENT: Localized<SiteContent> = {
         { title: 'Construir', body: 'Diseño el flujo, integro modelos y escribo el código para desplegar a producción.' },
         { title: 'Medir', body: 'Integro observabilidad y evaluación para mantener trazabilidad del uso real y decidir qué mejorar en la siguiente iteración.' },
       ],
-      selected: 'Proyectos seleccionados',
-      allProjects: 'Ver todos',
+      briefs: {
+        title: 'De lo que piden a lo que necesitan',
+        asked: 'Lo que pidió el cliente',
+        needed: 'Lo que necesitaba',
+        prev: 'Caso anterior',
+        next: 'Caso siguiente',
+        items: [
+          {
+            asked: 'Queremos un chatbot con IA.',
+            needed: 'Un buscador sobre sus documentos internos que citara la fuente de cada respuesta.',
+          },
+          {
+            asked: 'Usad el modelo más potente.',
+            needed: 'Uno más pequeño y barato que respondía igual de bien en sus casos reales, comprobado con evals.',
+          },
+          {
+            asked: 'Un dashboard con todas las métricas.',
+            needed: 'Tres números que mirar cada lunes y una alerta cuando alguno se tuerce.',
+          },
+        ],
+      },
     },
     projects: {
       filters: { all: 'Todos', ai: 'IA', both: 'Híbrido', product: 'Producto', code: 'Código' },
@@ -181,6 +207,7 @@ export const CONTENT: Localized<SiteContent> = {
       problem: 'Problema',
       role: 'Qué hice',
       outcome: 'Resultado',
+      inProgress: 'En desarrollo',
       viewProject: 'Ver proyecto',
       close: 'Cerrar',
       imagePlaceholder: '[ imagen del proyecto ]',
@@ -463,8 +490,27 @@ export const CONTENT: Localized<SiteContent> = {
         { title: 'Build', body: 'I design the flow, integrate models and write the code to ship it to production.' },
         { title: 'Measure', body: 'I build in observability and evaluation to keep real usage traceable and decide what to improve in the next iteration.' },
       ],
-      selected: 'Selected projects',
-      allProjects: 'See all',
+      briefs: {
+        title: 'From what they ask for to what they need',
+        asked: 'What the client asked for',
+        needed: 'What they actually needed',
+        prev: 'Previous case',
+        next: 'Next case',
+        items: [
+          {
+            asked: 'We want an AI chatbot.',
+            needed: 'A search over their internal documents that cited the source of every answer.',
+          },
+          {
+            asked: 'Use the most powerful model.',
+            needed: 'A smaller, cheaper one that answered just as well on their real cases, proven with evals.',
+          },
+          {
+            asked: 'A dashboard with every metric.',
+            needed: 'Three numbers to check every Monday, and an alert when one goes off track.',
+          },
+        ],
+      },
     },
     projects: {
       filters: { all: 'All', ai: 'AI', both: 'Hybrid', product: 'Product', code: 'Code' },
@@ -472,6 +518,7 @@ export const CONTENT: Localized<SiteContent> = {
       problem: 'Problem',
       role: 'What I did',
       outcome: 'Outcome',
+      inProgress: 'In progress',
       viewProject: 'View project',
       close: 'Close',
       imagePlaceholder: '[ project image ]',

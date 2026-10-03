@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import ImagePlaceholder from '@/components/ui/ImagePlaceholder/ImagePlaceholder';
 import { routeHref } from '@/hooks/useHashRoute';
 import { useContent, useLanguage } from '@/hooks/useLanguage';
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { scrollBehavior } from '@/lib/motion';
 import type { Project } from '@/types/portfolio';
 
@@ -12,6 +13,7 @@ interface ProjectDetailProps {
 function ProjectDetail({ project }: ProjectDetailProps) {
   const { lang } = useLanguage();
   const { projects } = useContent();
+  const reducedMotion = usePrefersReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
   const copy = project.copy[lang];
 
@@ -23,6 +25,7 @@ function ProjectDetail({ project }: ProjectDetailProps) {
     { label: projects.problem, value: copy.problem },
     { label: projects.role, value: copy.role },
     { label: projects.outcome, value: copy.outcome },
+    ...(copy.inProgress ? [{ label: projects.inProgress, value: copy.inProgress }] : []),
   ];
 
   return (
@@ -30,7 +33,21 @@ function ProjectDetail({ project }: ProjectDetailProps) {
       ref={ref}
       className="grid scroll-mt-4 grid-cols-[repeat(auto-fit,minmax(min(100%,320px),1fr))] gap-8 rounded-panel bg-main p-[clamp(20px,2.5vw,32px)] text-white"
     >
-      <ImagePlaceholder label={projects.imagePlaceholder} tone="dark" className="aspect-[4/3] rounded-nav" />
+      {project.video ? (
+        <video
+          src={project.video[lang]}
+          poster={project.image}
+          autoPlay={!reducedMotion}
+          muted
+          loop
+          playsInline
+          controls
+          preload="metadata"
+          className="w-full self-start rounded-nav"
+        />
+      ) : (
+        <ImagePlaceholder label={projects.imagePlaceholder} tone="dark" className="aspect-[4/3] rounded-nav" />
+      )}
       <div className="flex flex-col gap-[18px]">
         <div className="flex justify-between gap-3">
           <span className="font-mono text-xs text-accent">

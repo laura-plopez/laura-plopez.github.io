@@ -1,12 +1,10 @@
-import FeaturedProject from '@/components/sections/Home/FeaturedProject';
+import Briefs from '@/components/sections/Home/Briefs';
 import PillButton from '@/components/ui/PillButton/PillButton';
-import { PROJECTS } from '@/constants/portfolio';
 import { routeHref } from '@/hooks/useHashRoute';
 import { useContent } from '@/hooks/useLanguage';
 import { pad2 } from '@/lib/format';
 import { animationDelay } from '@/lib/motion';
 
-const FEATURED_COUNT = 2;
 const INTRO_DELAYS_S = [0, 0.08, 0.2, 0.3, 0.48, 0.6].map((delay) => delay * 1.6);
 
 interface HomeProps {
@@ -55,23 +53,7 @@ function Home({ playIntro }: HomeProps) {
         ))}
       </div>
 
-      <div className="flex flex-col gap-4">
-        <div className="flex items-baseline justify-between gap-4">
-          <span className="font-mono text-[13px] text-main">{home.selected}</span>
-          <a href={routeHref('projects')} className="text-[15px] font-semibold underline underline-offset-[3px]">
-            {home.allProjects} →
-          </a>
-        </div>
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-2">
-          {PROJECTS.slice(0, FEATURED_COUNT).map((project, index) => (
-            <FeaturedProject
-              key={project.id}
-              project={project}
-              delay={playIntro ? 1.7 + 0.12 * index : 0.2 + 0.08 * index}
-            />
-          ))}
-        </div>
-      </div>
+      <Briefs delay={playIntro ? 1.7 : 0.2} />
     </div>
   );
 }

@@ -26,7 +26,11 @@ function ProjectCard({ project, number, selected, delay }: ProjectCardProps) {
       }`}
       style={animationDelay(delay)}
     >
-      <ImagePlaceholder label={projects.imagePlaceholder} tone="muted" className="aspect-[4/3] rounded-image" />
+      {project.image ? (
+        <img src={project.image} alt="" className="aspect-[4/3] w-full rounded-image border border-line object-cover" />
+      ) : (
+        <ImagePlaceholder label={projects.imagePlaceholder} tone="muted" className="aspect-[4/3] rounded-image" />
+      )}
       <div className="flex flex-col gap-1.5 px-2 pb-2">
         <span className="flex justify-between gap-3 font-mono text-xs opacity-70">
           <span>{pad2(number)} · {projects.kinds[project.kind]}</span>

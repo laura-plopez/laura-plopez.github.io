@@ -33,6 +33,7 @@ export interface ProjectCopy {
   problem: string;
   role: string;
   outcome: string;
+  inProgress?: string;
 }
 
 export interface Project {
@@ -40,6 +41,8 @@ export interface Project {
   kind: ProjectKind;
   year: string;
   href?: string;
+  image?: string;
+  video?: Localized<string>;
   tags: string[];
   copy: Localized<ProjectCopy>;
 }
@@ -47,6 +50,11 @@ export interface Project {
 export interface Card {
   title: string;
   body: string;
+}
+
+export interface Brief {
+  asked: string;
+  needed: string;
 }
 
 export interface TimelineEntry {
@@ -107,8 +115,14 @@ export interface SiteContent {
     ctaProjects: string;
     ctaContact: string;
     steps: Card[];
-    selected: string;
-    allProjects: string;
+    briefs: {
+      title: string;
+      asked: string;
+      needed: string;
+      prev: string;
+      next: string;
+      items: Brief[];
+    };
   };
   projects: {
     filters: Record<ProjectFilter, string>;
@@ -116,6 +130,7 @@ export interface SiteContent {
     problem: string;
     role: string;
     outcome: string;
+    inProgress: string;
     viewProject: string;
     close: string;
     imagePlaceholder: string;
