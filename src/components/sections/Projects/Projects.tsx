@@ -7,7 +7,10 @@ import { PROJECTS } from '@/constants/portfolio';
 import { useContent } from '@/hooks/useLanguage';
 import type { ProjectFilter } from '@/types/portfolio';
 
-const FILTERS: ProjectFilter[] = ['all', 'ai', 'both', 'product', 'code'];
+const KINDS = new Set(PROJECTS.map((project) => project.kind));
+const FILTERS = (['all', 'ai', 'both', 'product', 'code'] as ProjectFilter[]).filter(
+  (option) => option === 'all' || KINDS.has(option),
+);
 
 interface ProjectsProps {
   selectedId?: string;
@@ -26,18 +29,20 @@ function Projects({ selectedId }: ProjectsProps) {
     <div className="flex flex-col gap-8">
       <div className="flex flex-col items-start gap-5">
         <PageHeader title={tabs.projects} />
-        <div className="flex flex-wrap gap-1.5">
-          {FILTERS.map((option) => (
-            <ToggleChip
-              key={option}
-              active={filter === option}
-              onClick={() => setFilter(option)}
-              className="text-[15px]"
-            >
-              {projects.filters[option]}
-            </ToggleChip>
-          ))}
-        </div>
+        {KINDS.size > 1 && (
+          <div className="flex flex-wrap gap-1.5">
+            {FILTERS.map((option) => (
+              <ToggleChip
+                key={option}
+                active={filter === option}
+                onClick={() => setFilter(option)}
+                className="text-[15px]"
+              >
+                {projects.filters[option]}
+              </ToggleChip>
+            ))}
+          </div>
+        )}
       </div>
 
       {selected && <ProjectDetail project={selected} />}

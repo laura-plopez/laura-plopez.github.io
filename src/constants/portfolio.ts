@@ -50,73 +50,6 @@ export const PROJECTS: Project[] = [
       },
     },
   },
-  {
-    id: 'este-portfolio',
-    kind: 'code',
-    year: '2026',
-    href: 'https://github.com/laura-plopez/laura-plopez.github.io',
-    tags: ['React 19', 'TypeScript', 'Tailwind CSS', 'Vite'],
-    copy: {
-      es: {
-        title: 'Este portfolio',
-        summary: 'Sitio personal bilingüe hecho con React, TypeScript y Tailwind.',
-        problem: 'Necesitaba un portfolio que mostrara a la vez criterio visual y capacidad técnica.',
-        role: 'Diseño, arquitectura del proyecto y despliegue continuo.',
-        outcome: 'Web estática en GitHub Pages con build, lint y deploy automáticos en cada push.',
-      },
-      en: {
-        title: 'This portfolio',
-        summary: 'Bilingual personal site built with React, TypeScript and Tailwind.',
-        problem: 'I needed a portfolio that showed visual judgement and technical skill at once.',
-        role: 'Design, project architecture and continuous deployment.',
-        outcome: 'Static site on GitHub Pages with automated build, lint and deploy on every push.',
-      },
-    },
-  },
-  {
-    id: 'proyecto-hibrido',
-    kind: 'both',
-    year: '2025',
-    tags: ['Discovery', 'React', 'Analytics'],
-    copy: {
-      es: {
-        title: 'Proyecto híbrido',
-        summary: 'Del discovery con usuarios a la funcionalidad en producción.',
-        problem: 'Describe aquí el problema.',
-        role: 'Qué decidiste y qué construiste.',
-        outcome: 'Resultado medible.',
-      },
-      en: {
-        title: 'Hybrid project',
-        summary: 'From user discovery to a shipped feature.',
-        problem: 'Describe the problem here.',
-        role: 'What you decided and built.',
-        outcome: 'Measurable outcome.',
-      },
-    },
-  },
-  {
-    id: 'proyecto-producto',
-    kind: 'product',
-    year: '2025',
-    tags: ['Roadmap', 'A/B testing', 'Copy'],
-    copy: {
-      es: {
-        title: 'Proyecto de producto',
-        summary: 'Priorización y experimentos sobre un flujo clave.',
-        problem: 'Describe aquí el problema.',
-        role: 'Tu papel en la decisión.',
-        outcome: 'Resultado medible.',
-      },
-      en: {
-        title: 'Product project',
-        summary: 'Prioritisation and experiments on a key flow.',
-        problem: 'Describe the problem here.',
-        role: 'Your role in the decision.',
-        outcome: 'Measurable outcome.',
-      },
-    },
-  },
 ];
 
 export const POSTS: Post[] = [
@@ -235,8 +168,9 @@ export const CONTENT: Localized<SiteContent> = {
     about: {
       lead: 'Empecé hablando con clientes. Ahora construyo lo que necesitan.',
       body: [
-        'Durante unos años trabajé como Account Manager y responsable de comunicación. Gestionaba clientes nacionales e internacionales, con herramientas CRM y muchas horas al teléfono. En esta etapa aprendí a escuchar lo que un cliente pide de verdad, que no siempre es lo que dice.',
-        'Después decidí estudiar Desarrollo de Aplicaciones Multiplataforma y pasé al código: web, IoT y plataformas full stack, cada vez más ligados a proyectos de IA. A día de hoy desarrollo flujos de agentes de IA para empresas como producto SaaS, desde la idea hasta producción.',
+        'Empecé en comunicación y gestión de clientes. Como Account Manager coordinaba a equipos técnicos y de ventas, y pasaba muchas horas al teléfono con clientes de dentro y fuera de España. Ahí aprendí lo más útil que sé: lo que un cliente pide y lo que necesita no siempre coinciden.',
+        'Después quise estar al otro lado, construyendo. Estudié Desarrollo de Aplicaciones Multiplataforma y pasé al código: web, IoT y plataformas full stack, cada vez más cerca de la IA.',
+        'Hoy, como AI Engineer, diseño y desarrollo agentes de IA que las empresas usan como producto SaaS, desde la idea hasta producción. Y sigo empezando igual que al principio: escuchando antes de construir.',
       ],
       highlightsTitle: 'Lo que traigo',
       highlights: [
@@ -428,11 +362,11 @@ export const CONTENT: Localized<SiteContent> = {
         },
         {
           question: '¿Trabajas en remoto?',
-          answer: 'Sí. Estoy en Toledo (España) y trabajo en remoto o híbrido en Madrid.',
+          answer: 'Vivo en Salamanca. Ahora trabajo en formato híbrido y antes he trabajado en remoto, así que me adapto bien a los dos.',
         },
         {
-          question: '¿Cómo colaboras con diseño?',
-          answer: 'Trabajo sobre Figma y prototipo directamente en código cuando hace falta validar una interacción, sobre todo en flujos con IA, donde el comportamiento importa tanto como la pantalla.',
+          question: '¿Cuándo no usarías IA?',
+          answer: 'Cuando una regla, un script o un buen formulario resuelven el problema. Un modelo añade coste, latencia y respuestas que hay que vigilar, así que solo compensa cuando aporta algo que lo simple no puede: entender lenguaje, resumir, clasificar o razonar sobre información desordenada.',
         },
       ],
     },
@@ -562,8 +496,9 @@ export const CONTENT: Localized<SiteContent> = {
     about: {
       lead: 'I started out talking to clients. Now I build what they need.',
       body: [
-        'For a few years I worked as an Account Manager and head of communications, managing national and international clients with CRM tools and plenty of hours on the phone. That’s when I learned to hear what a client actually needs, which isn’t always what they say.',
-        'Then I decided to study Multiplatform App Development and moved into code: web, IoT and full stack platforms, increasingly tied to AI projects. Today I build AI agent workflows for businesses as a SaaS product, from idea to production.',
+        'I started out in communications and client management. As an Account Manager I coordinated technical and sales teams and spent hours on the phone with clients in Spain and abroad. That’s where I learned the most useful thing I know: what a client asks for and what they need don’t always match.',
+        'Then I wanted to be on the other side, building. I studied Multiplatform App Development and moved into code: web, IoT and full stack platforms, each step closer to AI.',
+        'Today, as an AI Engineer, I design and build AI agents that businesses use as a SaaS product, from idea to production. And I still start the same way I always did: listening before building.',
       ],
       highlightsTitle: 'What I bring',
       highlights: [
@@ -755,11 +690,11 @@ export const CONTENT: Localized<SiteContent> = {
         },
         {
           question: 'Do you work remotely?',
-          answer: 'Yes. I’m based in Toledo, Spain, and work remote or hybrid in Madrid.',
+          answer: 'I live in Salamanca. I currently work hybrid and have worked fully remote before, so I’m comfortable with both.',
         },
         {
-          question: 'How do you work with design?',
-          answer: 'I work from Figma and prototype in code when an interaction needs validating, especially in AI flows, where behaviour matters as much as the screen.',
+          question: 'When wouldn’t you use AI?',
+          answer: 'When a rule, a script or a good form solves the problem. A model adds cost, latency and answers you have to keep an eye on, so it’s only worth it when it brings something simpler tools can’t: understanding language, summarising, classifying or reasoning over messy information.',
         },
       ],
     },
