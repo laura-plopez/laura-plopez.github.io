@@ -13,8 +13,12 @@ export const CONTACT_LINKS: ContactLink[] = [
   { label: 'GitHub', href: 'https://github.com/laura-plopez' },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/laura-p%C3%A9rez-l%C3%B3pez/' },
   { label: 'Substack', href: 'https://substack.com/@lplopez' },
-  { label: 'CV', href: '' },
 ];
+
+export const CV: Localized<string> = {
+  es: '/cv/laura-perez-cv-es.pdf',
+  en: '/cv/laura-perez-cv-en.pdf',
+};
 
 export const PROJECTS: Project[] = [
   {
@@ -452,6 +456,7 @@ export const CONTENT: Localized<SiteContent> = {
     },
     contact: {
       lead: 'Escríbeme y vemos cómo puedo ayudarte.',
+      cv: 'Descargar CV',
       form: { name: 'Nombre', topic: 'Motivo', message: 'Mensaje', send: 'Enviar' },
       topics: { job: 'Oportunidad', collab: 'Colaboración', hello: 'Solo saludar' },
       sent: {
@@ -770,6 +775,7 @@ export const CONTENT: Localized<SiteContent> = {
     },
     contact: {
       lead: 'Drop me a line and let’s see how I can help.',
+      cv: 'Download CV',
       form: { name: 'Name', topic: 'Topic', message: 'Message', send: 'Send' },
       topics: { job: 'Opportunity', collab: 'Collaboration', hello: 'Just saying hi' },
       sent: {

@@ -1,9 +1,10 @@
 import ContactForm from '@/components/sections/Contact/ContactForm';
 import PageHeader from '@/components/ui/PageHeader/PageHeader';
-import { CONTACT_LINKS, PROFILE } from '@/constants/portfolio';
-import { useContent } from '@/hooks/useLanguage';
+import { CONTACT_LINKS, CV, PROFILE } from '@/constants/portfolio';
+import { useContent, useLanguage } from '@/hooks/useLanguage';
 
 function Contact() {
+  const { lang } = useLanguage();
   const { tabs, contact } = useContent();
   const links = CONTACT_LINKS.filter((link) => link.href);
   const [emailUser, emailDomain] = PROFILE.email.split('@');
@@ -21,6 +22,13 @@ function Contact() {
             {emailUser}@<wbr />{emailDomain} ↗
           </a>
           <div className="flex flex-wrap gap-2">
+            <a
+              href={CV[lang]}
+              download
+              className="rounded-full bg-ink px-[18px] py-2.5 text-base font-semibold text-white transition-colors duration-200 hover:bg-accent hover:text-ink"
+            >
+              {contact.cv} ↓
+            </a>
             {links.map((link) => (
               <a
                 key={link.label}

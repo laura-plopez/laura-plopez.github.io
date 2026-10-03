@@ -172,6 +172,7 @@ export interface SiteContent {
   };
   contact: {
     lead: string;
+    cv: string;
     form: { name: string; topic: string; message: string; send: string };
     topics: Record<ContactTopic, string>;
     sent: { title: string; body: string; fallback: string };
