@@ -28,7 +28,7 @@ const mentions = (tokens: string[], word: string): boolean =>
     word.length < MIN_WORD_LENGTH ? token === word : token.length >= MIN_WORD_LENGTH && (token.startsWith(word) || word.startsWith(token)),
   );
 
-export function findAnswer(question: string, knowledge: QA[]): string | undefined {
+function findAnswer(question: string, knowledge: QA[]): string | undefined {
   const words = keywords(question);
   let best: { score: number; answer: string } | undefined;
 

@@ -1,4 +1,4 @@
-type Tone = 'light' | 'muted' | 'dark';
+type Tone = 'muted' | 'dark';
 
 interface ImagePlaceholderProps {
   label: string;
@@ -7,7 +7,6 @@ interface ImagePlaceholderProps {
 }
 
 const TONES: Record<Tone, string> = {
-  light: 'bg-stripes-light text-ink-muted',
   muted: 'bg-stripes text-ink-muted',
   dark: 'bg-stripes-dark border border-white/25',
 };

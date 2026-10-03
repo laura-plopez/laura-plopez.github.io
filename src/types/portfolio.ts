@@ -2,7 +2,7 @@ export type Lang = 'es' | 'en';
 export type Localized<T> = Record<Lang, T>;
 
 export type TabId = 'home' | 'projects' | 'about' | 'stack' | 'writing' | 'faq' | 'contact';
-export type ProjectKind = 'ai' | 'both' | 'product' | 'code';
+type ProjectKind = 'ai' | 'both' | 'product' | 'code';
 export type ProjectFilter = 'all' | ProjectKind;
 export type TimelineTab = 'work' | 'edu' | 'courses' | 'langs';
 export type ContactTopic = 'job' | 'collab' | 'hello';
@@ -27,7 +27,7 @@ export type BrandSlug =
   | 'modelcontextprotocol'
   | 'n8n';
 
-export interface ProjectCopy {
+interface ProjectCopy {
   title: string;
   summary: string;
   problem: string;
@@ -47,12 +47,12 @@ export interface Project {
   copy: Localized<ProjectCopy>;
 }
 
-export interface Card {
+interface Card {
   title: string;
   body: string;
 }
 
-export interface Brief {
+interface Brief {
   asked: string;
   needed: string;
 }
@@ -71,7 +71,7 @@ export type StackItem = { name: string; note: string } & (
   | { monogram: string }
 );
 
-export interface StackGroup {
+interface StackGroup {
   name: string;
   items: StackItem[];
 }

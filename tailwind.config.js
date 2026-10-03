@@ -50,7 +50,6 @@ export default {
         panel: '20px',
       },
       backgroundImage: {
-        'stripes-light': 'repeating-linear-gradient(135deg, #e9e6de 0 10px, #f4f2ec 10px 20px)',
         stripes: 'repeating-linear-gradient(135deg, #dedad1 0 10px, #ebe8e1 10px 20px)',
         'stripes-dark': 'repeating-linear-gradient(135deg, rgba(255, 255, 255, .12) 0 10px, rgba(255, 255, 255, .04) 10px 20px)',
         dots: 'radial-gradient(rgba(255, 255, 255, .08) 1px, transparent 1px)',
