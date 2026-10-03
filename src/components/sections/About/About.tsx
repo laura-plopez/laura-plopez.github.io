@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Timeline from '@/components/sections/About/Timeline';
 import PageHeader from '@/components/ui/PageHeader/PageHeader';
+import ToggleChip from '@/components/ui/ToggleChip/ToggleChip';
 import { useContent } from '@/hooks/useLanguage';
 import type { TimelineTab } from '@/types/portfolio';
 
@@ -39,24 +40,18 @@ function About() {
         </div>
 
         <div className="flex flex-col gap-2">
-          <div className="mb-2 flex flex-wrap gap-1 self-start rounded-full bg-surface-track p-1">
-            {TIMELINE_TABS.map((tab) => {
-              const active = tab === timelineTab;
-              return (
-                <button
-                  key={tab}
-                  type="button"
-                  aria-pressed={active}
-                  onClick={() => setTimelineTab(tab)}
-                  className={`flex items-baseline gap-1.5 rounded-full px-4 py-2 text-[15px] font-semibold transition-colors duration-200 ${
-                    active ? 'bg-ink text-white' : 'text-ink'
-                  }`}
-                >
-                  {about.timelineTabs[tab]}
-                  <span className="font-mono text-[11px] font-normal opacity-60">{about.timeline[tab].length}</span>
-                </button>
-              );
-            })}
+          <div className="mb-2 flex flex-wrap gap-1.5">
+            {TIMELINE_TABS.map((tab) => (
+              <ToggleChip
+                key={tab}
+                active={tab === timelineTab}
+                onClick={() => setTimelineTab(tab)}
+                className="flex items-baseline gap-1.5 text-[15px]"
+              >
+                {about.timelineTabs[tab]}
+                <span className="font-mono text-[11px] font-normal opacity-60">{about.timeline[tab].length}</span>
+              </ToggleChip>
+            ))}
           </div>
           <Timeline key={timelineTab} entries={about.timeline[timelineTab]} />
         </div>

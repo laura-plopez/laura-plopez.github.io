@@ -11,7 +11,8 @@ export const PROFILE = {
 
 export const CONTACT_LINKS: ContactLink[] = [
   { label: 'GitHub', href: 'https://github.com/laura-plopez' },
-  { label: 'LinkedIn', href: '' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/laura-p%C3%A9rez-l%C3%B3pez/' },
+  { label: 'Substack', href: 'https://substack.com/@lplopez' },
   { label: 'CV', href: '' },
 ];
 
@@ -155,6 +156,8 @@ export const CONTENT: Localized<SiteContent> = {
     sidebar: {
       location: 'Salamanca, ES',
       navLabel: 'Secciones',
+      menuOpen: 'Menú',
+      menuClose: 'Cerrar',
       nowLabel: 'Ahora',
       now: [
         'Construyendo agentes de IA.',
@@ -180,11 +183,16 @@ export const CONTENT: Localized<SiteContent> = {
         { title: 'Medir', body: 'Integro observabilidad y evaluación para mantener trazabilidad del uso real y decidir qué mejorar en la siguiente iteración.' },
       ],
       briefs: {
-        title: 'De lo que piden a lo que necesitan',
+        kicker: 'Minijuego',
+        title: 'Traductor de clientes',
+        intro: 'Nada serio por aquí. Lee lo que pidió el cliente, adivina qué necesitaba de verdad y destápalo.',
+        level: 'Nivel',
         asked: 'Lo que pidió el cliente',
-        needed: 'Lo que necesitaba',
-        prev: 'Caso anterior',
-        next: 'Caso siguiente',
+        needed: 'Lo que necesitaba de verdad',
+        reveal: 'Pulsa para revelar',
+        prev: 'Anterior',
+        next: 'Siguiente nivel',
+        restart: 'Jugar otra vez',
         items: [
           {
             asked: 'Queremos un chatbot con IA.',
@@ -466,6 +474,8 @@ export const CONTENT: Localized<SiteContent> = {
     sidebar: {
       location: 'Salamanca, ES',
       navLabel: 'Sections',
+      menuOpen: 'Menu',
+      menuClose: 'Close',
       nowLabel: 'Now',
       now: [
         'Building AI agents.',
@@ -491,11 +501,16 @@ export const CONTENT: Localized<SiteContent> = {
         { title: 'Measure', body: 'I build in observability and evaluation to keep real usage traceable and decide what to improve in the next iteration.' },
       ],
       briefs: {
-        title: 'From what they ask for to what they need',
+        kicker: 'Mini game',
+        title: 'Client translator',
+        intro: 'Nothing serious here. Read what the client asked for, guess what they actually needed, then reveal it.',
+        level: 'Level',
         asked: 'What the client asked for',
         needed: 'What they actually needed',
-        prev: 'Previous case',
-        next: 'Next case',
+        reveal: 'Press to reveal',
+        prev: 'Back',
+        next: 'Next level',
+        restart: 'Play again',
         items: [
           {
             asked: 'We want an AI chatbot.',

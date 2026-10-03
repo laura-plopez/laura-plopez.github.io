@@ -104,6 +104,8 @@ export interface SiteContent {
   sidebar: {
     location: string;
     navLabel: string;
+    menuOpen: string;
+    menuClose: string;
     nowLabel: string;
     now: string[];
     languageLabel: string;
@@ -116,11 +118,16 @@ export interface SiteContent {
     ctaContact: string;
     steps: Card[];
     briefs: {
+      kicker: string;
       title: string;
+      intro: string;
+      level: string;
       asked: string;
       needed: string;
+      reveal: string;
       prev: string;
       next: string;
+      restart: string;
       items: Brief[];
     };
   };
