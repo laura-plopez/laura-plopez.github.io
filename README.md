@@ -34,6 +34,23 @@ Cada componente tiene su propia carpeta, y los imports usan el alias `@/`, que a
 
 Todos los textos, proyectos y enlaces están en `src/constants/portfolio.ts`. Para cambiar algo de la web, empieza por ahí.
 
+Las imágenes, vídeos y CV que usa la web están en `public/` y se sirven tal cual.
+
+## Chatbot
+
+El chat de la pestaña FAQ responde con Gemini a través de un Cloudflare Worker (`worker/`). El Worker guarda la clave de la API, limita las peticiones y usa el contenido de `portfolio.ts` como contexto. Si no responde, el chat recurre a una búsqueda por palabras clave (`src/lib/bot.ts`).
+
+Para probarlo en local:
+
+```bash
+cd worker
+npm install
+cp .dev.vars.example .dev.vars   # y añade tu GEMINI_API_KEY
+npm run dev                       # http://localhost:8787
+```
+
+La clave nunca va en el código ni en variables `VITE_`: en producción es un secreto de Cloudflare (`npx wrangler secret put GEMINI_API_KEY`).
+
 ## Despliegue
 
-Cada push a `main` construye la web y la publica en GitHub Pages ([`deploy.yml`](.github/workflows/deploy.yml)).
+Cada push a `main` construye la web, la publica en GitHub Pages y, después, publica el Worker con el contenido actualizado ([`deploy.yml`](.github/workflows/deploy.yml)). El despliegue del Worker usa los secrets `CLOUDFLARE_API_TOKEN` (permiso Workers Scripts: Edit) y `CLOUDFLARE_ACCOUNT_ID` del repositorio.
