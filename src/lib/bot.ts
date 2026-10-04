@@ -1,5 +1,7 @@
-import type { QA, SiteContent } from '@/types/portfolio';
+import type { Lang, QA, SiteContent } from '@/types/portfolio';
 
+const BOT_URL = 'https://portfolio-bot.portfolio-bot.workers.dev';
+const BOT_TIMEOUT_MS = 20_000;
 const MIN_WORD_LENGTH = 4;
 const SHORT_KEYWORDS = new Set(['ia', 'ai', 'cv', 'api', 'rag', 'llm', 'mcp', 'n8n', 'gpt', 'sql', 'iot']);
 const STOPWORDS = new Set([
@@ -45,6 +47,30 @@ function findAnswer(question: string, knowledge: QA[]): string | undefined {
   return best?.answer;
 }
 
-export async function askBot(question: string, content: Pick<SiteContent, 'bot' | 'faq'>): Promise<string> {
-  return findAnswer(question, [...content.bot.suggestions, ...content.faq.items]) ?? content.bot.fallback;
+async function askModel(question: string, lang: Lang): Promise<string | undefined> {
+  try {
+    const response = await fetch(BOT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ question, lang }),
+      signal: AbortSignal.timeout(BOT_TIMEOUT_MS),
+    });
+    if (!response.ok) return undefined;
+    const { answer }: { answer?: unknown } = await response.json();
+    return typeof answer === 'string' && answer ? answer : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+export async function askBot(
+  question: string,
+  lang: Lang,
+  content: Pick<SiteContent, 'bot' | 'faq'>,
+): Promise<string> {
+  return (
+    (await askModel(question, lang)) ??
+    findAnswer(question, [...content.bot.suggestions, ...content.faq.items]) ??
+    content.bot.fallback
+  );
 }

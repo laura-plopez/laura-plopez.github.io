@@ -403,6 +403,7 @@ export const CONTENT: Localized<SiteContent> = {
       placeholder: 'Escribe tu pregunta…',
       send: 'Enviar',
       fallback: 'Todavía no sé responder a eso. Puedes escribirle a Laura directamente desde Contacto.',
+      disclaimer: 'Respuestas generadas con IA (Gemini) a partir de mi portfolio. Pueden contener errores.',
       suggestions: [
         {
           question: '¿Qué hace Laura en STEMIA?',
@@ -724,6 +725,7 @@ export const CONTENT: Localized<SiteContent> = {
       placeholder: 'Type your question…',
       send: 'Send',
       fallback: 'I can’t answer that yet. You can write to Laura directly from the Contact tab.',
+      disclaimer: 'Answers generated with AI (Gemini) from my portfolio. They may contain mistakes.',
       suggestions: [
         {
           question: 'What does Laura do at STEMIA?',

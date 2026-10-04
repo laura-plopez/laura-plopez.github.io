@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import type { FormEvent } from 'react';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
-import { useContent } from '@/hooks/useLanguage';
+import { useContent, useLanguage } from '@/hooks/useLanguage';
 import { askBot } from '@/lib/bot';
 import { animationDelay } from '@/lib/motion';
 
@@ -29,6 +29,7 @@ function Bubble({ role, text }: Message) {
 }
 
 function ChatBot() {
+  const { lang } = useLanguage();
   const content = useContent();
   const { bot } = content;
   const reducedMotion = usePrefersReducedMotion();
@@ -63,7 +64,7 @@ function ChatBot() {
     setInput('');
     setPending(true);
 
-    const answer = await askBot(text, content);
+    const answer = await askBot(text, lang, content);
     setRevealed(reducedMotion ? answer.length : 0);
     setMessages((current) => [...current, { role: 'bot', text: answer }]);
     setPending(false);
@@ -150,6 +151,7 @@ function ChatBot() {
           {bot.send} ↑
         </button>
       </form>
+      <p className="-mt-1.5 text-center font-mono text-[10.5px] opacity-50">{bot.disclaimer}</p>
     </div>
   );
 }

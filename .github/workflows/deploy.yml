@@ -50,3 +50,35 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
+
+  deploy-worker:
+    needs: build-and-deploy
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    defaults:
+      run:
+        working-directory: worker
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: worker/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check
+        run: npm run typecheck
+
+      - name: Deploy chatbot Worker
+        run: npx wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

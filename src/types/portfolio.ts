@@ -167,6 +167,7 @@ export interface SiteContent {
     placeholder: string;
     send: string;
     fallback: string;
+    disclaimer: string;
     suggestions: QA[];
   };
   contact: {

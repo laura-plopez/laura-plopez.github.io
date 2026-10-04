@@ -1,0 +1,18 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "portfolio-bot",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-09-01",
+  "vars": {
+    "GEMINI_MODEL": "gemini-3.5-flash",
+    "GEMINI_THINKING_LEVEL": "minimal",
+    "ALLOWED_ORIGINS": "https://laura-plopez.github.io,http://localhost:5173"
+  },
+  "ratelimits": [
+    {
+      "name": "RATE_LIMITER",
+      "namespace_id": "1001",
+      "simple": { "limit": 10, "period": 60 }
+    }
+  ]
+}
