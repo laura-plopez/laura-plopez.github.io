@@ -173,5 +173,6 @@ export interface SiteContent {
   contact: {
     lead: string;
     cv: string;
+    qr: { label: string; body: string; alt: string };
   };
 }

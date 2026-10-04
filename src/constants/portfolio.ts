@@ -426,6 +426,11 @@ export const CONTENT: Localized<SiteContent> = {
     contact: {
       lead: 'Escríbeme y vemos cómo puedo ayudarte.',
       cv: 'Descargar CV',
+      qr: {
+        label: 'Llévatelo al móvil',
+        body: 'Escanea el código para abrir esta web en tu móvil.',
+        alt: 'Código QR que abre laura-plopez.github.io',
+      },
     },
   },
   en: {
@@ -748,6 +753,11 @@ export const CONTENT: Localized<SiteContent> = {
     contact: {
       lead: 'Drop me a line and let’s see how I can help.',
       cv: 'Download CV',
+      qr: {
+        label: 'Take it to your phone',
+        body: 'Scan the code to open this site on your phone.',
+        alt: 'QR code that opens laura-plopez.github.io',
+      },
     },
   },
 };
