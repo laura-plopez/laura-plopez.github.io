@@ -429,6 +429,8 @@ export const CONTENT: Localized<SiteContent> = {
       qr: {
         label: 'Llévatelo al móvil',
         body: 'Escanea el código para abrir esta web en tu móvil.',
+        shareLabel: 'Compártelo',
+        shareBody: 'Enséñale este código a alguien para que abra mi web en su móvil.',
         alt: 'Código QR que abre laura-plopez.github.io',
       },
     },
@@ -756,6 +758,8 @@ export const CONTENT: Localized<SiteContent> = {
       qr: {
         label: 'Take it to your phone',
         body: 'Scan the code to open this site on your phone.',
+        shareLabel: 'Share it',
+        shareBody: 'Show this code to someone so they can open my site on their phone.',
         alt: 'QR code that opens laura-plopez.github.io',
       },
     },

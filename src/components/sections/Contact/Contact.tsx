@@ -42,8 +42,14 @@ function Contact() {
         <div className="flex flex-col items-center gap-4 rounded-card bg-white p-5 wide:flex-row wide:gap-6">
           <img src="/qr-portfolio.svg" alt={contact.qr.alt} className="size-48 shrink-0 wide:size-32" />
           <div className="flex flex-col gap-1.5 text-center wide:text-left">
-            <span className="font-mono text-xs uppercase tracking-[.08em] text-ink-muted">{contact.qr.label}</span>
-            <span className="text-[15px] leading-[1.45] text-ink-subtle text-pretty">{contact.qr.body}</span>
+            <span className="font-mono text-xs uppercase tracking-[.08em] text-ink-muted">
+              <span className="wide:hidden">{contact.qr.shareLabel}</span>
+              <span className="hidden wide:inline">{contact.qr.label}</span>
+            </span>
+            <span className="text-[15px] leading-[1.45] text-ink-subtle text-pretty">
+              <span className="wide:hidden">{contact.qr.shareBody}</span>
+              <span className="hidden wide:inline">{contact.qr.body}</span>
+            </span>
           </div>
         </div>
       </div>
