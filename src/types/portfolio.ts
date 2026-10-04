@@ -5,7 +5,6 @@ export type TabId = 'home' | 'projects' | 'about' | 'stack' | 'writing' | 'faq' 
 type ProjectKind = 'ai' | 'both' | 'product' | 'code';
 export type ProjectFilter = 'all' | ProjectKind;
 export type TimelineTab = 'work' | 'edu' | 'courses' | 'langs';
-export type ContactTopic = 'job' | 'collab' | 'hello';
 
 export type BrandSlug =
   | 'figma'
@@ -39,7 +38,7 @@ interface ProjectCopy {
 export interface Project {
   id: string;
   kind: ProjectKind;
-  year: string;
+  year?: string;
   href?: string;
   image?: string;
   video?: Localized<string>;
@@ -173,8 +172,5 @@ export interface SiteContent {
   contact: {
     lead: string;
     cv: string;
-    form: { name: string; topic: string; message: string; send: string };
-    topics: Record<ContactTopic, string>;
-    sent: { title: string; body: string; fallback: string };
   };
 }

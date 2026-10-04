@@ -50,6 +50,32 @@ export const PROJECTS: Project[] = [
       },
     },
   },
+  {
+    id: 'converse',
+    kind: 'ai',
+    image: '/projects/converse/cover.webp',
+    video: {
+      es: '/projects/converse/converse-en.mp4',
+      en: '/projects/converse/converse-en.mp4',
+    },
+    tags: ['LLM', 'Text-to-SQL', 'Analytics', 'RLS', 'PII masking'],
+    copy: {
+      es: {
+        title: 'Converse',
+        summary: 'Pregunta a tus datos en lenguaje natural y recibe tablas, gráficas e insights.',
+        problem: 'Los datos de una empresa suelen estar al alcance solo de quien sabe SQL. El resto tiene que pedir un informe y esperar.',
+        role: 'Producto y desarrollo, como parte del equipo: desde la pregunta en lenguaje natural hasta la consulta, la respuesta y su visualización.',
+        outcome: 'Una capa conversacional sobre los datos. Responde con tablas, gráficas y un resumen, y entiende preguntas de seguimiento ("ahora solo el norte, por mes"). Las consultas sobre tablas sensibles pasan por aprobación humana, los datos personales se ocultan antes de llegar al modelo y las consultas que funcionan se convierten en ejemplos para que el sistema aprenda con el uso.',
+      },
+      en: {
+        title: 'Converse',
+        summary: 'Ask your data questions in plain language and get tables, charts and insights.',
+        problem: 'Company data is usually only within reach of people who know SQL. Everyone else has to request a report and wait.',
+        role: 'Product and development as part of the team: from the plain-language question to the query, the answer and its visualisation.',
+        outcome: 'A conversational layer over the data. It answers with tables, charts and a summary, and understands follow-up questions ("now only North, by month"). Queries on sensitive tables go through human approval, personal data is masked before it reaches the model, and successful queries become examples so the system learns with use.',
+      },
+    },
+  },
 ];
 
 export const POSTS: Post[] = [
@@ -399,13 +425,6 @@ export const CONTENT: Localized<SiteContent> = {
     contact: {
       lead: 'Escríbeme y vemos cómo puedo ayudarte.',
       cv: 'Descargar CV',
-      form: { name: 'Nombre', topic: 'Motivo', message: 'Mensaje', send: 'Enviar' },
-      topics: { job: 'Oportunidad', collab: 'Colaboración', hello: 'Solo saludar' },
-      sent: {
-        title: 'Gracias.',
-        body: 'Se ha abierto tu programa de correo con el mensaje listo. Solo falta enviarlo.',
-        fallback: 'Si no se ha abierto, escríbeme directamente a',
-      },
     },
   },
   en: {
@@ -414,7 +433,7 @@ export const CONTENT: Localized<SiteContent> = {
       projects: 'Projects',
       about: 'About',
       stack: 'Stack',
-      writing: 'Writing',
+      writing: 'Posts',
       faq: 'FAQ',
       contact: 'Contact',
     },
@@ -727,13 +746,6 @@ export const CONTENT: Localized<SiteContent> = {
     contact: {
       lead: 'Drop me a line and let’s see how I can help.',
       cv: 'Download CV',
-      form: { name: 'Name', topic: 'Topic', message: 'Message', send: 'Send' },
-      topics: { job: 'Opportunity', collab: 'Collaboration', hello: 'Just saying hi' },
-      sent: {
-        title: 'Thank you.',
-        body: 'Your email app has opened with the message ready. Just hit send.',
-        fallback: 'If it didn’t open, write to me directly at',
-      },
     },
   },
 };

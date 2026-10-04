@@ -51,7 +51,8 @@ function ProjectDetail({ project }: ProjectDetailProps) {
       <div className="flex flex-col gap-[18px]">
         <div className="flex justify-between gap-3">
           <span className="font-mono text-xs text-accent">
-            {projects.kinds[project.kind]} · {project.year}
+            {projects.kinds[project.kind]}
+            {project.year && ` · ${project.year}`}
           </span>
           <a href={routeHref('projects')} className="rounded-full bg-white/[.16] px-3 py-1 font-mono text-xs">
             {projects.close} ×
