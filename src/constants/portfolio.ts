@@ -27,8 +27,8 @@ export const PROJECTS: Project[] = [
     year: '2026',
     image: '/projects/atelier/cover.webp',
     video: {
-      es: '/projects/atelier/atelier-es.mp4',
-      en: '/projects/atelier/atelier-en.mp4',
+      es: '/projects/atelier/atelier-short.mp4',
+      en: '/projects/atelier/atelier-short.mp4',
     },
     tags: ['Multi-agent', 'LLM', 'Rails', 'React', 'TypeScript'],
     copy: {
@@ -212,8 +212,8 @@ export const CONTENT: Localized<SiteContent> = {
             duration: '1 año',
             title: 'AI Engineer',
             org: 'STEMIA, Salamanca',
-            note: 'Desarrollo de sistemas de IA: agentes y automatización integrados en procesos reales de negocio. Desarrollo y conceptualización de producto.',
-            tags: ['Agentes', 'Automatización', 'Producto'],
+            note: 'Desarrollo de sistemas de IA, diseño de arquitecturas y SDD aplicado en agentes integrados en productos de desarrollo a medida. Participación en la fase de conceptualización de productos.',
+            tags: ['Agentes', 'Arquitectura', 'Producto'],
           },
           {
             when: '2024',
@@ -407,7 +407,7 @@ export const CONTENT: Localized<SiteContent> = {
       suggestions: [
         {
           question: '¿Qué hace Laura en STEMIA?',
-          answer: 'Es AI Engineer en STEMIA. Desarrolla agentes de IA para clientes y empresas como producto SaaS, desde la idea hasta producción, y automatizaciones integradas en procesos reales de negocio.',
+          answer: 'Es AI Engineer en STEMIA. Desarrolla sistemas de IA y diseña su arquitectura, aplicando SDD a agentes integrados en productos a medida. Participa activamente en la conceptualización de cada producto: define qué se construye antes de construirlo.',
         },
         {
           question: '¿Qué stack de IA usa?',
@@ -541,8 +541,8 @@ export const CONTENT: Localized<SiteContent> = {
             duration: '1 year',
             title: 'AI Engineer',
             org: 'STEMIA, Salamanca',
-            note: 'Building AI systems: agents and automation integrated into real business processes. Product development and conceptualisation.',
-            tags: ['Agents', 'Automation', 'Product'],
+            note: 'Building AI systems, designing architectures and applying SDD to agents integrated into custom-built products. Involved in the product conceptualisation phase.',
+            tags: ['Agents', 'Architecture', 'Product'],
           },
           {
             when: '2024',
@@ -736,7 +736,7 @@ export const CONTENT: Localized<SiteContent> = {
       suggestions: [
         {
           question: 'What does Laura do at STEMIA?',
-          answer: 'She’s an AI Engineer at STEMIA. She builds AI agents for clients and businesses as a SaaS product, from idea to production, plus automation built into real business processes.',
+          answer: 'She’s an AI Engineer at STEMIA. She builds AI systems and designs their architecture, applying SDD to agents integrated into custom-built products. She plays an active role in conceptualising each product, shaping what gets built before it’s built.',
         },
         {
           question: 'What AI stack does she use?',
