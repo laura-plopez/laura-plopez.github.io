@@ -3,34 +3,185 @@
 @tailwind utilities;
 
 @layer base {
-  html,
-  body {
-    @apply bg-main text-white antialiased;
+  html {
+    scroll-behavior: smooth;
+    scrollbar-color: #d4d4d8 transparent;
   }
 
-  #root {
-    @apply min-h-screen;
+  body {
+    @apply bg-canvas font-sans text-base leading-relaxed text-ink antialiased;
   }
 
   ::selection {
-    @apply bg-ink text-white;
+    background: #dbe6ff;
+    color: theme('colors.ink.DEFAULT');
   }
+
+  :focus-visible {
+    outline: 2px solid theme('colors.accent.DEFAULT');
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+@layer components {
+  /* Soft light that follows the pointer; multiply keeps it a tint, never a veil. */
+  .spotlight {
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+    background: radial-gradient(600px circle at var(--x, 50%) var(--y, 30%), rgba(37, 99, 235, 0.05), transparent 70%);
+  }
+
+  /* Sections are separated by space and a sticky title, never by a rule. */
+  .section-title {
+    background: linear-gradient(180deg, theme('colors.canvas') 0%, theme('colors.canvas') 72%, rgba(250, 250, 250, 0) 100%);
+  }
+
+  .reveal {
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal-pre {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  /* Underline that grows from the left on hover. */
+  .link-grow {
+    background: linear-gradient(currentColor, currentColor) 0 100% / 0 1.5px no-repeat;
+    padding-bottom: 2px;
+    transition: background-size 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .link-grow:hover {
+    background-size: 100% 1.5px;
+  }
+
+  /* Tooltip built from aria-label so the label and the hint never drift apart. */
+  .icon-tip::after {
+    content: attr(aria-label);
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 8px);
+    transform: translate(-50%, 4px);
+    white-space: nowrap;
+    font-size: 12px;
+    font-weight: 500;
+    color: #fff;
+    background: theme('colors.ink.DEFAULT');
+    padding: 4px 8px;
+    border-radius: 6px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .icon-tip:hover::after,
+  .icon-tip:focus-visible::after {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+
+  /* Timeline rail: dot + line drawn on first view and on every tab switch. */
+  .tl-rail {
+    position: relative;
+  }
+
+  .tl-rail::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 8px;
+    bottom: -8px;
+    width: 1.5px;
+    margin-left: -0.75px;
+    background: #d4d4d8;
+    transform-origin: top;
+    animation: tl-draw 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: calc(var(--i, 0) * 0.1s + 0.2s);
+  }
+
+  .tl-rail::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 6px;
+    width: 11px;
+    height: 11px;
+    margin-left: -5.5px;
+    border-radius: 50%;
+    background: theme('colors.canvas');
+    border: 2px solid theme('colors.ink.DEFAULT');
+    animation: tl-pop 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: calc(var(--i, 0) * 0.1s);
+  }
+
+  .tl-rail[data-current]::after {
+    background: theme('colors.ink.DEFAULT');
+    box-shadow: 0 0 0 4px theme('colors.accent.tint'), 0 0 0 5px theme('colors.accent.ring');
+  }
+
+  .tl-rail[data-last]::before {
+    display: none;
+  }
+
+  .reveal-pre .tl-rail::before,
+  .reveal-pre .tl-rail::after {
+    animation-play-state: paused;
+  }
+
+  @keyframes tl-draw {
+    from { transform: scaleY(0); }
+  }
+
+  @keyframes tl-pop {
+    from { transform: scale(0); }
+  }
+
+  /* Mascot: a calm face that blinks, follows the pointer and reacts to the chat. */
+  .m-float { animation: m-float 3.4s ease-in-out infinite; }
+  .m-shadow { transform-box: fill-box; transform-origin: center; animation: m-shadow 3.4s ease-in-out infinite; }
+  .m-eyes { transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  .m-eye { transform-box: fill-box; transform-origin: center; animation: m-blink 5s infinite; transition: opacity 0.15s; }
+  .m-happy { opacity: 0; transition: opacity 0.15s; }
+  .m-mouth { transform-box: fill-box; transform-origin: center; }
+  .m-antenna { transform-box: fill-box; transform-origin: center; }
+
+  [data-mood='thinking'] .m-antenna { animation: m-pulse 0.8s ease-in-out infinite; }
+  [data-mood='talking'] .m-mouth { animation: m-talk 0.18s ease-in-out infinite alternate; }
+  [data-mood='happy'] .m-eye { opacity: 0; }
+  [data-mood='happy'] .m-happy { opacity: 1; }
+  [data-mood='happy'] .m-float { animation: m-hop 0.5s cubic-bezier(0.16, 1, 0.3, 1) 2; }
+  [data-mood='oops'] .m-eye { animation: none; transform: scale(0.8, 0.55); }
+  [data-mood='oops'] .m-mouth { transform: scale(0.5, 1.9); }
+
+  @keyframes m-float { 50% { transform: translateY(-6px); } }
+  @keyframes m-shadow { 50% { transform: scaleX(0.82); } }
+  @keyframes m-blink { 0%, 93%, 100% { transform: scaleY(1); } 96% { transform: scaleY(0.08); } }
+  @keyframes m-pulse { 50% { transform: scale(1.55); opacity: 0.55; } }
+  @keyframes m-talk { from { transform: scaleY(0.45); } to { transform: scaleY(1.6); } }
+  @keyframes m-hop { 40% { transform: translateY(-12px); } }
 }
 
 @layer utilities {
   .scrollbar-none {
     scrollbar-width: none;
   }
-
-  .scrollbar-thin {
-    scrollbar-width: thin;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   *,
   *::before,
   *::after {
-    animation: none !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

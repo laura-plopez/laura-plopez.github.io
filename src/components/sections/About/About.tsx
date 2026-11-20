@@ -1,62 +1,33 @@
-import { useState } from 'react';
-import Timeline from '@/components/sections/About/Timeline';
-import PageHeader from '@/components/ui/PageHeader/PageHeader';
-import ToggleChip from '@/components/ui/ToggleChip/ToggleChip';
+import Emphasis from '@/components/ui/Emphasis/Emphasis';
+import Reveal from '@/components/ui/Reveal/Reveal';
+import Section from '@/components/ui/Section/Section';
 import { useContent } from '@/hooks/useLanguage';
-import type { TimelineTab } from '@/types/portfolio';
-
-const TIMELINE_TABS: TimelineTab[] = ['work', 'edu', 'courses', 'langs'];
 
 function About() {
-  const { tabs, about } = useContent();
-  const [timelineTab, setTimelineTab] = useState<TimelineTab>('work');
+  const { about } = useContent();
 
   return (
-    <div className="flex flex-col gap-10">
-      <PageHeader title={tabs.about} />
-
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,340px),1fr))] gap-[clamp(32px,5vw,64px)]">
-        <div className="flex flex-col gap-[22px]">
-          <p className="text-[clamp(28px,2.6vw,40px)] font-semibold leading-[1.08] tracking-heading text-balance">
-            {about.lead}
-          </p>
-          {about.body.map((paragraph) => (
-            <p key={paragraph} className="text-lg leading-[1.55] text-ink-soft text-pretty">
-              {paragraph}
-            </p>
+    <Section id="about">
+      <Reveal>
+        <p className="max-w-[30ch] text-2xl font-semibold leading-[1.35] tracking-[-0.02em]">{about.lead}</p>
+        <p className="mt-3.5 max-w-[62ch] text-ink-muted">
+          <Emphasis text={about.body} />
+        </p>
+      </Reveal>
+      <Reveal className="mt-7">
+        <ul className="border-t border-line">
+          {about.steps.map((step) => (
+            <li
+              key={step.title}
+              className="grid gap-1 border-b border-line py-4 sm:grid-cols-[160px_minmax(0,1fr)] sm:gap-6"
+            >
+              <span className="pt-0.5 text-sm font-semibold">{step.title}</span>
+              <span className="max-w-[62ch] text-[15px] text-ink-soft">{step.body}</span>
+            </li>
           ))}
-          <span className="mt-2 font-mono text-xs text-main">{about.highlightsTitle}</span>
-          <div className="flex flex-col gap-2">
-            {about.highlights.map((highlight) => (
-              <div
-                key={highlight.title}
-                className="grid grid-cols-[minmax(120px,160px)_minmax(0,1fr)] items-baseline gap-4 rounded-row bg-ink px-5 py-[18px] text-white"
-              >
-                <span className="text-[19px] font-bold tracking-snug">{highlight.title}</span>
-                <span className="text-[15px] leading-[1.4] text-white/80">{highlight.body}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-2">
-          <div className="mb-2 flex flex-wrap gap-1.5">
-            {TIMELINE_TABS.map((tab) => (
-              <ToggleChip
-                key={tab}
-                active={tab === timelineTab}
-                onClick={() => setTimelineTab(tab)}
-                className="flex items-baseline gap-1.5 text-[15px]"
-              >
-                {about.timelineTabs[tab]}
-                <span className="font-mono text-[11px] font-normal opacity-60">{about.timeline[tab].length}</span>
-              </ToggleChip>
-            ))}
-          </div>
-          <Timeline key={timelineTab} entries={about.timeline[timelineTab]} />
-        </div>
-      </div>
-    </div>
+        </ul>
+      </Reveal>
+    </Section>
   );
 }
 

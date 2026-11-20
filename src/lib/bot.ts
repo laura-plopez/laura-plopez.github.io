@@ -1,4 +1,4 @@
-import type { Lang, QA, SiteContent } from '@/types/portfolio';
+import type { Lang, QA } from '@/types/portfolio';
 
 const BOT_URL = 'https://portfolio-bot.portfolio-bot.workers.dev';
 const BOT_TIMEOUT_MS = 20_000;
@@ -63,14 +63,6 @@ async function askModel(question: string, lang: Lang): Promise<string | undefine
   }
 }
 
-export async function askBot(
-  question: string,
-  lang: Lang,
-  content: Pick<SiteContent, 'bot' | 'faq'>,
-): Promise<string> {
-  return (
-    (await askModel(question, lang)) ??
-    findAnswer(question, [...content.bot.suggestions, ...content.faq.items]) ??
-    content.bot.fallback
-  );
+export async function askAgent(question: string, lang: Lang, knowledge: QA[], fallback: string): Promise<string> {
+  return (await askModel(question, lang)) ?? findAnswer(question, knowledge) ?? fallback;
 }

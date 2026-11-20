@@ -1,30 +1,8 @@
 export type Lang = 'es' | 'en';
 export type Localized<T> = Record<Lang, T>;
 
-export type TabId = 'home' | 'projects' | 'about' | 'stack' | 'writing' | 'faq' | 'contact';
-type ProjectKind = 'ai' | 'both' | 'product' | 'code';
-export type ProjectFilter = 'all' | ProjectKind;
-export type TimelineTab = 'work' | 'edu' | 'courses' | 'langs';
-
-export type BrandSlug =
-  | 'figma'
-  | 'python'
-  | 'langchain'
-  | 'react'
-  | 'typescript'
-  | 'javascript'
-  | 'tailwindcss'
-  | 'postgresql'
-  | 'git'
-  | 'github'
-  | 'githubactions'
-  | 'githubpages'
-  | 'grafana'
-  | 'anthropic'
-  | 'claude'
-  | 'langgraph'
-  | 'modelcontextprotocol'
-  | 'n8n';
+export type SectionId = 'about' | 'projects' | 'experience' | 'stack' | 'posts' | 'agent';
+export type TimelineTab = 'work' | 'edu' | 'certs' | 'langs';
 
 interface ProjectCopy {
   title: string;
@@ -37,23 +15,12 @@ interface ProjectCopy {
 
 export interface Project {
   id: string;
-  kind: ProjectKind;
   year?: string;
   href?: string;
   image?: string;
   video?: Localized<string>;
   tags: string[];
   copy: Localized<ProjectCopy>;
-}
-
-interface Card {
-  title: string;
-  body: string;
-}
-
-interface Brief {
-  asked: string;
-  needed: string;
 }
 
 export interface TimelineEntry {
@@ -65,27 +32,18 @@ export interface TimelineEntry {
   tags: string[];
 }
 
-export type StackItem = { name: string; note: string } & (
-  | { logo: BrandSlug }
-  | { monogram: string }
-);
-
-interface StackGroup {
+interface StackArea {
   name: string;
-  items: StackItem[];
-}
-
-export interface StackColumn {
-  title: string;
   description: string;
-  groups: StackGroup[];
+  tools: string[];
 }
 
 export interface Post {
   title: string;
   dek: string;
   readTime: string;
-  href?: string;
+  topic: Localized<string>;
+  href: string;
 }
 
 export interface QA {
@@ -93,86 +51,93 @@ export interface QA {
   answer: string;
 }
 
+interface GameCase {
+  asked: string;
+  right: string;
+  wrong: [string, string];
+}
+
 export interface ContactLink {
   label: string;
   href: string;
 }
 
+interface SectionCopy {
+  title: string;
+  context: string;
+}
+
 export interface SiteContent {
-  tabs: Record<TabId, string>;
+  sections: Record<SectionId, SectionCopy>;
   sidebar: {
-    location: string;
+    tagline: { before: string; product: string; middle: string; code: string; after: string };
     navLabel: string;
-    menuOpen: string;
-    menuClose: string;
+    viewProjects: string;
     nowLabel: string;
     now: string[];
+    contactLead: string;
+    downloadCv: string;
     languageLabel: string;
-  };
-  home: {
-    kicker: string;
-    title: { main: string; connector: string; accent: string };
-    subtitle: string;
-    ctaProjects: string;
-    ctaContact: string;
-    steps: Card[];
-    briefs: {
-      kicker: string;
-      title: string;
-      intro: string;
-      level: string;
-      asked: string;
-      needed: string;
-      reveal: string;
-      prev: string;
-      next: string;
-      restart: string;
-      items: Brief[];
-    };
-  };
-  projects: {
-    filters: Record<ProjectFilter, string>;
-    kinds: Record<ProjectKind, string>;
-    problem: string;
-    role: string;
-    outcome: string;
-    inProgress: string;
-    viewProject: string;
-    close: string;
-    imagePlaceholder: string;
   };
   about: {
     lead: string;
-    body: string[];
-    highlightsTitle: string;
-    highlights: Card[];
-    timelineTabs: Record<TimelineTab, string>;
+    body: string;
+    steps: { title: string; body: string }[];
+  };
+  projects: {
+    problem: string;
+    role: string;
+    outcome: string;
+    status: string;
+    inProgress: string;
+    viewCase: string;
+    hideCase: string;
+    viewProject: string;
+  };
+  experience: {
+    tabs: Record<TimelineTab, string>;
     timeline: Record<TimelineTab, TimelineEntry[]>;
   };
   stack: {
-    intro: string;
-    columns: StackColumn[];
+    areas: StackArea[];
   };
-  writing: {
-    lead: string;
+  posts: {
+    readTime: string;
+    all: string;
   };
-  faq: {
-    lead: string;
-    items: QA[];
-  };
-  bot: {
-    title: string;
-    subtitle: string;
+  agent: {
+    name: string;
+    status: { idle: string; thinking: string; talking: string };
     greeting: string;
     placeholder: string;
     send: string;
     fallback: string;
     disclaimer: string;
+    suggestionsTitle: string;
     suggestions: QA[];
-  };
-  contact: {
-    lead: string;
-    cv: string;
-    qr: { label: string; body: string; shareLabel: string; shareBody: string; alt: string };
+    game: {
+      title: string;
+      pitch: string;
+      play: string;
+      caseOf: string;
+      result: string;
+      question: string;
+      rightLines: string[];
+      wrongLine: string;
+      solved: string;
+      almost: string;
+      next: string;
+      seeResult: string;
+      scoreLabel: string;
+      verdicts: { perfect: string; good: string; low: string };
+      wellPlayed: string;
+      nextTime: string;
+      again: string;
+      backToChat: string;
+      exit: string;
+      paused: string;
+      summary: string;
+      cases: GameCase[];
+    };
   };
 }

@@ -1,11 +1,10 @@
-import type { ContactLink, Localized, Post, Project, SiteContent, TabId } from '@/types/portfolio';
+import type { ContactLink, Localized, Post, Project, SectionId, SiteContent } from '@/types/portfolio';
 
-export const TABS: TabId[] = ['home', 'projects', 'about', 'stack', 'writing', 'faq', 'contact'];
+export const SECTIONS: SectionId[] = ['about', 'projects', 'experience', 'stack', 'posts', 'agent'];
 
 export const PROFILE = {
   name: 'Laura Pérez',
   role: 'Full Stack & AI Engineer',
-  wordmark: 'laura pérez',
   email: 'laura.perezlope@gmail.com',
 };
 
@@ -23,14 +22,13 @@ export const CV: Localized<string> = {
 export const PROJECTS: Project[] = [
   {
     id: 'atelier',
-    kind: 'ai',
     year: '2026',
     image: '/projects/atelier/cover.webp',
     video: {
       es: '/projects/atelier/atelier-short.mp4',
       en: '/projects/atelier/atelier-short.mp4',
     },
-    tags: ['Multi-agent', 'LLM', 'Rails', 'React', 'TypeScript'],
+    tags: ['Multi-agent', 'Rails', 'React', 'LLM', 'TypeScript'],
     copy: {
       es: {
         title: 'Atelier',
@@ -52,13 +50,12 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'converse',
-    kind: 'ai',
     image: '/projects/converse/cover.webp',
     video: {
       es: '/projects/converse/converse-en.mp4',
       en: '/projects/converse/converse-en.mp4',
     },
-    tags: ['LLM', 'Text-to-SQL', 'Analytics', 'RLS', 'PII masking'],
+    tags: ['Text-to-SQL', 'RLS', 'PII masking', 'LLM', 'Analytics'],
     copy: {
       es: {
         title: 'Converse',
@@ -80,47 +77,49 @@ export const PROJECTS: Project[] = [
 
 export const POSTS: Post[] = [
   {
-    title: 'Ciberseguridad en España: El análisis de 2024 que revela la realidad',
-    dek: '¿Te has preguntado alguna vez si España está realmente preparada para defenderse en el ciberespacio? Yo también pensaba que sí hasta que me puse a investigar los datos oficiales de 2024.',
+    title: 'Ciberseguridad en España: el análisis de 2024 que revela la realidad',
+    dek: '¿Está España preparada para defenderse en el ciberespacio?',
     readTime: '4 min',
+    topic: { es: 'Ciberseguridad', en: 'Cybersecurity' },
     href: 'https://lplopez.substack.com/p/ciberseguridad-en-espana-el-analisis',
   },
   {
-    title: 'La batalla legal que definirá el futuro de la IA: Anthropic vs el mundo del copyright',
-    dek: 'Breve análisis de la crisis legal que está sacudiendo a la industria de la inteligencia artificial.',
+    title: 'La batalla legal que definirá el futuro de la IA',
+    dek: 'Anthropic frente al mundo del copyright.',
     readTime: '3 min',
+    topic: { es: 'IA y copyright', en: 'AI & copyright' },
     href: 'https://lplopez.substack.com/p/la-batalla-legal-que-definira-el',
   },
   {
-    title: 'Neuromarketing: Cómo las empresas hackean tu mente para que gastes más',
-    dek: 'Un análisis de los sesgos cognitivos que explotan las empresas para influir en tus decisiones de compra y vaciar tu cartera.',
+    title: 'Neuromarketing: cómo las empresas hackean tu mente para que gastes más',
+    dek: 'Los sesgos cognitivos que usan para influir en tus compras.',
     readTime: '6 min',
+    topic: { es: 'Neuromarketing', en: 'Neuromarketing' },
     href: 'https://lplopez.substack.com/p/neuromarketing-como-las-empresas',
   },
   {
-    title: 'Los Artistas Fantasma de Spotify: cuando la música que escuchas no existe',
-    dek: '¿Usas Spotify? Pues es muy probable que hayas escuchado música de artistas que… no existen.',
+    title: 'Los artistas fantasma de Spotify',
+    dek: 'Cuando la música que escuchas no existe.',
     readTime: '3 min',
+    topic: { es: 'Música e IA', en: 'Music & AI' },
     href: 'https://lplopez.substack.com/p/los-artistas-fantasma-de-spotify',
   },
 ];
 
 export const CONTENT: Localized<SiteContent> = {
   es: {
-    tabs: {
-      home: 'Inicio',
-      projects: 'Proyectos',
-      about: 'Sobre mí',
-      stack: 'Stack',
-      writing: 'Posts',
-      faq: 'FAQ',
-      contact: 'Contacto',
+    sections: {
+      about: { title: 'Sobre mí', context: 'Del cliente al código' },
+      projects: { title: 'Proyectos', context: '2 casos, con tráiler' },
+      experience: { title: 'Experiencia', context: 'Trabajo, estudios, certificados e idiomas' },
+      stack: { title: 'Stack', context: '4 áreas, de la idea a producción' },
+      posts: { title: 'Posts', context: 'Lo que leo y analizo, en Substack' },
+      agent: { title: 'Agente', context: 'Pregúntale lo que quieras saber de mí' },
     },
     sidebar: {
-      location: 'Salamanca, ES',
+      tagline: { before: 'Pienso como ', product: 'producto', middle: ', construyo con ', code: 'código', after: '.' },
       navLabel: 'Secciones',
-      menuOpen: 'Menú',
-      menuClose: 'Cerrar',
+      viewProjects: 'Ver proyectos',
       nowLabel: 'Ahora',
       now: [
         'Construyendo agentes de IA.',
@@ -132,94 +131,46 @@ export const CONTENT: Localized<SiteContent> = {
         'Haciendo git push con fe.',
         'Probando si "solo un cambio rápido" era rápido.',
       ],
+      contactLead: 'Escríbeme y vemos cómo puedo ayudarte.',
+      downloadCv: 'Descargar CV',
       languageLabel: 'Idioma',
-    },
-    home: {
-      kicker: 'Producto · Código · IA',
-      title: { main: 'Full Stack', connector: '&', accent: 'AI Engineer' },
-      subtitle: 'Pienso como producto, construyo con código.',
-      ctaProjects: 'Ver proyectos',
-      ctaContact: 'Escríbeme',
-      steps: [
-        { title: 'Entender', body: 'Hablo con clientes, miro los datos y defino qué problema merece resolverse con IA y cuál no.' },
-        { title: 'Construir', body: 'Diseño el flujo, integro modelos y escribo el código para desplegar a producción.' },
-        { title: 'Medir', body: 'Integro observabilidad y evaluación para mantener trazabilidad del uso real y decidir qué mejorar en la siguiente iteración.' },
-      ],
-      briefs: {
-        kicker: 'Minijuego',
-        title: 'Traductor de clientes',
-        intro: 'Basado en hechos reales (más o menos). Adivina qué necesitaba el cliente y destápalo.',
-        level: 'Nivel',
-        asked: 'Lo que pidió el cliente',
-        needed: 'Lo que necesitaba de verdad',
-        reveal: 'Pulsa para revelar',
-        prev: 'Anterior',
-        next: 'Siguiente',
-        restart: 'Otra vez',
-        items: [
-          {
-            asked: 'Queremos un chatbot con IA.',
-            needed: 'Un buscador sobre sus documentos internos que citara la fuente de cada respuesta.',
-          },
-          {
-            asked: 'Usad el modelo más potente.',
-            needed: 'Uno más pequeño y barato que respondía igual de bien, comprobado con evals.',
-          },
-          {
-            asked: 'Necesitamos un agente de IA.',
-            needed: 'Un script que se ejecuta cada lunes a las 9:00.',
-          },
-          {
-            asked: 'Un dashboard con todas las métricas.',
-            needed: 'Tres números que mirar cada lunes y una alerta cuando alguno se tuerce.',
-          },
-          {
-            asked: 'Que sea intuitivo.',
-            needed: 'Que se pareciera al Excel que ya usaban.',
-          },
-        ],
-      },
-    },
-    projects: {
-      filters: { all: 'Todos', ai: 'IA', both: 'Híbrido', product: 'Producto', code: 'Código' },
-      kinds: { ai: 'IA', both: 'Híbrido', product: 'Producto', code: 'Código' },
-      problem: 'Problema',
-      role: 'Qué hice',
-      outcome: 'Resultado',
-      inProgress: 'En desarrollo',
-      viewProject: 'Ver proyecto',
-      close: 'Cerrar',
-      imagePlaceholder: '[ imagen del proyecto ]',
     },
     about: {
       lead: 'Empecé hablando con clientes. Ahora construyo lo que necesitan.',
-      body: [
-        'Empecé en comunicación y gestión de clientes. Como Account Manager coordinaba a equipos técnicos y de ventas, y pasaba muchas horas al teléfono con clientes de dentro y fuera de España. Ahí aprendí lo más útil que sé: lo que un cliente pide y lo que necesita no siempre coinciden.',
-        'Después quise estar al otro lado, construyendo. Estudié Desarrollo de Aplicaciones Multiplataforma y pasé al código: web, IoT y plataformas full stack, cada vez más cerca de la IA.',
-        'Hoy, como AI Engineer, diseño y desarrollo agentes de IA que las empresas usan como producto SaaS, desde la idea hasta producción. Y sigo empezando igual que al principio: escuchando antes de construir.',
+      body: 'Como Account Manager aprendí que **lo que un cliente pide y lo que necesita no siempre coinciden**. Después pasé al código: web, IoT y plataformas full stack. Hoy, como **AI Engineer**, diseño sistemas de IA desde la conceptualización del producto hasta la arquitectura.',
+      steps: [
+        { title: 'Entender', body: 'Hablo con clientes, miro los datos y decido qué problema merece resolverse con IA y cuál no.' },
+        { title: 'Construir', body: 'Diseño el flujo, integro modelos y escribo el código hasta producción.' },
+        { title: 'Medir', body: 'Observabilidad y evals para ver el uso real y decidir qué mejorar.' },
       ],
-      highlightsTitle: 'Lo que traigo',
-      highlights: [
-        { title: 'Cliente + código', body: 'Entiendo el problema de negocio y sé construir la solución.' },
-        { title: 'ES / EN', body: 'Trabajo con clientes y equipos en los dos idiomas.' },
-        { title: 'Back, front e IA', body: 'Me muevo por todo el stack, de la API al agente.' },
-      ],
-      timelineTabs: { work: 'Experiencia', edu: 'Estudios', courses: 'Cursos', langs: 'Idiomas' },
+    },
+    projects: {
+      problem: 'Problema',
+      role: 'Qué hice',
+      outcome: 'Resultado',
+      status: 'Estado',
+      inProgress: 'En curso',
+      viewCase: 'Ver caso',
+      hideCase: 'Ocultar caso',
+      viewProject: 'Ver proyecto',
+    },
+    experience: {
+      tabs: { work: 'Trabajo', edu: 'Estudios', certs: 'Certificados', langs: 'Idiomas' },
       timeline: {
         work: [
           {
-            when: '2025',
-            duration: '1 año',
+            when: '2025 — hoy',
+            duration: '1 año y 3 meses',
             title: 'AI Engineer',
-            org: 'STEMIA, Salamanca',
+            org: 'STEMIA · Salamanca',
             note: 'Desarrollo de sistemas de IA, diseño de arquitecturas y SDD aplicado en agentes integrados en productos de desarrollo a medida. Participación en la fase de conceptualización de productos.',
             tags: ['Agentes', 'Arquitectura', 'Producto'],
           },
           {
             when: '2024',
-            duration: '1 año 3 meses',
+            duration: '1 año y 3 meses',
             title: 'Full Stack Developer',
-            org: 'AIR Institute, Salamanca',
+            org: 'AIR Institute · Salamanca',
             note: 'Proyectos IoT con trazabilidad de dispositivos de extremo a extremo. APIs y bases de datos PostgreSQL, Clean Architecture y desarrollo full-stack con React.',
             tags: ['IoT', 'PostgreSQL', 'React'],
           },
@@ -227,15 +178,15 @@ export const CONTENT: Localized<SiteContent> = {
             when: '2024',
             duration: '3 meses',
             title: 'Frontend Web Developer',
-            org: 'InternacionalWeb, Salamanca',
+            org: 'InternacionalWeb · Salamanca',
             note: 'Desarrollo en WordPress con personalización de temas y plugins. Optimización del rendimiento con PHP, JavaScript y CSS.',
             tags: ['WordPress', 'PHP', 'JavaScript'],
           },
           {
             when: '2023',
-            duration: '1 año 2 meses',
+            duration: '1 año y 2 meses',
             title: 'Account Manager',
-            org: 'eXperience IT Solutions, Remoto',
+            org: 'eXperience IT Solutions · Remoto',
             note: 'Coordinación entre equipos técnicos y de ventas. SEO técnico y posicionamiento. Gestión de clientes web y ecommerce.',
             tags: ['SEO', 'Clientes', 'Ecommerce'],
           },
@@ -243,22 +194,22 @@ export const CONTENT: Localized<SiteContent> = {
             when: '2020',
             duration: '3 meses',
             title: 'Communications Manager',
-            org: 'Rabuso AMC, Leganés',
+            org: 'Rabuso AMC · Leganés',
             note: 'Contenidos web para clientes internacionales. Redacción técnica y publicaciones digitales. Optimización de flujos en CRM.',
             tags: ['Contenido', 'CRM'],
           },
         ],
         edu: [
           {
-            when: '2022 – 2024',
+            when: '2022 — 2024',
             duration: 'Grado superior',
             title: 'Desarrollo de Aplicaciones Multiplataforma',
             org: 'Instituto Medac',
             note: 'Programación, bases de datos, desarrollo móvil y de escritorio.',
-            tags: ['DAM'],
+            tags: [],
           },
           {
-            when: '2015 – 2019',
+            when: '2015 — 2019',
             duration: 'Grado',
             title: 'Comunicación Audiovisual',
             org: 'Universidad Rey Juan Carlos',
@@ -266,152 +217,78 @@ export const CONTENT: Localized<SiteContent> = {
             tags: [],
           },
         ],
-        courses: [
+        certs: [
           { when: 'jun. 2026', duration: '', title: 'Introduction to Model Context Protocol', org: 'Anthropic', note: '', tags: [] },
           { when: 'jun. 2026', duration: '', title: 'Introduction to Claude Cowork', org: 'Anthropic', note: '', tags: [] },
           { when: 'jun. 2026', duration: '', title: 'Claude Code in Action', org: 'Anthropic', note: '', tags: [] },
           { when: '', duration: '', title: 'Python Essentials 1 y 2', org: 'Cisco Networking Academy', note: '', tags: [] },
           { when: '', duration: '', title: 'Fundamentos de Git', org: 'OpenWebinars', note: '', tags: [] },
-          { when: '', duration: '', title: 'Marketing Digital', org: 'Google Actívate', note: '', tags: [] },
           { when: '', duration: '', title: 'Data Science', org: 'IMMUNE Technology Institute', note: '', tags: [] },
+          { when: '', duration: '', title: 'Marketing Digital', org: 'Google Actívate', note: '', tags: [] },
         ],
         langs: [
           { when: '', duration: '', title: 'Español', org: 'Nativo', note: '', tags: [] },
-          {
-            when: '',
-            duration: '',
-            title: 'Inglés',
-            org: 'Profesional',
-            note: 'Gestión de clientes y comunicación técnica en inglés.',
-            tags: [],
-          },
+          { when: '', duration: '', title: 'Inglés', org: 'Profesional', note: 'Gestión de clientes y comunicación técnica en inglés.', tags: [] },
         ],
       },
     },
     stack: {
-      intro: 'Dos mitades de un mismo perfil: lo que necesito para entender a un cliente y decidir qué construir, y lo que uso para construirlo.',
-      columns: [
+      areas: [
         {
-          title: 'Producto',
-          description: 'Del primer contacto con el cliente a un producto definido: qué se construye y para quién.',
-          groups: [
-            {
-              name: 'Estrategia',
-              items: [
-                { name: 'Conceptualización de producto', note: 'idea → requisitos', monogram: 'CP' },
-                { name: 'Automatización de procesos', note: 'procesos de negocio', monogram: 'AP' },
-              ],
-            },
-            {
-              name: 'Definición y diseño',
-              items: [
-                { name: 'Spec-Driven Development', note: 'specs como fuente de verdad', monogram: 'SDD' },
-                { name: 'PRD', note: 'requisitos de producto', monogram: 'PRD' },
-                { name: 'Figma', note: 'diseño, prototipos', logo: 'figma' },
-              ],
-            },
-            {
-              name: 'Clientes',
-              items: [
-                { name: 'Discovery', note: 'entrevistas con clientes', monogram: 'DI' },
-                { name: 'Salesforce', note: 'CRM', monogram: 'SF' },
-              ],
-            },
-          ],
+          name: 'IA y agentes',
+          description: 'Modelos, orquestación y contexto',
+          tools: ['Python', 'API de Claude', 'OpenAI API', 'LangChain', 'LangGraph', 'MCP', 'RAG', 'n8n'],
         },
         {
-          title: 'Técnico',
-          description: 'Full stack con foco en IA: del agente a la interfaz, pasando por la API, los datos y el despliegue.',
-          groups: [
-            {
-              name: 'IA',
-              items: [
-                { name: 'Python', note: 'IA, scripts', logo: 'python' },
-                { name: 'API de Claude', note: 'modelos de Anthropic', logo: 'anthropic' },
-                { name: 'OpenAI API', note: 'modelos GPT', monogram: 'OA' },
-                { name: 'LangChain', note: 'orquestación', logo: 'langchain' },
-                { name: 'LangGraph', note: 'flujos de agentes', logo: 'langgraph' },
-                { name: 'MCP', note: 'agentes ↔ herramientas', logo: 'modelcontextprotocol' },
-                { name: 'RAG', note: 'recuperación de contexto', monogram: 'RAG' },
-                { name: 'n8n', note: 'automatización de flujos', logo: 'n8n' },
-                { name: 'Claude Code', note: 'desarrollo con IA', logo: 'claude' },
-              ],
-            },
-            {
-              name: 'Frontend',
-              items: [
-                { name: 'React', note: 'UI', logo: 'react' },
-                { name: 'TypeScript', note: 'tipado', logo: 'typescript' },
-                { name: 'JavaScript', note: 'web', logo: 'javascript' },
-                { name: 'Tailwind CSS', note: 'estilos', logo: 'tailwindcss' },              ],
-            },
-            {
-              name: 'Backend y datos',
-              items: [
-                { name: 'Python', note: 'APIs, servicios', logo: 'python' },
-                { name: 'PostgreSQL', note: 'datos', logo: 'postgresql' },                { name: 'APIs', note: 'REST', monogram: 'API' },
-                { name: 'Clean Architecture', note: 'diseño', monogram: 'CA' },
-                { name: 'IoT', note: 'trazabilidad', monogram: 'IoT' },
-              ],
-            },
-            {
-              name: 'Entrega y observabilidad',
-              items: [
-                { name: 'Git', note: 'versiones', logo: 'git' },
-                { name: 'GitHub', note: 'repos', logo: 'github' },                { name: 'GitHub Actions', note: 'CI/CD', logo: 'githubactions' },
-                { name: 'GitHub Pages', note: 'hosting', logo: 'githubpages' },
-                { name: 'Azure', note: 'cloud', monogram: 'AZ' },
-                { name: 'Grafana', note: 'monitorización, dashboards', logo: 'grafana' },
-              ],
-            },
-          ],
+          name: 'Desarrollo',
+          description: 'De la API a la interfaz',
+          tools: ['TypeScript', 'JavaScript', 'React', 'Tailwind CSS', 'PostgreSQL', 'APIs REST', 'Clean Architecture', 'IoT'],
+        },
+        {
+          name: 'Producto',
+          description: 'Qué se construye y para quién',
+          tools: ['Conceptualización', 'Spec-Driven Development', 'PRD', 'Discovery', 'Figma'],
+        },
+        {
+          name: 'Entrega',
+          description: 'Versionar, desplegar y observar',
+          tools: ['Git', 'GitHub Actions', 'Azure', 'Grafana', 'Claude Code'],
         },
       ],
     },
-    writing: {
-      lead: 'Lectura y reflexión sobre los papers que más me llaman la atención.',
+    posts: {
+      readTime: 'de lectura',
+      all: 'Ver todos los posts en Substack',
     },
-    faq: {
-      lead: 'Lo que suelen preguntarme en las primeras conversaciones.',
-      items: [
-        {
-          question: '¿Qué haces exactamente?',
-          answer: 'Construyo productos con inteligencia artificial. Eso incluye decidir dónde aporta valor un modelo, integrarlo, diseñar cómo lo usa la gente y medir si funciona.',
-        },
-        {
-          question: '¿Eres más de producto o de código?',
-          answer: 'De los dos, y es intencionado. Puedo definir un problema con usuarios y datos, y después implementarlo yo misma. Eso reduce traspasos y acelera el aprendizaje.',
-        },
-        {
-          question: '¿En qué tipo de proyectos encajas?',
-          answer: 'En equipos donde la IA tiene que convertirse en producto: definir el caso de uso, construirlo de principio a fin y comprobar que aporta algo real.',
-        },
-        {
-          question: '¿Trabajas en remoto?',
-          answer: 'Vivo en Salamanca. Ahora trabajo en formato híbrido y antes he trabajado en remoto, así que me adapto bien a los dos.',
-        },
-        {
-          question: '¿Cuándo no usarías IA?',
-          answer: 'Cuando una regla, un script o un buen formulario resuelven el problema. Un modelo añade coste, latencia y respuestas que hay que vigilar, así que solo compensa cuando aporta algo que lo simple no puede: entender lenguaje, resumir, clasificar o razonar sobre información desordenada.',
-        },
-      ],
-    },
-    bot: {
-      title: 'Pregúntale a mi bot',
-      subtitle: 'Responde sobre mi experiencia, stack y forma de trabajar',
-      greeting: 'Hola, soy el asistente de Laura. Pregúntame por su experiencia, su stack o cómo trabaja.',
+    agent: {
+      name: 'Agente de Laura',
+      status: { idle: 'Disponible', thinking: 'Pensando…', talking: 'Respondiendo…' },
+      greeting: 'Hola, soy el agente de Laura. Pregúntame por su experiencia, su stack o cómo trabaja. Y si te apetece, juega al traductor de clientes.',
       placeholder: 'Escribe tu pregunta…',
       send: 'Enviar',
-      fallback: 'Todavía no sé responder a eso. Puedes escribirle a Laura directamente desde Contacto.',
+      fallback: 'Todavía no sé responder a eso. Puedes escribirle a Laura directamente: tienes su email en el lateral.',
       disclaimer: 'Respuestas generadas con IA (Gemini) a partir de mi portfolio. Pueden contener errores.',
+      suggestionsTitle: 'Prueba a preguntar',
       suggestions: [
         {
           question: '¿Qué hace Laura en STEMIA?',
           answer: 'Es AI Engineer en STEMIA. Desarrolla sistemas de IA y diseña su arquitectura, aplicando SDD a agentes integrados en productos a medida. Participa activamente en la conceptualización de cada producto: define qué se construye antes de construirlo.',
         },
         {
+          question: '¿Es más de producto o de código?',
+          answer: 'De los dos, y es intencionado. Puede definir un problema con usuarios y datos, y después implementarlo ella misma. Eso reduce traspasos y acelera el aprendizaje.',
+        },
+        {
           question: '¿Qué stack de IA usa?',
           answer: 'Trabaja sobre todo con Python. Integra modelos de Claude y OpenAI (GPT), orquesta agentes con LangChain y LangGraph, los conecta a herramientas con MCP y les da contexto con RAG. Automatiza flujos con n8n y desarrolla con Claude Code.',
+        },
+        {
+          question: '¿En qué proyectos encaja?',
+          answer: 'En equipos donde la IA tiene que convertirse en producto: definir el caso de uso, construirlo de principio a fin y comprobar que aporta algo real.',
+        },
+        {
+          question: '¿Cuándo no usaría IA?',
+          answer: 'Cuando una regla, un script o un buen formulario resuelven el problema. Un modelo añade coste, latencia y respuestas que hay que vigilar, así que solo compensa cuando aporta algo que lo simple no puede: entender lenguaje, resumir, clasificar o razonar sobre información desordenada.',
         },
         {
           question: '¿Ha trabajado con clientes?',
@@ -419,37 +296,78 @@ export const CONTENT: Localized<SiteContent> = {
         },
         {
           question: '¿Trabaja en remoto?',
-          answer: 'Sí. Trabaja en remoto o en formato híbrido.',
+          answer: 'Vive en Salamanca. Ahora trabaja en formato híbrido y antes ha trabajado en remoto, así que se adapta bien a los dos.',
         },
       ],
-    },
-    contact: {
-      lead: 'Escríbeme y vemos cómo puedo ayudarte.',
-      cv: 'Descargar CV',
-      qr: {
-        label: 'Llévatelo al móvil',
-        body: 'Escanea el código para abrir esta web en tu móvil.',
-        shareLabel: 'Compártelo',
-        shareBody: 'Enséñale este código a alguien para que abra mi web en su móvil.',
-        alt: 'Código QR que abre laura-plopez.github.io',
+      game: {
+        title: 'Traductor de clientes',
+        pitch: '5 casos reales (más o menos). ¿Aciertas qué necesitaba el cliente de verdad?',
+        play: 'Jugar',
+        caseOf: 'Caso {n} de {total}',
+        result: 'Resultado',
+        question: 'Eso pidió el cliente. ¿Qué necesitaba de verdad?',
+        rightLines: ['¡Exacto! Eso es lo que necesitaba.', '¡Bien visto! Has leído entre líneas.', 'Traducción perfecta.'],
+        wrongLine: 'Casi. La correcta está en verde.',
+        solved: '¡Caso resuelto!',
+        almost: 'Casi…',
+        next: 'Siguiente caso',
+        seeResult: 'Ver resultado',
+        scoreLabel: 'clientes traducidos',
+        verdicts: {
+          perfect: 'Traduces clientes como Laura: lo que piden y lo que necesitan no siempre coinciden, y lo has visto siempre.',
+          good: 'Nada mal: casi siempre lees entre líneas.',
+          low: 'Los clientes son difíciles de traducir. Por eso Laura empieza siempre escuchando.',
+        },
+        wellPlayed: '¡Bien jugado!',
+        nextTime: 'La próxima sale',
+        again: 'Jugar otra vez',
+        backToChat: 'Volver al chat',
+        exit: 'Salir del juego',
+        paused: 'Juego en pausa: llevas {score} de {total} clientes traducidos. Pregúntame lo que quieras.',
+        summary: 'Has traducido {score} de {total} clientes. ¿Quieres saber cómo trabaja Laura con los de verdad? Pregúntame.',
+        cases: [
+          {
+            asked: 'Queremos un chatbot con IA.',
+            right: 'Un buscador sobre sus documentos internos que citara la fuente de cada respuesta.',
+            wrong: ['Un chatbot con el modelo más grande del mercado.', 'Una app móvil con asistente de voz.'],
+          },
+          {
+            asked: 'Usad el modelo más potente.',
+            right: 'Uno más pequeño y barato que respondía igual de bien, comprobado con evals.',
+            wrong: ['El modelo más caro, por si acaso.', 'Entrenar un modelo propio desde cero.'],
+          },
+          {
+            asked: 'Necesitamos un agente de IA.',
+            right: 'Un script que se ejecuta cada lunes a las 9:00.',
+            wrong: ['Un sistema multi-agente con memoria.', 'Un agente que decide solo cuándo actuar.'],
+          },
+          {
+            asked: 'Un dashboard con todas las métricas.',
+            right: 'Tres números que mirar cada lunes y una alerta cuando alguno se tuerce.',
+            wrong: ['Cuarenta gráficas en tiempo real.', 'Un informe en PDF de treinta páginas.'],
+          },
+          {
+            asked: 'Que sea intuitivo.',
+            right: 'Que se pareciera al Excel que ya usaban.',
+            wrong: ['Un rediseño completo con animaciones.', 'Un tutorial interactivo de diez pasos.'],
+          },
+        ],
       },
     },
   },
   en: {
-    tabs: {
-      home: 'Home',
-      projects: 'Projects',
-      about: 'About',
-      stack: 'Stack',
-      writing: 'Posts',
-      faq: 'FAQ',
-      contact: 'Contact',
+    sections: {
+      about: { title: 'About', context: 'From client to code' },
+      projects: { title: 'Projects', context: '2 case studies, with trailers' },
+      experience: { title: 'Experience', context: 'Work, education, certifications and languages' },
+      stack: { title: 'Stack', context: '4 areas, from idea to production' },
+      posts: { title: 'Posts', context: 'What I read and analyse, on Substack' },
+      agent: { title: 'Agent', context: 'Ask it anything you want to know about me' },
     },
     sidebar: {
-      location: 'Salamanca, ES',
+      tagline: { before: 'I think in ', product: 'product', middle: ' and build in ', code: 'code', after: '.' },
       navLabel: 'Sections',
-      menuOpen: 'Menu',
-      menuClose: 'Close',
+      viewProjects: 'See projects',
       nowLabel: 'Now',
       now: [
         'Building AI agents.',
@@ -461,133 +379,85 @@ export const CONTENT: Localized<SiteContent> = {
         'Running git push on faith.',
         'Testing whether "just a quick change" was quick.',
       ],
+      contactLead: 'Drop me a line and let’s see how I can help.',
+      downloadCv: 'Download CV',
       languageLabel: 'Language',
-    },
-    home: {
-      kicker: 'Product · Code · AI',
-      title: { main: 'Full Stack', connector: '&', accent: 'AI Engineer' },
-      subtitle: 'I think in product and build in code.',
-      ctaProjects: 'See projects',
-      ctaContact: 'Get in touch',
-      steps: [
-        { title: 'Understand', body: 'I talk to clients, look at the data and decide which problems are worth solving with AI, and which aren’t.' },
-        { title: 'Build', body: 'I design the flow, integrate models and write the code to ship it to production.' },
-        { title: 'Measure', body: 'I build in observability and evaluation to keep real usage traceable and decide what to improve in the next iteration.' },
-      ],
-      briefs: {
-        kicker: 'Mini game',
-        title: 'Client translator',
-        intro: 'Based on true events (more or less). Guess what the client actually needed, then reveal it.',
-        level: 'Level',
-        asked: 'What the client asked for',
-        needed: 'What they actually needed',
-        reveal: 'Press to reveal',
-        prev: 'Back',
-        next: 'Next',
-        restart: 'Play again',
-        items: [
-          {
-            asked: 'We want an AI chatbot.',
-            needed: 'A search over their internal documents that cited the source of every answer.',
-          },
-          {
-            asked: 'Use the most powerful model.',
-            needed: 'A smaller, cheaper one that answered just as well, proven with evals.',
-          },
-          {
-            asked: 'We need an AI agent.',
-            needed: 'A script that runs every Monday at 9:00.',
-          },
-          {
-            asked: 'A dashboard with every metric.',
-            needed: 'Three numbers to check every Monday, and an alert when one goes off track.',
-          },
-          {
-            asked: 'Make it intuitive.',
-            needed: 'Make it look like the Excel sheet they already used.',
-          },
-        ],
-      },
-    },
-    projects: {
-      filters: { all: 'All', ai: 'AI', both: 'Hybrid', product: 'Product', code: 'Code' },
-      kinds: { ai: 'AI', both: 'Hybrid', product: 'Product', code: 'Code' },
-      problem: 'Problem',
-      role: 'What I did',
-      outcome: 'Outcome',
-      inProgress: 'In progress',
-      viewProject: 'View project',
-      close: 'Close',
-      imagePlaceholder: '[ project image ]',
     },
     about: {
       lead: 'I started out talking to clients. Now I build what they need.',
-      body: [
-        'I started out in communications and client management. As an Account Manager I coordinated technical and sales teams and spent hours on the phone with clients in Spain and abroad. That’s where I learned the most useful thing I know: what a client asks for and what they need don’t always match.',
-        'Then I wanted to be on the other side, building. I studied Multiplatform App Development and moved into code: web, IoT and full stack platforms, each step closer to AI.',
-        'Today, as an AI Engineer, I design and build AI agents that businesses use as a SaaS product, from idea to production. And I still start the same way I always did: listening before building.',
+      body: 'As an Account Manager I learned that **what a client asks for and what they need don’t always match**. Then I moved into code: web, IoT and full stack platforms. Today, as an **AI Engineer**, I design AI systems from product conceptualisation to architecture.',
+      steps: [
+        { title: 'Understand', body: 'I talk to clients, look at the data and decide which problems are worth solving with AI, and which aren’t.' },
+        { title: 'Build', body: 'I design the flow, integrate models and write the code all the way to production.' },
+        { title: 'Measure', body: 'Observability and evals to see real usage and decide what to improve.' },
       ],
-      highlightsTitle: 'What I bring',
-      highlights: [
-        { title: 'Client + code', body: 'I understand the business problem and can build the solution.' },
-        { title: 'ES / EN', body: 'I work with clients and teams in both languages.' },
-        { title: 'Back, front & AI', body: 'I move across the whole stack, from API to agent.' },
-      ],
-      timelineTabs: { work: 'Experience', edu: 'Education', courses: 'Courses', langs: 'Languages' },
+    },
+    projects: {
+      problem: 'Problem',
+      role: 'What I did',
+      outcome: 'Outcome',
+      status: 'Status',
+      inProgress: 'In progress',
+      viewCase: 'View case',
+      hideCase: 'Hide case',
+      viewProject: 'View project',
+    },
+    experience: {
+      tabs: { work: 'Work', edu: 'Education', certs: 'Certifications', langs: 'Languages' },
       timeline: {
         work: [
           {
-            when: '2025',
-            duration: '1 year',
+            when: '2025 — now',
+            duration: '1 year 3 months',
             title: 'AI Engineer',
-            org: 'STEMIA, Salamanca',
+            org: 'STEMIA · Salamanca',
             note: 'Building AI systems, designing architectures and applying SDD to agents integrated into custom-built products. Involved in the product conceptualisation phase.',
             tags: ['Agents', 'Architecture', 'Product'],
           },
           {
             when: '2024',
-            duration: '1 yr 3 mos',
+            duration: '1 year 3 months',
             title: 'Full Stack Developer',
-            org: 'AIR Institute, Salamanca',
+            org: 'AIR Institute · Salamanca',
             note: 'IoT projects with end-to-end device traceability. APIs and PostgreSQL databases, Clean Architecture and full-stack development with React.',
             tags: ['IoT', 'PostgreSQL', 'React'],
           },
           {
             when: '2024',
-            duration: '3 mos',
+            duration: '3 months',
             title: 'Frontend Web Developer',
-            org: 'InternacionalWeb, Salamanca',
+            org: 'InternacionalWeb · Salamanca',
             note: 'WordPress development with custom themes and plugins. Performance optimisation with PHP, JavaScript and CSS.',
             tags: ['WordPress', 'PHP', 'JavaScript'],
           },
           {
             when: '2023',
-            duration: '1 yr 2 mos',
+            duration: '1 year 2 months',
             title: 'Account Manager',
-            org: 'eXperience IT Solutions, Remote',
+            org: 'eXperience IT Solutions · Remote',
             note: 'Coordinating technical and sales teams. Technical SEO and search positioning. Managing web and ecommerce clients.',
             tags: ['SEO', 'Clients', 'Ecommerce'],
           },
           {
             when: '2020',
-            duration: '3 mos',
+            duration: '3 months',
             title: 'Communications Manager',
-            org: 'Rabuso AMC, Leganés',
+            org: 'Rabuso AMC · Leganés',
             note: 'Web content for international clients. Technical writing and digital publishing. CRM workflow optimisation.',
             tags: ['Content', 'CRM'],
           },
         ],
         edu: [
           {
-            when: '2022 – 2024',
+            when: '2022 — 2024',
             duration: 'Higher VET',
             title: 'Multiplatform App Development',
             org: 'Instituto Medac',
             note: 'Programming, databases, mobile and desktop development.',
-            tags: ['DAM'],
+            tags: [],
           },
           {
-            when: '2015 – 2019',
+            when: '2015 — 2019',
             duration: 'Degree',
             title: 'Audiovisual Communication',
             org: 'Universidad Rey Juan Carlos',
@@ -595,152 +465,78 @@ export const CONTENT: Localized<SiteContent> = {
             tags: [],
           },
         ],
-        courses: [
+        certs: [
           { when: 'Jun 2026', duration: '', title: 'Introduction to Model Context Protocol', org: 'Anthropic', note: '', tags: [] },
           { when: 'Jun 2026', duration: '', title: 'Introduction to Claude Cowork', org: 'Anthropic', note: '', tags: [] },
           { when: 'Jun 2026', duration: '', title: 'Claude Code in Action', org: 'Anthropic', note: '', tags: [] },
           { when: '', duration: '', title: 'Python Essentials 1 & 2', org: 'Cisco Networking Academy', note: '', tags: [] },
           { when: '', duration: '', title: 'Git Fundamentals', org: 'OpenWebinars', note: '', tags: [] },
-          { when: '', duration: '', title: 'Digital Marketing', org: 'Google Actívate', note: '', tags: [] },
           { when: '', duration: '', title: 'Data Science', org: 'IMMUNE Technology Institute', note: '', tags: [] },
+          { when: '', duration: '', title: 'Digital Marketing', org: 'Google Actívate', note: '', tags: [] },
         ],
         langs: [
           { when: '', duration: '', title: 'Spanish', org: 'Native', note: '', tags: [] },
-          {
-            when: '',
-            duration: '',
-            title: 'English',
-            org: 'Professional',
-            note: 'Client management and technical communication in English.',
-            tags: [],
-          },
+          { when: '', duration: '', title: 'English', org: 'Professional', note: 'Client management and technical communication in English.', tags: [] },
         ],
       },
     },
     stack: {
-      intro: 'Two halves of one profile: what I need to understand a client and decide what to build, and what I use to build it.',
-      columns: [
+      areas: [
         {
-          title: 'Product',
-          description: 'From first client contact to a defined product: what gets built and for whom.',
-          groups: [
-            {
-              name: 'Strategy',
-              items: [
-                { name: 'Product shaping', note: 'idea → requirements', monogram: 'PS' },
-                { name: 'Process automation', note: 'business processes', monogram: 'PA' },
-              ],
-            },
-            {
-              name: 'Definition & design',
-              items: [
-                { name: 'Spec-Driven Development', note: 'specs as source of truth', monogram: 'SDD' },
-                { name: 'PRD', note: 'product requirements', monogram: 'PRD' },
-                { name: 'Figma', note: 'design, prototypes', logo: 'figma' },
-              ],
-            },
-            {
-              name: 'Clients',
-              items: [
-                { name: 'Discovery', note: 'client interviews', monogram: 'DI' },
-                { name: 'Salesforce', note: 'CRM', monogram: 'SF' },
-              ],
-            },
-          ],
+          name: 'AI & agents',
+          description: 'Models, orchestration and context',
+          tools: ['Python', 'Claude API', 'OpenAI API', 'LangChain', 'LangGraph', 'MCP', 'RAG', 'n8n'],
         },
         {
-          title: 'Technical',
-          description: 'Full stack with an AI focus: from agent to interface, through API, data and deployment.',
-          groups: [
-            {
-              name: 'AI',
-              items: [
-                { name: 'Python', note: 'AI, scripting', logo: 'python' },
-                { name: 'Claude API', note: 'Anthropic models', logo: 'anthropic' },
-                { name: 'OpenAI API', note: 'GPT models', monogram: 'OA' },
-                { name: 'LangChain', note: 'orchestration', logo: 'langchain' },
-                { name: 'LangGraph', note: 'agent workflows', logo: 'langgraph' },
-                { name: 'MCP', note: 'agents ↔ tools', logo: 'modelcontextprotocol' },
-                { name: 'RAG', note: 'context retrieval', monogram: 'RAG' },
-                { name: 'n8n', note: 'workflow automation', logo: 'n8n' },
-                { name: 'Claude Code', note: 'AI-assisted dev', logo: 'claude' },
-              ],
-            },
-            {
-              name: 'Frontend',
-              items: [
-                { name: 'React', note: 'UI', logo: 'react' },
-                { name: 'TypeScript', note: 'types', logo: 'typescript' },
-                { name: 'JavaScript', note: 'web', logo: 'javascript' },
-                { name: 'Tailwind CSS', note: 'styling', logo: 'tailwindcss' },              ],
-            },
-            {
-              name: 'Backend & data',
-              items: [
-                { name: 'Python', note: 'APIs, services', logo: 'python' },
-                { name: 'PostgreSQL', note: 'data', logo: 'postgresql' },                { name: 'APIs', note: 'REST', monogram: 'API' },
-                { name: 'Clean Architecture', note: 'design', monogram: 'CA' },
-                { name: 'IoT', note: 'traceability', monogram: 'IoT' },
-              ],
-            },
-            {
-              name: 'Delivery & observability',
-              items: [
-                { name: 'Git', note: 'versioning', logo: 'git' },
-                { name: 'GitHub', note: 'repos', logo: 'github' },                { name: 'GitHub Actions', note: 'CI/CD', logo: 'githubactions' },
-                { name: 'GitHub Pages', note: 'hosting', logo: 'githubpages' },
-                { name: 'Azure', note: 'cloud', monogram: 'AZ' },
-                { name: 'Grafana', note: 'monitoring, dashboards', logo: 'grafana' },
-              ],
-            },
-          ],
+          name: 'Development',
+          description: 'From API to interface',
+          tools: ['TypeScript', 'JavaScript', 'React', 'Tailwind CSS', 'PostgreSQL', 'REST APIs', 'Clean Architecture', 'IoT'],
+        },
+        {
+          name: 'Product',
+          description: 'What gets built and for whom',
+          tools: ['Product shaping', 'Spec-Driven Development', 'PRD', 'Discovery', 'Figma'],
+        },
+        {
+          name: 'Delivery',
+          description: 'Version, ship and observe',
+          tools: ['Git', 'GitHub Actions', 'Azure', 'Grafana', 'Claude Code'],
         },
       ],
     },
-    writing: {
-      lead: 'Reading and reflecting on the papers that catch my attention most.',
+    posts: {
+      readTime: 'read',
+      all: 'See all posts on Substack',
     },
-    faq: {
-      lead: 'What people usually ask me in first conversations.',
-      items: [
-        {
-          question: 'What exactly do you do?',
-          answer: 'I build products with artificial intelligence. That means deciding where a model adds value, integrating it, designing how people use it and measuring whether it works.',
-        },
-        {
-          question: 'Are you more product or more code?',
-          answer: 'Both, on purpose. I can frame a problem with users and data, then implement it myself. That means fewer hand-offs and faster learning.',
-        },
-        {
-          question: 'What kind of projects do you fit?',
-          answer: 'Teams where AI has to become a product: defining the use case, building it end to end and checking it delivers something real.',
-        },
-        {
-          question: 'Do you work remotely?',
-          answer: 'I live in Salamanca. I currently work hybrid and have worked fully remote before, so I’m comfortable with both.',
-        },
-        {
-          question: 'When wouldn’t you use AI?',
-          answer: 'When a rule, a script or a good form solves the problem. A model adds cost, latency and answers you have to keep an eye on, so it’s only worth it when it brings something simpler tools can’t: understanding language, summarising, classifying or reasoning over messy information.',
-        },
-      ],
-    },
-    bot: {
-      title: 'Ask my bot',
-      subtitle: 'Answers about my experience, stack and way of working',
-      greeting: 'Hi, I’m Laura’s assistant. Ask me about her experience, her stack or how she works.',
+    agent: {
+      name: 'Laura’s agent',
+      status: { idle: 'Available', thinking: 'Thinking…', talking: 'Answering…' },
+      greeting: 'Hi, I’m Laura’s agent. Ask me about her experience, her stack or how she works. And if you fancy it, play the client translator.',
       placeholder: 'Type your question…',
       send: 'Send',
-      fallback: 'I can’t answer that yet. You can write to Laura directly from the Contact tab.',
+      fallback: 'I can’t answer that yet. You can write to Laura directly: her email is in the sidebar.',
       disclaimer: 'Answers generated with AI (Gemini) from my portfolio. They may contain mistakes.',
+      suggestionsTitle: 'Try asking',
       suggestions: [
         {
           question: 'What does Laura do at STEMIA?',
           answer: 'She’s an AI Engineer at STEMIA. She builds AI systems and designs their architecture, applying SDD to agents integrated into custom-built products. She plays an active role in conceptualising each product, shaping what gets built before it’s built.',
         },
         {
+          question: 'Is she more product or code?',
+          answer: 'Both, on purpose. She can frame a problem with users and data, then implement it herself. That means fewer hand-offs and faster learning.',
+        },
+        {
           question: 'What AI stack does she use?',
           answer: 'She works mostly in Python. She integrates Claude and OpenAI (GPT) models, orchestrates agents with LangChain and LangGraph, connects them to tools with MCP and gives them context with RAG. She automates workflows with n8n and builds with Claude Code.',
+        },
+        {
+          question: 'What projects does she fit?',
+          answer: 'Teams where AI has to become a product: defining the use case, building it end to end and checking it delivers something real.',
+        },
+        {
+          question: 'When wouldn’t she use AI?',
+          answer: 'When a rule, a script or a good form solves the problem. A model adds cost, latency and answers you have to keep an eye on, so it’s only worth it when it brings something simpler tools can’t: understanding language, summarising, classifying or reasoning over messy information.',
         },
         {
           question: 'Has she worked with clients?',
@@ -748,19 +544,62 @@ export const CONTENT: Localized<SiteContent> = {
         },
         {
           question: 'Does she work remotely?',
-          answer: 'Yes. She works remotely or in a hybrid setup.',
+          answer: 'She lives in Salamanca. She currently works hybrid and has worked fully remote before, so she’s comfortable with both.',
         },
       ],
-    },
-    contact: {
-      lead: 'Drop me a line and let’s see how I can help.',
-      cv: 'Download CV',
-      qr: {
-        label: 'Take it to your phone',
-        body: 'Scan the code to open this site on your phone.',
-        shareLabel: 'Share it',
-        shareBody: 'Show this code to someone so they can open my site on their phone.',
-        alt: 'QR code that opens laura-plopez.github.io',
+      game: {
+        title: 'Client translator',
+        pitch: '5 true stories (more or less). Can you guess what the client actually needed?',
+        play: 'Play',
+        caseOf: 'Case {n} of {total}',
+        result: 'Result',
+        question: 'That’s what the client asked for. What did they actually need?',
+        rightLines: ['Exactly! That’s what they needed.', 'Well spotted! You read between the lines.', 'Perfect translation.'],
+        wrongLine: 'Close. The right one is in green.',
+        solved: 'Case solved!',
+        almost: 'Close…',
+        next: 'Next case',
+        seeResult: 'See result',
+        scoreLabel: 'clients translated',
+        verdicts: {
+          perfect: 'You translate clients like Laura: what they ask for and what they need don’t always match, and you saw it every time.',
+          good: 'Not bad: you read between the lines most of the time.',
+          low: 'Clients are hard to translate. That’s why Laura always starts by listening.',
+        },
+        wellPlayed: 'Well played!',
+        nextTime: 'Next time',
+        again: 'Play again',
+        backToChat: 'Back to the chat',
+        exit: 'Leave the game',
+        paused: 'Game paused: you’ve translated {score} of {total} clients so far. Ask me anything.',
+        summary: 'You translated {score} of {total} clients. Want to know how Laura works with real ones? Ask me.',
+        cases: [
+          {
+            asked: 'We want an AI chatbot.',
+            right: 'A search over their internal documents that cited the source of every answer.',
+            wrong: ['A chatbot running the biggest model on the market.', 'A mobile app with a voice assistant.'],
+          },
+          {
+            asked: 'Use the most powerful model.',
+            right: 'A smaller, cheaper one that answered just as well, proven with evals.',
+            wrong: ['The most expensive model, just in case.', 'Training their own model from scratch.'],
+          },
+          {
+            asked: 'We need an AI agent.',
+            right: 'A script that runs every Monday at 9:00.',
+            wrong: ['A multi-agent system with memory.', 'An agent that decides on its own when to act.'],
+          },
+          {
+            asked: 'A dashboard with every metric.',
+            right: 'Three numbers to check every Monday, and an alert when one goes off track.',
+            wrong: ['Forty real-time charts.', 'A thirty-page PDF report.'],
+          },
+          {
+            asked: 'Make it intuitive.',
+            right: 'Make it look like the Excel sheet they already used.',
+            wrong: ['A full redesign with animations.', 'A ten-step interactive tutorial.'],
+          },
+        ],
       },
     },
   },

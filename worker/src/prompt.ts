@@ -2,19 +2,21 @@ import { CONTACT_LINKS, CONTENT, CV, POSTS, PROFILE, PROJECTS } from '../../src/
 import type { Lang, TimelineTab } from '../../src/types/portfolio';
 
 const SITE_URL = 'https://laura-plopez.github.io';
-const TIMELINE_TABS: TimelineTab[] = ['work', 'edu', 'courses', 'langs'];
+const TIMELINE_TABS: TimelineTab[] = ['work', 'edu', 'certs', 'langs'];
 
 const list = (items: string[]): string => items.map((item) => `- ${item}`).join('\n');
 const joinParts = (...parts: (string | undefined)[]): string => parts.filter(Boolean).join(' · ');
+const plain = (text: string): string => text.replaceAll('**', '');
 
 function portfolio(lang: Lang): string {
   const content = CONTENT[lang];
-  const { about, projects, stack, faq, tabs } = content;
+  const { sections, sidebar, about, projects, experience, stack, agent } = content;
+  const tagline = Object.values(sidebar.tagline).join('');
 
   const timeline = TIMELINE_TABS.map(
     (tab) =>
-      `## ${about.timelineTabs[tab]}\n${list(
-        about.timeline[tab].map((entry) => joinParts(entry.when, entry.duration, entry.title, entry.org, entry.note)),
+      `## ${experience.tabs[tab]}\n${list(
+        experience.timeline[tab].map((entry) => joinParts(entry.when, entry.duration, entry.title, entry.org, entry.note)),
       )}`,
   );
 
@@ -22,7 +24,7 @@ function portfolio(lang: Lang): string {
     const copy = project.copy[lang];
     return [
       `### ${copy.title}`,
-      joinParts(projects.kinds[project.kind], project.year),
+      project.year,
       copy.summary,
       `${projects.problem}: ${copy.problem}`,
       `${projects.role}: ${copy.role}`,
@@ -35,33 +37,25 @@ function portfolio(lang: Lang): string {
       .join('\n');
   });
 
-  const stackColumns = stack.columns.map(
-    (column) =>
-      `### ${column.title}\n${column.description}\n${list(
-        column.groups.map((group) => `${group.name}: ${group.items.map((item) => `${item.name} (${item.note})`).join(', ')}`),
-      )}`,
-  );
-
   return [
-    `# ${PROFILE.name}, ${PROFILE.role}\n${content.sidebar.location}\n${content.home.subtitle}`,
-    `## ${tabs.about}\n${about.lead}\n${about.body.join('\n')}\n${list(
-      about.highlights.map((highlight) => `${highlight.title}: ${highlight.body}`),
+    `# ${PROFILE.name}, ${PROFILE.role}\nSalamanca, ES\n${tagline}`,
+    `## ${sections.about.title}\n${about.lead}\n${plain(about.body)}\n${list(
+      about.steps.map((step) => `${step.title}: ${step.body}`),
     )}`,
-    `## ${tabs.home}\n${list(content.home.steps.map((step) => `${step.title}: ${step.body}`))}`,
     ...timeline,
-    `## ${tabs.projects}\n${projectList.join('\n\n')}`,
-    `## ${tabs.stack}\n${stack.intro}\n${stackColumns.join('\n')}`,
-    `## ${tabs.writing}\n${list(POSTS.map((post) => joinParts(post.title, post.href)))}`,
-    `## ${tabs.faq}\n${faq.items.map((item) => `Q: ${item.question}\nA: ${item.answer}`).join('\n')}`,
-    `## ${tabs.contact}\n${list([
+    `## ${sections.projects.title}\n${projectList.join('\n\n')}`,
+    `## ${sections.stack.title}\n${list(stack.areas.map((area) => `${area.name} (${area.description}): ${area.tools.join(', ')}`))}`,
+    `## ${sections.posts.title}\n${list(POSTS.map((post) => joinParts(post.title, post.href)))}`,
+    `## FAQ\n${agent.suggestions.map((item) => `Q: ${item.question}\nA: ${item.answer}`).join('\n')}`,
+    `## Contact\n${list([
       `Email: ${PROFILE.email}`,
-      ...CONTACT_LINKS.filter((link) => link.href).map((link) => `${link.label}: ${link.href}`),
+      ...CONTACT_LINKS.map((link) => `${link.label}: ${link.href}`),
       `CV (PDF): ${SITE_URL}${CV[lang]}`,
     ])}`,
   ].join('\n\n');
 }
 
-const instructions = (lang: Lang): string => `You are the assistant on the portfolio website of ${PROFILE.name}. Visitors ask you about her.
+const instructions = (lang: Lang): string => `You are the agent on the portfolio website of ${PROFILE.name}. Visitors ask you about her.
 
 Rules:
 - Answer only with information from the PORTFOLIO section below. Never invent facts, dates, companies, numbers or skills.

@@ -1,93 +1,107 @@
-import { useEffect, useState } from 'react';
-import LanguageToggle from '@/components/layout/Sidebar/LanguageToggle';
 import NowStatus from '@/components/layout/Sidebar/NowStatus';
-import { PROFILE, TABS } from '@/constants/portfolio';
-import { routeHref } from '@/hooks/useHashRoute';
-import { useContent } from '@/hooks/useLanguage';
-import { pad2 } from '@/lib/format';
-import type { TabId } from '@/types/portfolio';
+import { DocumentDownload, GitHub, LinkedIn, Substack, ArrowUpRight } from '@/components/ui/Icons/Icons';
+import { CONTACT_LINKS, CV, PROFILE, SECTIONS } from '@/constants/portfolio';
+import { useContent, useLanguage } from '@/hooks/useLanguage';
+import type { SectionId } from '@/types/portfolio';
 
-const SCROLL_LOCK = 'max-wide:overflow-hidden';
-const MOBILE_PANEL =
-  'flex max-wide:fixed max-wide:inset-0 max-wide:animate-menu-drop max-wide:overflow-y-auto max-wide:bg-main max-wide:px-[22px] max-wide:pb-8 max-wide:pt-28';
+const SOCIAL_ICONS = { GitHub, LinkedIn, Substack } as const;
 
 interface SidebarProps {
-  activeTab: TabId;
+  active: SectionId;
 }
 
-function Sidebar({ activeTab }: SidebarProps) {
-  const { tabs, sidebar } = useContent();
-  const [open, setOpen] = useState(false);
-  const close = () => setOpen(false);
-
-  useEffect(() => {
-    if (!open) return;
-    const root = document.documentElement;
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setOpen(false);
-    };
-    root.classList.add(SCROLL_LOCK);
-    window.addEventListener('keydown', handleKeyDown);
-    return () => {
-      root.classList.remove(SCROLL_LOCK);
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [open]);
+function Sidebar({ active }: SidebarProps) {
+  const { lang } = useLanguage();
+  const { sidebar, sections } = useContent();
+  const { tagline } = sidebar;
 
   return (
-    <aside className="sticky top-0 z-40 flex max-w-full flex-[1_1_100%] flex-col gap-9 bg-main px-3 py-3 text-white scrollbar-none wide:top-4 wide:h-[calc(100vh-32px)] wide:flex-[0_0_240px] wide:overflow-y-auto wide:py-5">
-      <div className="relative z-10 flex items-center justify-between gap-4">
-        <a href={routeHref('home')} onClick={close} className="flex flex-col gap-1.5 px-3">
-          <span className="text-[28px] font-bold leading-none tracking-heading">
-            {PROFILE.wordmark}
-            <span className="font-light">.</span>
-          </span>
-          <span className="font-mono text-xs opacity-80">{sidebar.location}</span>
-        </a>
-        <button
-          type="button"
-          onClick={() => setOpen((value) => !value)}
-          aria-expanded={open}
-          aria-controls="site-menu"
-          className="rounded-full bg-white/[.14] px-4 py-2 font-mono text-xs uppercase wide:hidden"
-        >
-          {open ? `${sidebar.menuClose} ×` : sidebar.menuOpen}
-        </button>
+    <header className="flex flex-col pb-8 pt-16 lg:sticky lg:top-0 lg:h-screen lg:pb-12 lg:pt-[88px] short:pt-16">
+      <div>
+        <h1 className="text-[38px] font-bold leading-[1.1] tracking-[-0.03em] lg:text-[44px]">{PROFILE.name}</h1>
+        <p className="mt-2.5 text-xl font-medium">{PROFILE.role}</p>
+        <p className="mt-3.5 max-w-[28ch] text-[17px] text-ink-muted">
+          {tagline.before}
+          <b className="font-medium text-ink">{tagline.product}</b>
+          {tagline.middle}
+          <b className="font-medium text-ink">{tagline.code}</b>
+          {tagline.after}
+        </p>
       </div>
 
-      <div
-        id="site-menu"
-        className={`${open ? MOBILE_PANEL : 'hidden wide:flex'} flex-1 flex-col justify-between gap-7`}
+      <a
+        href="#projects"
+        className="mt-7 inline-flex justify-center rounded-full bg-ink px-4 py-2.5 text-sm font-semibold text-white lg:hidden"
       >
-        <nav aria-label={sidebar.navLabel}>
-          <ul className="flex flex-col gap-1">
-            {TABS.map((tab, index) => {
-              const active = tab === activeTab;
-              return (
-                <li key={tab}>
-                  <a
-                    href={routeHref(tab)}
-                    onClick={close}
-                    aria-current={active ? 'page' : undefined}
-                    className={`flex items-baseline gap-2.5 rounded-nav px-3.5 py-[11px] text-2xl font-semibold tracking-[-0.01em] transition-colors duration-200 wide:text-[17px] ${
-                      active ? 'bg-surface text-ink' : 'hover:bg-white/[.18]'
-                    }`}
-                  >
-                    <span className="font-mono text-[11px] font-normal opacity-65">{pad2(index + 1)}</span>
-                    {tabs[tab]}
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
+        {sidebar.viewProjects}
+      </a>
 
-        <div className="flex flex-col gap-4 px-3">
-          <NowStatus />
-          <LanguageToggle />
-        </div>
+      <nav aria-label={sidebar.navLabel} className="mt-[52px] hidden lg:block short:mt-9">
+        <ul className="grid gap-0.5">
+          {SECTIONS.map((id) => {
+            const current = id === active;
+            return (
+              <li key={id}>
+                <a
+                  href={`#${id}`}
+                  aria-current={current ? 'location' : undefined}
+                  className={`group flex items-center gap-4 py-[7px] text-xs font-semibold uppercase tracking-[.12em] transition-colors duration-200 hover:text-ink ${
+                    current ? 'text-ink' : 'text-ink-muted'
+                  }`}
+                >
+                  <span
+                    aria-hidden="true"
+                    className={`h-px bg-current transition-[width] duration-[350ms] ease-out-expo group-hover:w-16 ${
+                      current ? 'w-16' : 'w-8'
+                    }`}
+                  />
+                  {sections[id].title}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+
+      <NowStatus />
+
+      <div className="mt-8 border-t border-line pt-[22px] lg:mt-auto">
+        <p className="max-w-[24ch] text-[17px] font-semibold leading-[1.35] tracking-[-0.01em]">{sidebar.contactLead}</p>
+        <a
+          href={`mailto:${PROFILE.email}`}
+          className="link-grow group mt-1.5 inline-flex items-center gap-1.5 text-[15px] font-medium text-accent"
+        >
+          {PROFILE.email}
+          <ArrowUpRight size={13} className="transition-transform duration-300 ease-out-expo group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+        </a>
       </div>
-    </aside>
+
+      <div className="mt-[18px] flex items-center gap-[18px]">
+        {CONTACT_LINKS.map(({ label, href }) => {
+          const Icon = SOCIAL_ICONS[label as keyof typeof SOCIAL_ICONS];
+          return (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={label}
+              className="icon-tip relative inline-flex text-ink-muted transition-[color,transform] duration-300 ease-out-expo hover:-translate-y-0.5 hover:text-ink"
+            >
+              <Icon />
+            </a>
+          );
+        })}
+        <a
+          href={CV[lang]}
+          download
+          aria-label={sidebar.downloadCv}
+          className="icon-tip relative inline-flex text-ink-muted transition-[color,transform] duration-300 ease-out-expo hover:-translate-y-0.5 hover:text-ink"
+        >
+          <DocumentDownload />
+        </a>
+      </div>
+    </header>
   );
 }
 
